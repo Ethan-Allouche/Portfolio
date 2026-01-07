@@ -396,24 +396,7 @@
                 const interval = setInterval(() => {
                     setPosition(prev => {
                         let newPos = prev + (0.4 * direction); 
-                        
-                        // -- CORRECTION DE LA LIMITE POUR TOUS LES ÉCRANS --
-                        // Pour la page d'accueil, la zone bleue fait 60% mais décalée par transform/translate.
-                        // Calcul dynamique de la limite pour qu'il s'arrête avant le vide.
-                        let rightLimit = 90; // Par défaut (autres pages)
-                        
-                        if (isHome) {
-                            // On estime la largeur visible de la zone bleue
-                            // La forme fait 60% de la largeur de l'écran - 64px (translate-x-16) - marge sécurité robot (80px)
-                            // Formule : ((window.innerWidth * 0.60) - 150) / window.innerWidth * 100
-                            const vw = window.innerWidth;
-                            const blueZoneWidthPx = (vw * 0.60) - 150; 
-                            const computedLimit = (blueZoneWidthPx / vw) * 100;
-                            
-                            // On borne pour éviter les bugs sur très petits écrans
-                            rightLimit = Math.max(10, computedLimit);
-                        }
-
+                        const rightLimit = isHome ? 55 : 90;
                         const leftLimit = 2;
 
                         if (newPos > rightLimit) {
