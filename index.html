@@ -36,21 +36,22 @@
             animation: robotWalk 0.4s infinite ease-in-out;
         }
 
-        /* Repos (Respiration + Vie) */
+        /* Repos (Respiration + Vie) - AJUSTÉ (Plus calme) */
         @keyframes breathe {
             0%, 100% { transform: scaleY(1); }
             50% { transform: scaleY(1.02) translateY(-1px); }
         }
-        /* Tête qui regarde autour (Curiosité) */
+        /* Tête qui regarde autour (Curiosité) - AJUSTÉ (Plus calme) */
         @keyframes lookAround {
             0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-5deg); }
-            75% { transform: rotate(5deg); }
+            20% { transform: rotate(-10deg); }
+            50% { transform: rotate(0deg); }
+            80% { transform: rotate(10deg); }
         }
-        /* Bras qui se balancent doucement */
+        /* Bras qui se balancent doucement - AJUSTÉ (Plus calme) */
         @keyframes armSway {
             0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(5deg); }
+            50% { transform: rotate(10deg); }
         }
 
         /* Classes pour l'état IDLE (Vivant) */
@@ -164,6 +165,11 @@
         .ball-2 { animation: juggle 1s infinite ease-in-out; animation-delay: 0.3s; }
         .ball-3 { animation: juggle 1s infinite ease-in-out; animation-delay: 0.6s; }
 
+        /* Animation Cercle Progression */
+        @keyframes progressLoad {
+            from { stroke-dashoffset: 251.2; } /* 2 * PI * 40 (r=40 pour l'exemple) = 251.2 */
+        }
+
         /* Masquer la barre de défilement horizontale des onglets sur mobile */
         .no-scrollbar::-webkit-scrollbar {
           display: none;
@@ -228,6 +234,45 @@
         const LinkIcon = (props) => <IconWrapper {...props}><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></IconWrapper>;
         const Linkedin = (props) => <IconWrapper {...props}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></IconWrapper>;
 
+        // --- NOUVEAU COMPOSANT : CERCLE DE PROGRESSION ---
+        const CircularProgress = ({ percentage, colorClass, size = 80, strokeWidth = 8 }) => {
+            const radius = (size - strokeWidth) / 2;
+            const circumference = radius * 2 * Math.PI;
+            const offset = circumference - (percentage / 100) * circumference;
+
+            return (
+                <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+                    <svg className="w-full h-full transform -rotate-90">
+                        {/* Cercle de fond */}
+                        <circle
+                            cx={size / 2}
+                            cy={size / 2}
+                            r={radius}
+                            stroke="currentColor"
+                            strokeWidth={strokeWidth}
+                            fill="transparent"
+                            className="text-gray-200"
+                        />
+                        {/* Cercle de progression */}
+                        <circle
+                            cx={size / 2}
+                            cy={size / 2}
+                            r={radius}
+                            stroke="currentColor"
+                            strokeWidth={strokeWidth}
+                            fill="transparent"
+                            strokeDasharray={circumference}
+                            strokeDashoffset={offset}
+                            strokeLinecap="round"
+                            className={`${colorClass} transition-all duration-1000 ease-out`}
+                        />
+                    </svg>
+                    <span className={`absolute text-lg font-extrabold ${colorClass}`}>
+                        {percentage}%
+                    </span>
+                </div>
+            );
+        };
 
         // --- NOUVEAU COMPOSANT : MASCOTTE ROBOT AVEC IA & SKINS ---
         const Mascot = ({ activeTab }) => {
@@ -637,28 +682,36 @@
             ecole_actuelle: "Université Toulon - IUT La Garde"
           };
 
-          // --- COMPÉTENCES CŒURS ---
+          // --- COMPÉTENCES CŒURS (MODIFIÉ: Compétence GEII + Percentage) ---
           const coreCompetencies = [
               { 
                 title: "Concevoir", 
+                percentage: 90,
+                circleColor: "text-red-500",
                 style: "bg-red-100 border-red-300 text-red-900 hover:shadow-red-500/30 hover:bg-red-200", 
                 tagStyle: "bg-red-100 text-red-800 border-red-200",
                 desc: "Définition de l'architecture matérielle et logicielle, choix des composants, schémas électriques et conception de systèmes embarqués."
               },
               { 
                 title: "Vérifier", 
+                percentage: 85,
+                circleColor: "text-orange-500",
                 style: "bg-orange-100 border-orange-300 text-orange-900 hover:shadow-orange-500/30 hover:bg-orange-200", 
                 tagStyle: "bg-orange-100 text-orange-800 border-orange-200",
                 desc: "Tests unitaires, validation fonctionnelle, simulations et recettes pour assurer la conformité aux cahiers des charges."
               },
               { 
                 title: "Maintenir", 
+                percentage: 80,
+                circleColor: "text-amber-500",
                 style: "bg-amber-100 border-amber-300 text-amber-900 hover:shadow-amber-500/30 hover:bg-amber-200", 
                 tagStyle: "bg-amber-100 text-amber-800 border-amber-200",
                 desc: "Diagnostic de pannes, réparation, amélioration continue et maintenance préventive/corrective des systèmes."
               },
               { 
                 title: "Intégrer", 
+                percentage: 95,
+                circleColor: "text-emerald-500",
                 style: "bg-emerald-100 border-emerald-300 text-emerald-900 hover:shadow-emerald-500/30 hover:bg-emerald-200", 
                 tagStyle: "bg-emerald-100 text-emerald-800 border-emerald-200",
                 desc: "Mise en réseau, communication entre sous-systèmes (API, IHM, Capteurs), installation et mise en service sur site."
@@ -1575,9 +1628,17 @@
                         </div>
                         <div>
                            <h2 className="text-3xl font-bold uppercase tracking-widest text-gray-900">{comp.title}</h2>
+                           {/* MODIFICATION ICI : NOM RENOMMÉ */}
                            <p className="text-gray-600 font-medium">Compétence GEII</p>
                         </div>
                     </div>
+                    
+                    {/* AJOUT DE LA JAUGE CIRCULAIRE */}
+                    <div className="flex flex-col items-center">
+                        <CircularProgress percentage={comp.percentage} colorClass={comp.circleColor} />
+                        <span className="text-xs font-bold text-gray-500 uppercase mt-1">Maîtrise</span>
+                    </div>
+
                     <button
                         onClick={onBack}
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800 text-white font-semibold hover:bg-gray-700"
