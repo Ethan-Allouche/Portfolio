@@ -2988,7 +2988,12 @@ const renderInterestIcon = (iconName, size = 24) => {
 
               {/* --- NAVIGATION BAR FIXED --- */}
               <nav className="fixed top-0 left-0 w-full z-50 bg-blue-900 shadow-xl border-b border-blue-800">
-                <div className="max-w-7xl mx-auto px-4">
+                {/*
+                  Sur certains ecrans tres larges, le site restait "trop au centre".
+                  On augmente donc la largeur max des conteneurs principaux tout en gardant
+                  un rendu propre sur les ecrans standards.
+                */}
+                <div className="max-w-[1600px] mx-auto px-4">
                   <div className="flex flex-col md:flex-row justify-between items-center md:h-16 py-1 md:py-0">
                     {/* Logo */}
                     <div 
@@ -3032,7 +3037,7 @@ const renderInterestIcon = (iconName, size = 24) => {
                   <div className="absolute bottom-0 right-0 w-[45%] h-64 bg-blue-500 transform -skew-x-12 translate-x-10 translate-y-16 z-0 opacity-20 md:opacity-100"></div>
                   
                   {/* --- ZONE DE CONTENU DYNAMIQUE --- */}
-                  <div className="relative z-10 p-6 md:p-12 min-h-[600px] max-w-7xl mx-auto">
+                  <div className="relative z-10 p-6 md:p-12 min-h-[600px] w-full max-w-[1600px] mx-auto">
                     {activeTab === 'accueil' && <PageAccueil />}
                     {activeTab === 'competences' && (
                       activeCoreCompetencyLevel
