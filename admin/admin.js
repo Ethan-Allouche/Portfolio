@@ -117,6 +117,24 @@ function inputRow(label, value, { type = 'text', placeholder = '', oninput } = {
 
 function textareaRow(label, value, { placeholder = '', oninput } = {}) {
   const id = 't_' + Math.random().toString(36).slice(2);
+
+  // Mini-toolbar : gras via Markdown **texte**
+  const wrapSelection = (textarea, before, after) => {
+    const start = textarea.selectionStart ?? 0;
+    const end = textarea.selectionEnd ?? 0;
+    const text = textarea.value ?? '';
+    const selected = text.slice(start, end);
+
+    const next = text.slice(0, start) + before + selected + after + text.slice(end);
+    textarea.value = next;
+
+    // Replace focus + selection (garde l'UX agréable)
+    textarea.focus();
+    const newStart = start + before.length;
+    const newEnd = newStart + selected.length;
+    textarea.setSelectionRange(newStart, newEnd);
+  };
+
   const ta = el('textarea', {
     id,
     placeholder,
@@ -124,9 +142,26 @@ function textareaRow(label, value, { placeholder = '', oninput } = {}) {
   }, []);
   ta.value = value ?? '';
   if (oninput) ta.addEventListener('input', (e) => oninput(e.target.value));
+
+  const btnBold = el('button', {
+    type: 'button',
+    class: 'inline-flex items-center justify-center w-9 h-9 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-900 font-extrabold',
+    title: 'Gras (Markdown: **texte**)',
+    onclick: () => {
+      wrapSelection(ta, '**', '**');
+      // Force l'event input pour mettre à jour state même si on clique sans taper
+      ta.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }, ['B']);
+
+  const toolbar = el('div', { class: 'flex items-center gap-2 mb-2' }, [
+    btnBold,
+    el('div', { class: 'text-xs text-slate-500' }, ['Astuce : utilise ', el('span', { class: 'mono bg-slate-100 px-1 rounded' }, ['**gras**']), ' dans tes textes.'])
+  ]);
+
   return el('div', { class: 'grid md:grid-cols-3 gap-3' }, [
     el('label', { for: id, class: 'text-sm font-semibold text-slate-700 pt-2' }, [label]),
-    el('div', { class: 'md:col-span-2' }, [ta])
+    el('div', { class: 'md:col-span-2' }, [toolbar, ta])
   ]);
 }
 
@@ -286,7 +321,8 @@ function renderGlobal() {
         ...cc.map((c, idx) => card(`${c.title}`, [
           numberRow('Pourcentage', c.percentage, { oninput: (v) => { c.percentage = Math.max(0, Math.min(100, v||0)); } }),
           inputRow('circleColor (classe Tailwind)', c.circleColor, { oninput: (v) => { c.circleColor = v; } }),
-          textareaRow('Description', c.desc, { oninput: (v) => { c.desc = v; } })
+          textareaRow('Description', c.desc, { oninput: (v) => { c.desc = v; } }),
+          textareaRow('Justification autoévaluation (optionnel)', c.justification || '', { oninput: (v) => { c.justification = v; } })
         ], [
           smallBtn('↑', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx>0){ cc.splice(idx-1,0,cc.splice(idx,1)[0]); render(); } }),
           smallBtn('↓', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx<cc.length-1){ cc.splice(idx+1,0,cc.splice(idx,1)[0]); render(); } }),
@@ -294,7 +330,7 @@ function renderGlobal() {
         ])),
         el('div', { class: 'mt-3' }, [
           smallBtn('+ Ajouter une compétence coeur', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
-            cc.push({ title: 'Nouvelle', percentage: 50, circleColor: 'text-slate-900', style: '', tagStyle: '', desc: '' });
+            cc.push({ title: 'Nouvelle', percentage: 50, circleColor: 'text-slate-900', style: '', tagStyle: '', desc: '', justification: '' });
             render();
           })
         ])
@@ -591,7 +627,8 @@ function renderCompetencyLevels() {
         inputRow('id (n1/n2/n3)', lvl.id, { oninput: (v) => { lvl.id = v; } }),
         inputRow('Label', lvl.label, { oninput: (v) => { lvl.label = v; } }),
         numberRow('Mastery (%)', lvl.mastery, { oninput: (v) => { lvl.mastery = Math.max(0, Math.min(100, v||0)); } }),
-        textareaRow('Description', lvl.desc, { oninput: (v) => { lvl.desc = v; } })
+        textareaRow('Description', lvl.desc, { oninput: (v) => { lvl.desc = v; } }),
+        textareaRow('Justification autoévaluation (optionnel)', lvl.justification || '', { oninput: (v) => { lvl.justification = v; } })
       ], [
         smallBtn('↑', 'bg-white border-slate-200 hover:bg-slate-50', () => { if(idx>0){ arr.splice(idx-1,0,arr.splice(idx,1)[0]); render(); } }),
         smallBtn('↓', 'bg-white border-slate-200 hover:bg-slate-50', () => { if(idx<arr.length-1){ arr.splice(idx+1,0,arr.splice(idx,1)[0]); render(); } }),
@@ -599,7 +636,7 @@ function renderCompetencyLevels() {
       ])),
 
       smallBtn('+ Ajouter un niveau', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
-        arr.push({ id: 'nX', label: 'Nouveau niveau', mastery: 50, desc: '' });
+        arr.push({ id: 'nX', label: 'Nouveau niveau', mastery: 50, desc: '', justification: '' });
         render();
       })
     ]);

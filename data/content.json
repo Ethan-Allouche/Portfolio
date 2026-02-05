@@ -17,7 +17,8 @@
       "circleColor": "text-red-500",
       "style": "bg-red-100 border-red-300 text-red-900 hover:shadow-red-500/30 hover:bg-red-200",
       "tagStyle": "bg-red-100 text-red-800 border-red-200",
-      "desc": "Définition de l'architecture matérielle et logicielle, choix des composants, schémas électriques et conception de systèmes embarqués."
+      "desc": "Définition de l'architecture matérielle et logicielle, choix des composants, schémas électriques et conception de systèmes embarqués.",
+      "justification": ""
     },
     {
       "title": "Vérifier",
@@ -25,7 +26,8 @@
       "circleColor": "text-orange-500",
       "style": "bg-orange-100 border-orange-300 text-orange-900 hover:shadow-orange-500/30 hover:bg-orange-200",
       "tagStyle": "bg-orange-100 text-orange-800 border-orange-200",
-      "desc": "Tests unitaires, validation fonctionnelle, simulations et recettes pour assurer la conformité aux cahiers des charges."
+      "desc": "Tests unitaires, validation fonctionnelle, simulations et recettes pour assurer la conformité aux cahiers des charges.",
+      "justification": ""
     },
     {
       "title": "Maintenir",
@@ -33,7 +35,8 @@
       "circleColor": "text-amber-500",
       "style": "bg-amber-100 border-amber-300 text-amber-900 hover:shadow-amber-500/30 hover:bg-amber-200",
       "tagStyle": "bg-amber-100 text-amber-800 border-amber-200",
-      "desc": "Diagnostic de pannes, réparation, amélioration continue et maintenance préventive/corrective des systèmes."
+      "desc": "Diagnostic de pannes, réparation, amélioration continue et maintenance préventive/corrective des systèmes.",
+      "justification": ""
     },
     {
       "title": "Intégrer",
@@ -41,7 +44,8 @@
       "circleColor": "text-emerald-500",
       "style": "bg-emerald-100 border-emerald-300 text-emerald-900 hover:shadow-emerald-500/30 hover:bg-emerald-200",
       "tagStyle": "bg-emerald-100 text-emerald-800 border-emerald-200",
-      "desc": "Mise en réseau, communication entre sous-systèmes (API, IHM, Capteurs), installation et mise en service sur site."
+      "desc": "Mise en réseau, communication entre sous-systèmes (API, IHM, Capteurs), installation et mise en service sur site.",
+      "justification": ""
     }
   ],
   "skills": [
@@ -355,19 +359,22 @@
         "id": "n1",
         "label": "Niveau 1",
         "mastery": 92,
-        "desc": "Mener une conception partielle intégrant une démarche projet."
+        "desc": "Mener une conception partielle intégrant une démarche projet.",
+        "justification": "Test test test "
       },
       {
         "id": "n2",
         "label": "Niveau 2",
         "mastery": 85,
-        "desc": "Concevoir un système en fiabilisant les solutions proposées."
+        "desc": "Concevoir un système en fiabilisant les solutions proposées.",
+        "justification": ""
       },
       {
         "id": "n3",
         "label": "Niveau 3",
         "mastery": 78,
-        "desc": "Concevoir un système en adoptant une approche sélective dans ses choix technologiques."
+        "desc": "Concevoir un système en adoptant une approche sélective dans ses choix technologiques.",
+        "justification": ""
       }
     ],
     "Vérifier": [
@@ -375,19 +382,22 @@
         "id": "n1",
         "label": "Niveau 1",
         "mastery": 88,
-        "desc": "Effectuer les tests et mesures nécessaires à une vérification d'un système."
+        "desc": "Effectuer les tests et mesures nécessaires à une vérification d'un système.",
+        "justification": ""
       },
       {
         "id": "n2",
         "label": "Niveau 2",
         "mastery": 80,
-        "desc": "Mettre en place un protocole de tests pour valider le fonctionnement d'un système."
+        "desc": "Mettre en place un protocole de tests pour valider le fonctionnement d'un système.",
+        "justification": ""
       },
       {
         "id": "n3",
         "label": "Niveau 3",
         "mastery": 70,
-        "desc": "Élaborer une procédure intégrant une démarche qualité pour valider le fonctionnement d'un système."
+        "desc": "Élaborer une procédure intégrant une démarche qualité pour valider le fonctionnement d'un système.",
+        "justification": ""
       }
     ],
     "Maintenir": [
@@ -395,13 +405,15 @@
         "id": "n1",
         "label": "Niveau 1",
         "mastery": 85,
-        "desc": "Intervenir sur un système pour effectuer une opération de maintenance."
+        "desc": "Intervenir sur un système pour effectuer une opération de maintenance.",
+        "justification": ""
       },
       {
         "id": "n2",
         "label": "Niveau 2",
         "mastery": 72,
-        "desc": "Mettre en place une stratégie de maintenance pour garantir un fonctionnement optimal."
+        "desc": "Mettre en place une stratégie de maintenance pour garantir un fonctionnement optimal.",
+        "justification": ""
       }
     ],
     "Intégrer": [
@@ -409,13 +421,15 @@
         "id": "n1",
         "label": "Niveau 1",
         "mastery": 95,
-        "desc": "Réaliser / intégrer un système en conformité avec le dossier de fabrication et une démarche qualité."
+        "desc": "Réaliser / intégrer un système en conformité avec le dossier de fabrication et une démarche qualité.",
+        "justification": ""
       },
       {
         "id": "n2",
         "label": "Niveau 2",
         "mastery": 88,
-        "desc": "Interagir avec les différents acteurs lors de l'installation et de la mise en service d'un système, dans une démarche qualité."
+        "desc": "Interagir avec les différents acteurs lors de l'installation et de la mise en service d'un système, dans une démarche qualité.",
+        "justification": ""
       }
     ]
   },
