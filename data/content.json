@@ -496,6 +496,15 @@
       "desc": "Observation des mécaniciens en charge des réparations de véhicules.",
       "isClickable": false,
       "logo": "norauto.jpg"
+    },
+    {
+      "id": "veolia",
+      "date": "2026 (14 semaines)",
+      "company": "Veolia",
+      "title": "Stage Intégrateur Systèmes Embarqués & Instrumentation | Drone Marin",
+      "desc": "",
+      "isClickable": true,
+      "logo": "veolia.jpg"
     }
   ],
   "interests": [
