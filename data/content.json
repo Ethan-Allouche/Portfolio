@@ -498,13 +498,14 @@
       "logo": "norauto.jpg"
     },
     {
-      "id": "veolia",
-      "date": "2026 (14 semaines)",
+      "id": "Veolia",
+      "date": "2026",
       "company": "Veolia",
-      "title": "Stage Intégrateur Systèmes Embarqués & Instrumentation | Drone Marin",
-      "desc": "",
+      "title": "Technicien supérieur",
+      "desc": "a definir",
       "isClickable": true,
-      "logo": "veolia.jpg"
+      "logo": "veolia.jpg",
+      "details": "a definir"
     }
   ],
   "interests": [
