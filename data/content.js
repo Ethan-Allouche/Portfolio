@@ -496,6 +496,16 @@ window.__PORTFOLIO_CONTENT__ = {
       "desc": "Observation des mécaniciens en charge des réparations de véhicules.",
       "isClickable": false,
       "logo": "norauto.jpg"
+    },
+    {
+      "id": "Veolia",
+      "date": "2026",
+      "company": "Veolia",
+      "title": "Technicien supérieur",
+      "desc": "a definir",
+      "isClickable": true,
+      "logo": "veolia.jpg",
+      "details": "a definir"
     }
   ],
   "interests": [
