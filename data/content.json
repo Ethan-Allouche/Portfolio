@@ -6,7 +6,7 @@
     "phone": "06.61.74.78.86",
     "email": "Ethan.allouchepro@gmail.com",
     "permis": "Permis B",
-    "objective": "Stage du 23 mars 2026 au 26 juin 2026.",
+    "objective": "Alternance à partir de septembre",
     "formation_actuelle": "BUT (3ème année) GEII",
     "ecole_actuelle": "Université Toulon - IUT La Garde"
   },
@@ -166,6 +166,43 @@
     }
   ],
   "projects": [
+    {
+      "id": "stage-veolia",
+      "featured": false,
+      "year": "2026 (14 sem.)",
+      "title": "Stage Veolia — Architecture embarquée et cartographie",
+      "desc": "Conception et intégration d'une architecture multi-capteurs sur un drone flottant autonome pour la cartographie bathymétrique de l'émissaire du Cap Sicié.",
+      "competencies": [
+        "Concevoir",
+        "Intégrer",
+        "Vérifier"
+      ],
+      "tags": [
+        "Systèmes Embarqués",
+        "Python",
+        "Pandas",
+        "Instrumentation",
+        "Capteurs 4-20mA",
+        "Autonomie",
+        "Énergie"
+      ],
+      "content": {
+        "contexteTitle": "Contexte",
+        "contexteText": "L'émissaire du Cap Sicié est une galerie souterraine gravitaire de 6,4 km acheminant les eaux usées de l'ouest toulonnais vers la station d'épuration d'Amphitria. Au fil des années, des déchets se sont accumulés au fond de cet ouvrage. L'environnement y est extrêmement hostile et difficile d'accès pour l'homme : présence de gaz H2S toxique et corrosif, obscurité totale, forts courants d'air aérodynamiques et humidité saturée à 100%.",
+        "objectifTitle": "Objectif",
+        "objectifText": "L'objectif principal était de concevoir, optimiser et intégrer une architecture embarquée multi-capteurs sur un drone flottant autonome. Le but est de réaliser une cartographie bathymétrique précise de l'émissaire (mesure du tirant d'air et de la profondeur) afin de localiser les amas de déchets, d'analyser la physico-chimie de l'eau, et d'anticiper les opérations de maintenance de l'infrastructure.",
+        "realisationTitle": "Réalisation",
+        "realisationText": "Choix technologiques et intégration : Sélection et paramétrage de capteurs industriels 4-20mA (radar Vega C22, sondes piézométriques de pression), d'enregistreurs autonomes Lascar EL-USB-4 et d'une sonde physico-chimique ODEON.\nDimensionnement énergétique : Calcul du bilan de puissance du système pour garantir une autonomie de fonctionnement continu supérieure à 8 heures sur batterie de servitude 12V.\nConception matérielle : Refonte mécanique de la structure du drone (tubes PVC 110 rigides) et création d'un coffret embarqué étanche à plusieurs étages pour sécuriser l'électronique de l'eau.\nDéveloppement logiciel : Création d'un outil d'analyse en Python (Pandas, NumPy) permettant l'extraction, le nettoyage, la synchronisation (interpolation temporelle) et la fusion de milliers de données asynchrones vers un tableau de bord Excel automatisé.",
+        "resultatsTitle": "Résultats",
+        "resultatsText": "Le nouveau prototype a démontré une excellente robustesse mécanique et une parfaite étanchéité face aux conditions extrêmes de l'émissaire (chutes d'eau, chocs). La chaîne d'acquisition a été validée, et l'outil Python développé a permis à l'agence de diviser drastiquement le temps de post-traitement des données, générant instantanément des profils graphiques pour identifier les zones d'accumulation de déchets.",
+        "bilanTitle": "Bilan",
+        "bilanText": "Ce projet m'a permis de mobiliser des compétences transverses en génie électrique et en informatique industrielle : de la conception matérielle et du câblage embarqué jusqu'à l'algorithmique de traitement de données. Il pose des bases solides pour l'avenir du drone, qui pourra évoluer vers l'intégration d'un ordinateur de bord (NVIDIA Jetson) couplé à un Lidar Livox et un sonar multifaisceaux pour une modélisation 3D complète."
+      },
+      "mediaCaptions": {
+        "2": "Schéma de câblage et d'intégration des capteurs industriels (Vega C22, Sondes, Dataloggers)",
+        "3": "Extrait du tableau de bord Excel généré par le script Python pour l'analyse des données"
+      }
+    },
     {
       "id": "station-epuration",
       "year": "2025 (En cours)",
@@ -459,9 +496,34 @@
       "Maintenir": "n2",
       "Vérifier": "n2"
     },
-    "stage-enedis": {}
+    "stage-enedis": {},
+    "": {},
+    "Stage - Veolia": {},
+    "stage-veolia": {
+      "Concevoir": "n3",
+      "Intégrer": "n2",
+      "Vérifier": "n2"
+    }
   },
   "experiences": [
+    {
+      "id": "Veolia",
+      "date": "2026 (14 sem.)",
+      "company": "Veolia Eau, Agence Assainissement (La Seyne-sur-Mer)",
+      "title": "Stage Informatique Industrielle et Systèmes Embarqués",
+      "desc": "Conception et intégration d'une architecture multi-capteurs sur un drone flottant pour la cartographie bathymétrique d'un émissaire sous-marin.",
+      "isClickable": true,
+      "logo": "veolia.jpg",
+      "details": "Au sein de l'agence d'assainissement, j'ai mené à bien l'équipement d'un drone destiné à évoluer dans l'environnement hostile de l'émissaire du Cap Sicié. Ce projet m'a permis de gérer une chaîne d'acquisition de données complète, de l'intégration des capteurs industriels jusqu'au développement d'un script d'analyse en Python, tout en optimisant la robustesse et l'autonomie énergétique du système.",
+      "tasks": [
+        "Sélection, paramétrage et intégration de capteurs de mesure (radar Vega C22, sondes piézométriques, Dataloggers).",
+        "Dimensionnement électrique et validation de l'autonomie de l'architecture embarquée.",
+        "Développement d'un outil d'analyse en Python (Pandas, NumPy) pour la synchronisation temporelle de milliers de données asynchrones.",
+        "Amélioration mécanique et fiabilisation de l'étanchéité du prototype (conception de coffrets, structure en PVC 110).",
+        "Réalisation de tests sur le terrain et post-traitement des données cartographiques et physico-chimiques."
+      ],
+      "linkedProjectId": "nouveau-projet"
+    },
     {
       "id": "enedis",
       "date": "2024 (8 sem.)",
@@ -496,16 +558,6 @@
       "desc": "Observation des mécaniciens en charge des réparations de véhicules.",
       "isClickable": false,
       "logo": "norauto.jpg"
-    },
-    {
-      "id": "Veolia",
-      "date": "2026",
-      "company": "Veolia",
-      "title": "Technicien supérieur",
-      "desc": "a definir",
-      "isClickable": true,
-      "logo": "veolia.jpg",
-      "details": "a definir"
     }
   ],
   "interests": [
