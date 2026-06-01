@@ -168,7 +168,7 @@ window.__PORTFOLIO_CONTENT__ = {
   "projects": [
     {
       "id": "stage-veolia",
-      "featured": false,
+      "featured": true,
       "year": "2026 (14 sem.)",
       "title": "Stage Veolia — Architecture embarquée et cartographie",
       "desc": "Conception et intégration d'une architecture multi-capteurs sur un drone flottant autonome pour la cartographie bathymétrique de l'émissaire du Cap Sicié.",
