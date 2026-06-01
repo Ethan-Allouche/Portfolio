@@ -522,7 +522,7 @@ window.__PORTFOLIO_CONTENT__ = {
         "Amélioration mécanique et fiabilisation de l'étanchéité du prototype (conception de coffrets, structure en PVC 110).",
         "Réalisation de tests sur le terrain et post-traitement des données cartographiques et physico-chimiques."
       ],
-      "linkedProjectId": "nouveau-projet"
+      "linkedProjectId": "stage-veolia"
     },
     {
       "id": "enedis",
