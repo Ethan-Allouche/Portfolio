@@ -19,12 +19,12 @@
     <!-- 1. On charge Tailwind CSS pour le style -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 2. On charge React et ReactDOM -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- 2. On charge React et ReactDOM (versions épinglées pour éviter les régressions) -->
+    <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
     
-    <!-- 3. On charge Babel pour traduire le code dans le navigateur -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 3. On charge Babel pour traduire le JSX dans le navigateur (version épinglée) -->
+    <script src="https://unpkg.com/@babel/standalone@7.23.9/babel.min.js"></script>
 
     <!-- Style pour l'animation -->
     <style>
@@ -256,7 +256,7 @@
 <body class="bg-white text-slate-800">
     <div id="root"></div>
 
-    <script type="text/babel">
+    <script type="text/babel" data-presets="env,react">
         const { useState, useEffect, useRef, useCallback } = React;
 
         // --- Rendu texte riche (Markdown minimal) ---
@@ -3188,9 +3188,7 @@ const renderInterestIcon = (iconName, size = 24) => {
                           <button
                             key={`m-${item.id}`}
                             onClick={() => goToTab(item.id)}
-                            className={`w-full px-4 py-3 rounded-lg font-bold uppercase tracking-wide text-sm flex items-center gap-3 transition
-                              ${activeTab === item.id ? 'bg-white text-blue-900' : 'bg-blue-800/40 text-blue-100 hover:bg-blue-800'}
-                            `}
+                            className={`w-full px-4 py-3 rounded-lg font-bold uppercase tracking-wide text-sm flex items-center gap-3 transition ${activeTab === item.id ? 'bg-white text-blue-900' : 'bg-blue-800/40 text-blue-100 hover:bg-blue-800'}`}
                           >
                             {item.icon}
                             <span>{item.label}</span>
@@ -3351,13 +3349,29 @@ const renderInterestIcon = (iconName, size = 24) => {
 	  }
 	}
 
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(
-        <Portfolio />
-    );
+    try {
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(
+          <Portfolio />
+      );
+    } catch (err) {
+      document.getElementById('root').innerHTML =
+        '<div style="padding:40px;font-family:sans-serif;color:#b91c1c;background:#fef2f2;border:2px solid #fca5a5;border-radius:12px;margin:40px auto;max-width:700px">' +
+        '<h2 style="margin:0 0 12px">⚠️ Erreur de rendu React</h2>' +
+        '<pre style="white-space:pre-wrap;font-size:13px">' + (err && err.message ? err.message : String(err)) + '</pre>' +
+        '</div>';
+      console.error('Portfolio render error:', err);
+    }
 }
 
-bootstrap();
+bootstrap().catch(err => {
+  console.error('Bootstrap error:', err);
+  document.getElementById('root').innerHTML =
+    '<div style="padding:40px;font-family:sans-serif;color:#b91c1c;background:#fef2f2;border:2px solid #fca5a5;border-radius:12px;margin:40px auto;max-width:700px">' +
+    '<h2 style="margin:0 0 12px">⚠️ Erreur de démarrage</h2>' +
+    '<pre style="white-space:pre-wrap;font-size:13px">' + (err && err.message ? err.message : String(err)) + '</pre>' +
+    '</div>';
+});
     </script>
 </body>
 </html>
