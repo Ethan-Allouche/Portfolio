@@ -381,11 +381,85 @@
 
 
 
+        // --- HOOK PARTAGE : DETECTION SEQUENTIELLE D'UNE PLAYLIST DE VIDEOS ---
+        // A partir d'un fichier de base (ex: images/stage-veolia-1.mp4), cherche
+        // s'il existe des suites portant le suffixe "-2", "-3", etc.
+        // (ex: images/stage-veolia-1-2.mp4, images/stage-veolia-1-3.mp4).
+        // La recherche est SEQUENTIELLE (jamais en parallele) : on ne teste -3
+        // qu'apres avoir confirme que -2 existe. Cela garantit un ORDRE TOUJOURS
+        // IDENTIQUE et deterministe (jamais aleatoire), peu importe les vitesses
+        // de chargement reseau respectives des fichiers.
+        const usePlaylistVideo = (baseVideoSrc, ready) => {
+            const [playlist, setPlaylist] = useState([baseVideoSrc]);
+            const [clipIndex, setClipIndex] = useState(0);
+            const videoRef = useRef(null);
+
+            useEffect(() => {
+                setPlaylist([baseVideoSrc]);
+                setClipIndex(0);
+            }, [baseVideoSrc]);
+
+            useEffect(() => {
+                if (!ready) return;
+
+                let cancelled = false;
+                const base = baseVideoSrc.replace(/\.mp4$/i, '');
+
+                const probe = (n) => new Promise((resolve) => {
+                    const candidate = `${base}-${n}.mp4`;
+                    const tester = document.createElement('video');
+                    tester.preload = 'metadata';
+                    tester.onloadedmetadata = () => resolve(candidate);
+                    tester.onerror = () => resolve(null);
+                    tester.src = candidate;
+                });
+
+                (async () => {
+                    const found = [];
+                    let n = 2;
+                    // Sequentiel : garantit l'ordre 2, puis 3, puis 4... jamais melange.
+                    while (!cancelled) {
+                        const next = await probe(n);
+                        if (!next || cancelled) break;
+                        found.push(next);
+                        n += 1;
+                        if (n > 20) break; // garde-fou anti boucle infinie
+                    }
+                    if (!cancelled && found.length > 0) {
+                        setPlaylist([baseVideoSrc, ...found]);
+                    }
+                })();
+
+                return () => { cancelled = true; };
+            }, [ready, baseVideoSrc]);
+
+            // Quand un clip se termine : on passe au suivant, puis on reboucle sur
+            // le premier a la fin de la liste (ordre fixe, jamais de tirage aleatoire).
+            const handleEnded = useCallback(() => {
+                setClipIndex((prev) => (prev + 1) % playlist.length);
+            }, [playlist.length]);
+
+            // A chaque changement de clip, on (re)lance la lecture depuis le debut.
+            useEffect(() => {
+                const v = videoRef.current;
+                if (v) {
+                    v.currentTime = 0;
+                    v.play().catch(() => {});
+                }
+            }, [clipIndex]);
+
+            return { playlist, clipIndex, videoRef, handleEnded };
+        };
+
         // --- NOUVEAU COMPOSANT : IMAGE OU VIDEO (AUTO) ---
         // Utilisation :
         //  - Tu passes un src d'image (ex: images/projet-1.jpg)
         //  - Si un fichier mp4 du meme nom existe (ex: images/projet-1.mp4), la video est affichee a la place
         //  - La video est en autoplay + loop + muted + sans controles, et on empeche la pause
+        //  - PLAYLIST AUTOMATIQUE : si en plus des fichiers "images/projet-1-2.mp4",
+        //    "images/projet-1-3.mp4", etc. existent, ils sont lus automatiquement
+        //    A LA SUITE de la premiere video, TOUJOURS DANS L'ORDRE (1 puis 2 puis 3...),
+        //    puis la lecture reboucle sur la premiere.
         const AutoMedia = ({
             src,
             alt = '',
@@ -406,6 +480,8 @@
                 setVideoState('loading');
                 setImgState('loading');
             }, [src]);
+
+            const { playlist, clipIndex, videoRef, handleEnded } = usePlaylistVideo(videoSrc, videoState === 'ok');
 
             const open = useCallback((e) => {
                 if (!interactive) return;
@@ -441,20 +517,22 @@
                     {/* VIDEO (prioritaire) */}
                     {videoState !== 'error' && (
                         <video
-                            src={videoSrc}
+                            ref={videoRef}
+                            src={playlist[clipIndex]}
                             muted
                             playsInline
                             autoPlay
-                            loop
+                            loop={playlist.length === 1}
                             preload="metadata"
                             poster={src}
                             onLoadedData={() => setVideoState('ok')}
                             onCanPlay={() => setVideoState('ok')}
                             onError={() => setVideoState('error')}
                             onPause={preventPause}
-                            onEnded={preventPause}
+                            onEnded={playlist.length > 1 ? handleEnded : preventPause}
                             // Empêche PiP / downloads (support variable selon navigateurs)
                             disablePictureInPicture
+
                             controlsList="nodownload noremoteplayback noplaybackrate"
                             {...commonProps}
                         />
@@ -471,6 +549,35 @@
                         />
                     )}
                 </>
+            );
+        };
+
+        // --- COMPOSANT : VIDEO EN PLEIN ECRAN AVEC PLAYLIST AUTOMATIQUE ---
+        // Reutilise le meme hook que les miniatures pour que le zoom plein ecran
+        // enchaine lui aussi la suite de videos detectee (-2, -3, ...) dans l'ordre.
+        const FullscreenPlaylistVideo = ({ src, className, onClick }) => {
+            const { playlist, clipIndex, videoRef, handleEnded } = usePlaylistVideo(src, true);
+            const preventPause = useCallback((e) => {
+                try {
+                    const v = e.currentTarget;
+                    if (v && v.paused) v.play();
+                } catch {}
+            }, []);
+            return (
+                <video
+                    ref={videoRef}
+                    src={playlist[clipIndex]}
+                    muted
+                    playsInline
+                    autoPlay
+                    loop={playlist.length === 1}
+                    className={className}
+                    onClick={onClick}
+                    onPause={preventPause}
+                    onEnded={playlist.length > 1 ? handleEnded : preventPause}
+                    disablePictureInPicture
+                    controlsList="nodownload noremoteplayback noplaybackrate"
+                />
             );
         };
 
@@ -3096,17 +3203,10 @@ const renderInterestIcon = (iconName, size = 24) => {
                             onClick={(e) => e.stopPropagation()} 
                         ></iframe>
                     ) : fullscreenImage.endsWith('.mp4') ? (
-                        <video
+                        <FullscreenPlaylistVideo
                             src={fullscreenImage}
-                            muted
-                            playsInline
-                            autoPlay
-                            loop
                             className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl bg-black"
                             onClick={(e) => { e.stopPropagation(); e.preventDefault(); }}
-                            onPause={(e) => { try { e.currentTarget.play(); } catch {} }}
-                            disablePictureInPicture
-                            controlsList="nodownload noremoteplayback noplaybackrate"
                         />
                     ) : (
                         <img 
@@ -3253,7 +3353,7 @@ const renderInterestIcon = (iconName, size = 24) => {
                     {/* ROUTING POUR L'ONGLET FORMATION (ANCIENNEMENT ETUDES) */}
                     {activeTab === 'etudes' && (
                         activeFormation 
-                        ? <PageDetailFormation onBack={() => setActiveFormation(true)} />
+                        ? <PageDetailFormation onBack={() => setActiveFormation(null)} />
                         : <PageEtudes onOpenFormation={() => setActiveFormation(true)} />
                     )}
 
