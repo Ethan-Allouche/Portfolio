@@ -338,8 +338,39 @@ function renderGlobal() {
 
       card('Textes UI (titres / sous-titres)', [
         el('div', { class: 'text-sm text-slate-600 mb-3' }, [
-          "Optionnel : personnalise les sous-titres affichés en haut des pages."
+          "Personnalise les textes affichés sur le site."
         ]),
+
+        // --- Badge "En recherche de stage" ---
+        el('div', { class: 'pt-2 pb-1 text-xs font-bold uppercase tracking-widest text-slate-400' }, ['Badge Accueil (pop-up recherche)']),
+        (() => {
+          const id = 'cb_heroBadgeVisible';
+          const chk = el('input', { id, type: 'checkbox', class: 'h-5 w-5 rounded border-slate-300 text-slate-900 focus:ring-slate-900' });
+          chk.checked = (ui.heroBadgeVisible !== false);
+          chk.addEventListener('change', (e) => { ui.heroBadgeVisible = !!e.target.checked; });
+          return el('div', { class: 'grid md:grid-cols-3 gap-3 items-center' }, [
+            el('label', { for: id, class: 'text-sm font-semibold text-slate-700' }, ['Afficher le badge']),
+            el('div', { class: 'md:col-span-2 flex items-center gap-3' }, [
+              chk,
+              el('span', { class: 'text-xs text-slate-500' }, ['Visible sur la page d\'accueil'])
+            ])
+          ]);
+        })(),
+        inputRow('Texte du badge', ui.heroBadgeText || '🚀 En recherche de stage (Mars 2026)', {
+          oninput: (v) => { ui.heroBadgeText = v; }
+        }),
+
+        // --- Section Contact ---
+        el('div', { class: 'pt-4 pb-1 text-xs font-bold uppercase tracking-widest text-slate-400' }, ['Section "Prêt à collaborer ?" (bas de page)']),
+        inputRow('Titre', ui.contactTitle || 'Prêt à collaborer ?', {
+          oninput: (v) => { ui.contactTitle = v; }
+        }),
+        textareaRow('Sous-titre / description', ui.contactSubtitle || "Je suis actuellement à la recherche d'opportunités de stage pour 2026. Discutons de la manière dont je peux apporter de la valeur à votre équipe.", {
+          oninput: (v) => { ui.contactSubtitle = v; }
+        }),
+
+        // --- Sous-titres de sections ---
+        el('div', { class: 'pt-4 pb-1 text-xs font-bold uppercase tracking-widest text-slate-400' }, ['Sous-titres de sections']),
         inputRow('Sous-titre Compétences', ui.competencesSubtitle || '', { oninput: (v) => { ui.competencesSubtitle = v; } }),
         inputRow('Sous-titre Projets', ui.projetsSubtitle || '', { oninput: (v) => { ui.projetsSubtitle = v; } })
       ])
