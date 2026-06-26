@@ -52,74 +52,86 @@ window.__PORTFOLIO_CONTENT__ = {
     {
       "name": "C/C++",
       "level": "Notions",
-      "val": 60,
+      "val": 50,
       "desc": "Développement bas niveau pour systèmes embarqués et microcontrôleurs (Arduino, ESP32). Compréhension de la gestion mémoire et des structures de données."
     },
     {
       "name": "Python",
       "level": "Avancé",
-      "val": 40,
+      "val": 60,
       "desc": "Scripting avancé, traitement de données et automatisation de tâches. Utilisation de bibliothèques pour l'interfaçage avec des systèmes matériels."
     },
     {
       "name": "Langages Automate",
       "level": "Avancé",
-      "val": 90,
+      "val": 80,
       "desc": "Programmation d'automates programmables industriels (API) selon la norme CEI 61131-3. Maîtrise des diagrammes Ladder, Grafcet (SFC) et blocs fonctionnels."
     },
     {
-      "name": "Électricité",
+      "name": "Électronique",
       "level": "Avancé",
-      "val": 85,
-      "desc": "Lecture de schémas, câblage, protections, mesures et habilitation BR."
+      "val": 70,
+      "desc": "Conception de circuits, soudure, choix de composants et diagnostic de pannes sur cartes électroniques."
     },
     {
-      "name": "Efficacité énergétique",
+      "name": "Énergie",
       "level": "Notions",
       "val": 40,
       "desc": "Sensibilisation aux enjeux d'efficacité énergétique et conception de systèmes durables (ex: gestion de l'eau)."
     },
     {
-      "name": "Électronique",
-      "level": "Avancé",
-      "val": 80,
-      "desc": "Conception de circuits, soudure, choix de composants et diagnostic de pannes sur cartes électroniques."
-    },
-    {
-      "name": "Signal",
-      "level": "Intermédiaire",
-      "val": 65,
-      "desc": "Traitement du signal, filtrage et conditionnement de signaux analogiques et numériques."
-    },
-    {
-      "name": "Arduino",
-      "level": "Avancé",
-      "val": 90,
-      "desc": "Prototypage rapide de systèmes embarqués, interfacing capteurs/actionneurs et programmation de logique de contrôle."
-    },
-    {
       "name": "Robotique",
-      "level": "Intermédiaire",
+      "level": "Avancé",
       "val": 70,
       "desc": "Asservissement moteurs, cinématique simple et intégration de capteurs pour la navigation robotique."
     },
     {
-      "name": "Domotique",
-      "level": "Intermédiaire",
-      "val": 75,
-      "desc": "Automatisation de l'habitat, gestion de l'éclairage et des ouvrants, protocoles type KNX."
-    },
-    {
       "name": "UniLogic",
-      "level": "Intermédiaire",
-      "val": 60,
+      "level": "notion",
+      "val": 40,
       "desc": "Programmation des automates Unitronics (série UniStream), intégrant automate et IHM."
     },
     {
-      "name": "Maintenance",
+      "name": "Base de donnée (PHP/SQL)",
       "level": "Notions",
-      "val": 50,
-      "desc": "Diagnostic de pannes, maintenance préventive et corrective sur systèmes automatisés."
+      "val": 40,
+      "desc": "Capacité à concevoir, interroger et manipuler des données avec SQL au sein d'applications web PHP."
+    },
+    {
+      "name": "Office 365",
+      "level": "Professionnel",
+      "val": 90,
+      "desc": "Maîtrise avancée des outils collaboratifs et bureautiques (Excel, Word, PowerPoint, Teams) pour optimiser la gestion de projets et la productivité."
+    },
+    {
+      "name": "Vijeo Designer",
+      "level": "Avancé",
+      "val": 70,
+      "desc": "Conception et programmation d'interfaces IHM dynamiques pour le pilotage et la supervision de systèmes automatisés."
+    },
+    {
+      "name": "Codesys/Control Expert",
+      "level": "Avancé",
+      "val": 80,
+      "desc": "Programmation de base et configuration d'automates programmables industriels (API) sur les environnements standards."
+    },
+    {
+      "name": "Système Embarqué",
+      "level": "Avancé",
+      "val": 75,
+      "desc": "Conception et intégration d'architectures électroniques autonomes multi-capteurs, gestion de l'énergie et étanchéité de systèmes embarqués."
+    },
+    {
+      "name": "Adaptabilité logicielle",
+      "level": "Professionnel",
+      "val": 90,
+      "desc": "Prise en main rapide et exploitation autonome de tout nouvel environnement logiciel ou outil technique."
+    },
+    {
+      "name": "Travail en équipe",
+      "level": "Professionnel",
+      "val": 90,
+      "desc": "Capacité à collaborer efficacement, à communiquer clairement et à coordonner des actions au sein d'un groupe projet."
     }
   ],
   "formations": [
@@ -168,7 +180,7 @@ window.__PORTFOLIO_CONTENT__ = {
   "projects": [
     {
       "id": "stage-veolia",
-      "featured": false,
+      "featured": true,
       "year": "2026 (14 sem.)",
       "title": "Stage Veolia — Architecture embarquée et cartographie",
       "desc": "Conception et intégration d'une architecture multi-capteurs sur un drone flottant autonome pour la cartographie bathymétrique de l'émissaire du Cap Sicié.",
@@ -179,27 +191,24 @@ window.__PORTFOLIO_CONTENT__ = {
       ],
       "tags": [
         "Systèmes Embarqués",
+        "Électronique",
         "Python",
-        "Pandas",
-        "Instrumentation",
-        "Capteurs 4-20mA",
-        "Autonomie",
-        "Énergie"
+        "Office 365"
       ],
       "content": {
         "contexteTitle": "Contexte",
-        "contexteText": "L'émissaire du Cap Sicié est une galerie souterraine gravitaire de 6,4 km acheminant les eaux usées de l'ouest toulonnais vers la station d'épuration d'Amphitria. Au fil des années, des déchets se sont accumulés au fond de cet ouvrage. L'environnement y est extrêmement hostile et difficile d'accès pour l'homme : présence de gaz H2S toxique et corrosif, obscurité totale, forts courants d'air aérodynamiques et humidité saturée à 100%.",
+        "contexteText": "L'émissaire du Cap Sicié est une galerie souterraine de 6,4 kilomètres qui achemine les eaux usées de l'ouest toulonnais vers la station d'épuration d'Amphitria. Au fil du temps, des sédiments s'y accumulent, réduisant la capacité hydraulique et favorisant la création de gaz H2S très corrosif et toxique. Cet environnement est extrême : obscurité totale, chutes d'eaux usées, humidité saturée à 100% et forts courants d'air. L'inspection humaine y est très dangereuse et coûteuse, rendant le suivi de l'encrassement extrêmement complexe pour Veolia.",
         "objectifTitle": "Objectif",
-        "objectifText": "L'objectif principal était de concevoir, optimiser et intégrer une architecture embarquée multi-capteurs sur un drone flottant autonome. Le but est de réaliser une cartographie bathymétrique précise de l'émissaire (mesure du tirant d'air et de la profondeur) afin de localiser les amas de déchets, d'analyser la physico-chimie de l'eau, et d'anticiper les opérations de maintenance de l'infrastructure.",
+        "objectifText": "L'objectif de mon stage était de concevoir, d'améliorer et d'intégrer une architecture électronique embarquée multi-capteurs sur un drone flottant autonome. Le but principal était de cartographier la bathymétrie (hauteur des sédiments) et le tirant d'air (distance jusqu'au plafond) sur l'intégralité du tunnel. L'acquisition de ces mesures doit permettre à l'entreprise de passer d'une maintenance curative à une maintenance prédictive en ciblant précisément les zones nécessitant une intervention de curage.",
         "realisationTitle": "Réalisation",
-        "realisationText": "Choix technologiques et intégration : Sélection et paramétrage de capteurs industriels 4-20mA (radar Vega C22, sondes piézométriques de pression), d'enregistreurs autonomes Lascar EL-USB-4 et d'une sonde physico-chimique ODEON.\nDimensionnement énergétique : Calcul du bilan de puissance du système pour garantir une autonomie de fonctionnement continu supérieure à 8 heures sur batterie de servitude 12V.\nConception matérielle : Refonte mécanique de la structure du drone (tubes PVC 110 rigides) et création d'un coffret embarqué étanche à plusieurs étages pour sécuriser l'électronique de l'eau.\nDéveloppement logiciel : Création d'un outil d'analyse en Python (Pandas, NumPy) permettant l'extraction, le nettoyage, la synchronisation (interpolation temporelle) et la fusion de milliers de données asynchrones vers un tableau de bord Excel automatisé.",
+        "realisationText": "J'ai sélectionné et intégré des capteurs industriels : un radar Vega C22 pour le plafond, des sondes piézométriques Vega S51 pour le fond, et un enregistreur Odeon pour l'analyse physico-chimique de l'eau. J'ai mis en place des dataloggers autonomes (Lascar EL-USB-4) pour enregistrer les signaux 4-20mA avec une fréquence d'un hertz et validé le dimensionnement énergétique pour garantir 8h d'autonomie. Suite aux premiers tests en conditions réelles, j'ai entièrement fiabilisé le système : intégration de presse-étoupes pour une étanchéité totale des coffrets, organisation du câblage, et renforcement de la structure mécanique en tubes PVC pour résister aux chutes d'eau.",
         "resultatsTitle": "Résultats",
-        "resultatsText": "Le nouveau prototype a démontré une excellente robustesse mécanique et une parfaite étanchéité face aux conditions extrêmes de l'émissaire (chutes d'eau, chocs). La chaîne d'acquisition a été validée, et l'outil Python développé a permis à l'agence de diviser drastiquement le temps de post-traitement des données, générant instantanément des profils graphiques pour identifier les zones d'accumulation de déchets.",
+        "resultatsText": "Le drone a été déployé avec succès et, pour la première fois dans l'histoire de l'ouvrage, nous avons récupéré des données continues sur la géométrie de l'émissaire ainsi qu'une vidéo à 360 degrés. Le traitement de ces données via un script Python développé sur mesure m'a permis de modéliser le niveau d'eau. En exploitant la constante technique d'une hauteur sous plafond fixe pour l'infrastructure, les calculs ont permis de déduire précisément les variations du niveau du plancher causées par l'accumulation de sédiments. Les courbes générées ont ainsi localisé avec exactitude les amas problématiques.",
         "bilanTitle": "Bilan",
-        "bilanText": "Ce projet m'a permis de mobiliser des compétences transverses en génie électrique et en informatique industrielle : de la conception matérielle et du câblage embarqué jusqu'à l'algorithmique de traitement de données. Il pose des bases solides pour l'avenir du drone, qui pourra évoluer vers l'intégration d'un ordinateur de bord (NVIDIA Jetson) couplé à un Lidar Livox et un sonar multifaisceaux pour une modélisation 3D complète."
+        "bilanText": "Ce projet m'a permis de prendre de réelles responsabilités techniques dans un contexte industriel exigeant. J'ai développé une grande autonomie dans la résolution de problèmes complexes sur le terrain et renforcé mes compétences transverses en électricité, instrumentation et traitement de la donnée. J'ai également pu préparer l'avenir du projet en dimensionnant une future architecture basée sur un microcontrôleur NVIDIA Jetson, couplé à un Lidar et un sonar multifaisceaux."
       },
       "mediaCaptions": {
-        "2": "Schéma de câblage et d'intégration des capteurs industriels (Vega C22, Sondes, Dataloggers)",
+        "2": "Enregistrement vidéo de l'intérieur de l'émissaire",
         "3": "Extrait du tableau de bord Excel généré par le script Python pour l'analyse des données"
       }
     },
@@ -214,12 +223,12 @@ window.__PORTFOLIO_CONTENT__ = {
         "Vérifier"
       ],
       "tags": [
-        "Automatisation",
-        "Industrie",
         "Langages Automate",
-        "HTML / PHP / SQL",
-        "Codesys / Vijeo Designer",
-        "Canvas / Office 365"
+        "Électronique",
+        "Énergie",
+        "Codesys/Control Expert",
+        "Travail en équipe",
+        "Vijeo Designer"
       ],
       "content": {
         "contexteText": "Ce projet a été réalisé dans le cadre de la Saé 5.01 Installer/Intégrer au département GEII de l'IUT de Toulon. Il s'agit d'un projet industriel visant à concevoir, câbler et programmer une maquette simulant le fonctionnement d'une station d'épuration, en se concentrant sur les parties Pompage et Dégrillage.",
@@ -245,11 +254,9 @@ window.__PORTFOLIO_CONTENT__ = {
         "Vérifier"
       ],
       "tags": [
-        "Supervision réseau",
-        "HTA/BT",
-        "Sécurité",
-        "ADMS",
-        "Gestion d'incidents"
+        "Électronique",
+        "Adaptabilité logicielle",
+        "Travail en équipe"
       ],
       "content": {
         "contexteTitle": "Contexte",
@@ -280,13 +287,12 @@ window.__PORTFOLIO_CONTENT__ = {
         "Intégrer"
       ],
       "tags": [
-        "IoT",
-        "Écologie",
         "C/C++",
         "Langages Automate",
-        "HTML / PHP / SQL",
-        "Codesys / Vijeo Designer",
-        "Canvas / Office 365"
+        "Base de donnée (PHP/SQL)",
+        "Codesys/Control Expert",
+        "Vijeo Designer",
+        "Office 365"
       ],
       "content": {
         "contexteText": "Ce projet a été réalisé dans le cadre de la Saé 3.01 au département GEII de l'IUT de Toulon. Il porte sur la conception, la supervision et le contrôle d'un système hydroponique d'arrosage de plantes automatisé.",
@@ -311,7 +317,7 @@ window.__PORTFOLIO_CONTENT__ = {
       ],
       "tags": [
         "Électronique",
-        "Signal"
+        "Travail en équipe"
       ],
       "content": {
         "objectifText": "Fréquence précise : Le robot doit réagir spécifiquement à une fréquence de 7800 Hz.\n\n\nFiabilité : Le signal doit être émis pendant au moins 2 secondes pour être validé.\n\n\nSélectivité : L'appareil ne doit pas réagir aux bruits ambiants ni aux fréquences des autres robots.\n\n\nPortée : Le signal doit être efficace jusqu'à une distance de 3 mètres.",
@@ -336,9 +342,10 @@ window.__PORTFOLIO_CONTENT__ = {
         "Intégrer"
       ],
       "tags": [
-        "Arduino",
-        "Robotique",
-        "C/C++"
+        "C/C++",
+        "Électronique",
+        "Énergie",
+        "Travail en équipe"
       ],
       "content": {
         "objectifText": "L'objectif est de construire un robot mobile polyvalent capable de se déplacer et d'interagir avec son environnement de manière autonome ou pilotée. Le système doit répondre aux besoins suivants :\n\n1. Autonomie énergétique : Dimensionner une batterie adaptée pour alimenter les moteurs de puissance et la carte de commande.\n2. Pilotage à distance : Être contrôlable manuellement via une radiocommande (Avancer, Reculer, Tourner).\n3. Intelligence embarquée : Disposer d'un mode autonome pour détecter et éviter les obstacles grâce à des capteurs.\n4. Interface : Afficher des informations d'état et de distance sur un écran LCD embarqué.",
@@ -361,10 +368,10 @@ window.__PORTFOLIO_CONTENT__ = {
         "Concevoir"
       ],
       "tags": [
-        "Arduino",
-        "Domotique",
         "C/C++",
-        "Canvas / Office 365"
+        "Électronique",
+        "Office 365",
+        "Adaptabilité logicielle"
       ],
       "content": {
         "objectifText": "L'objectif est de concevoir un système d'éclairage autonome et pilotable capable de s'adapter dynamiquement à son environnement. Le cahier des charges impose une gestion intelligente où la lampe adapte automatiquement son intensité lumineuse en fonction de la lumière ambiante mesurée par un capteur. Le projet exige également la réalisation complète du matériel, incluant le routage d'une carte électronique sur mesure (PCB) sous le logiciel KiCad intégrant un Arduino Nano et les interfaces de puissance. Enfin, le système doit offrir une expérience utilisateur complète grâce à un contrôle via télécommande infrarouge et boutons physiques, le tout expliqué dans une notice d'utilisation claire.",
@@ -384,8 +391,10 @@ window.__PORTFOLIO_CONTENT__ = {
         "Vérifier"
       ],
       "tags": [
-        "UniLogic",
-        "Maintenance"
+        "Langages Automate",
+        "Travail en équipe",
+        "Adaptabilité logicielle",
+        "Électronique"
       ],
       "content": {}
     }
@@ -589,9 +598,9 @@ window.__PORTFOLIO_CONTENT__ = {
   "uiText": {
     "competencesSubtitle": "Savoir-faire technique & Logiciels. Cliquez pour voir les projets associés.",
     "projetsSubtitle": "Projets techniques réalisés en groupe et en autonomie",
-    "heroBadgeVisible": true,
+    "heroBadgeVisible": false,
     "heroBadgeText": "🚀 En recherche de stage (Mars 2026)",
     "contactTitle": "Prêt à collaborer ?",
-    "contactSubtitle": "Je suis actuellement à la recherche d'opportunités de stage pour 2026. Discutons de la manière dont je peux apporter de la valeur à votre équipe."
+    "contactSubtitle": "Discutons de la manière dont je peux vous aider!"
   }
 };
