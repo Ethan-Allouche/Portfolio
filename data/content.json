@@ -588,6 +588,10 @@
   ],
   "uiText": {
     "competencesSubtitle": "Savoir-faire technique & Logiciels. Cliquez pour voir les projets associés.",
-    "projetsSubtitle": "Projets techniques réalisés en groupe et en autonomie"
+    "projetsSubtitle": "Projets techniques réalisés en groupe et en autonomie",
+    "heroBadgeVisible": true,
+    "heroBadgeText": "🚀 En recherche de stage (Mars 2026)",
+    "contactTitle": "Prêt à collaborer ?",
+    "contactSubtitle": "Je suis actuellement à la recherche d'opportunités de stage pour 2026. Discutons de la manière dont je peux apporter de la valeur à votre équipe."
   }
 }
