@@ -208,8 +208,8 @@
         "bilanText": "Ce projet m'a permis de prendre de réelles responsabilités techniques dans un contexte industriel exigeant. J'ai développé une grande autonomie dans la résolution de problèmes complexes sur le terrain et renforcé mes compétences transverses en électricité, instrumentation et traitement de la donnée. J'ai également pu préparer l'avenir du projet en dimensionnant une future architecture basée sur un microcontrôleur NVIDIA Jetson, couplé à un Lidar et un sonar multifaisceaux."
       },
       "mediaCaptions": {
-        "2": "Enregistrement vidéo de l'intérieur de l'émissaire",
-        "3": "Extrait du tableau de bord Excel généré par le script Python pour l'analyse des données"
+        "2": "Schéma de positionnement des éléments du drone",
+        "3": "Enregistrement vidéo de l'intérieur de l'émissaire"
       }
     },
     {
