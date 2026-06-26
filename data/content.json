@@ -190,7 +190,7 @@
         "Vérifier"
       ],
       "tags": [
-        "Systèmes Embarqués",
+        "Système Embarqué",
         "Électronique",
         "Python",
         "Office 365"
@@ -228,7 +228,8 @@
         "Énergie",
         "Codesys/Control Expert",
         "Travail en équipe",
-        "Vijeo Designer"
+        "Vijeo Designer",
+        "Base de donnée (PHP/SQL)"
       ],
       "content": {
         "contexteText": "Ce projet a été réalisé dans le cadre de la Saé 5.01 Installer/Intégrer au département GEII de l'IUT de Toulon. Il s'agit d'un projet industriel visant à concevoir, câbler et programmer une maquette simulant le fonctionnement d'une station d'épuration, en se concentrant sur les parties Pompage et Dégrillage.",
@@ -289,7 +290,6 @@
       "tags": [
         "C/C++",
         "Langages Automate",
-        "Base de donnée (PHP/SQL)",
         "Codesys/Control Expert",
         "Vijeo Designer",
         "Office 365"
@@ -345,7 +345,8 @@
         "C/C++",
         "Électronique",
         "Énergie",
-        "Travail en équipe"
+        "Travail en équipe",
+        "Robotique"
       ],
       "content": {
         "objectifText": "L'objectif est de construire un robot mobile polyvalent capable de se déplacer et d'interagir avec son environnement de manière autonome ou pilotée. Le système doit répondre aux besoins suivants :\n\n1. Autonomie énergétique : Dimensionner une batterie adaptée pour alimenter les moteurs de puissance et la carte de commande.\n2. Pilotage à distance : Être contrôlable manuellement via une radiocommande (Avancer, Reculer, Tourner).\n3. Intelligence embarquée : Disposer d'un mode autonome pour détecter et éviter les obstacles grâce à des capteurs.\n4. Interface : Afficher des informations d'état et de distance sur un écran LCD embarqué.",
@@ -394,7 +395,8 @@
         "Langages Automate",
         "Travail en équipe",
         "Adaptabilité logicielle",
-        "Électronique"
+        "Électronique",
+        "Unilogic"
       ],
       "content": {}
     }
@@ -404,46 +406,46 @@
       {
         "id": "n1",
         "label": "Niveau 1",
-        "mastery": 92,
+        "mastery": 90,
         "desc": "Mener une conception partielle intégrant une démarche projet.",
-        "justification": "Test test test "
+        "justification": "J'ai été amené à intervenir directement sur des composants pour des opérations de maintien en condition opérationnelle, comme lors de la maintenance d'un émetteur sonore dédié à l'allumage d'un robot."
       },
       {
         "id": "n2",
         "label": "Niveau 2",
-        "mastery": 85,
+        "mastery": 90,
         "desc": "Concevoir un système en fiabilisant les solutions proposées.",
-        "justification": ""
+        "justification": "J'ai conçu des systèmes fiables répondant à des cahiers des charges précis, notamment un système automatisé de gestion de fluides pour l'arrosage. J'ai aussi développé l'architecture matérielle et logicielle sous Arduino d'un robot mobile autonome détecteur d'obstacles."
       },
       {
         "id": "n3",
         "label": "Niveau 3",
-        "mastery": 78,
+        "mastery": 95,
         "desc": "Concevoir un système en adoptant une approche sélective dans ses choix technologiques.",
-        "justification": ""
+        "justification": "J'ai fait preuve de sélectivité technologique sur des projets industriels complexes, comme le choix de capteurs Vega et d'enregistreurs Lascar pour l'architecture embarquée du drone Veolia. J'ai également conçu l'automatisation d'une station d'épuration en sélectionnant des technologies standardisées Schneider Electric."
       }
     ],
     "Vérifier": [
       {
         "id": "n1",
         "label": "Niveau 1",
-        "mastery": 88,
+        "mastery": 95,
         "desc": "Effectuer les tests et mesures nécessaires à une vérification d'un système.",
-        "justification": ""
+        "justification": "J'ai effectué des campagnes de mesures rigoureuses pour valider mes conceptions, notamment en utilisant un oscilloscope pour confirmer avec précision la fréquence de 7800 Hz générée par mon système émetteur/récepteur."
       },
       {
         "id": "n2",
         "label": "Niveau 2",
-        "mastery": 80,
+        "mastery": 85,
         "desc": "Mettre en place un protocole de tests pour valider le fonctionnement d'un système.",
-        "justification": ""
+        "justification": "J'ai mis en œuvre des protocoles de tests en environnement hostile pour valider la chaîne d'acquisition de données et la robustesse mécanique du drone Veolia. J'ai également testé et vérifié le fonctionnement électrique d'automates UniLogic."
       },
       {
         "id": "n3",
         "label": "Niveau 3",
         "mastery": 70,
         "desc": "Élaborer une procédure intégrant une démarche qualité pour valider le fonctionnement d'un système.",
-        "justification": ""
+        "justification": "J'ai élaboré des procédures de mise en service complètes sur des installations industrielles, en validant par exemple le contrôle précis de la vitesse des moteurs par les variateurs sur la maquette de station d'épuration."
       }
     ],
     "Maintenir": [
@@ -452,14 +454,14 @@
         "label": "Niveau 1",
         "mastery": 85,
         "desc": "Intervenir sur un système pour effectuer une opération de maintenance.",
-        "justification": ""
+        "justification": "J'ai été amené à intervenir directement sur des composants pour des opérations de maintien en condition opérationnelle, comme lors de la maintenance d'un émetteur sonore dédié à l'allumage d'un robot."
       },
       {
         "id": "n2",
         "label": "Niveau 2",
-        "mastery": 72,
+        "mastery": 90,
         "desc": "Mettre en place une stratégie de maintenance pour garantir un fonctionnement optimal.",
-        "justification": ""
+        "justification": "J'ai participé activement à des stratégies de maintenance à grande échelle lors de mon stage chez Enedis, en assurant la supervision du réseau, le suivi des dépannages et la validation de préparations de chantiers. J'ai aussi assuré la maintenance électrique d'un automate UniLogic sous UniStream."
       }
     ],
     "Intégrer": [
@@ -468,14 +470,14 @@
         "label": "Niveau 1",
         "mastery": 95,
         "desc": "Réaliser / intégrer un système en conformité avec le dossier de fabrication et une démarche qualité.",
-        "justification": ""
+        "justification": "J'ai intégré avec succès des architectures mêlant électronique et programmation, en assemblant les composants (pont en H, capteurs) et le code Arduino pour rendre un robot roulant pleinement fonctionnel."
       },
       {
         "id": "n2",
         "label": "Niveau 2",
-        "mastery": 88,
+        "mastery": 95,
         "desc": "Interagir avec les différents acteurs lors de l'installation et de la mise en service d'un système, dans une démarche qualité.",
-        "justification": ""
+        "justification": "J'ai coordonné l'intégration de technologies variées dans une démarche qualité, de l'installation de capteurs 4-20mA industriels sur un drone autonome, à la configuration de la communication réseau Modbus d'une station d'épuration automatisée."
       }
     ]
   },
