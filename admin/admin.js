@@ -1,606 +1,912 @@
-window.__PORTFOLIO_CONTENT__ = {
-  "personalInfo": {
-    "name": "Ethan Allouche",
-    "age": "20 ans",
-    "address": "Bâtiment B2 résidence l'eau vive, avenue Aristide Briand, 83200 Toulon",
-    "phone": "06.61.74.78.86",
-    "email": "Ethan.allouchepro@gmail.com",
-    "permis": "Permis B",
-    "objective": "Alternance à partir de septembre",
-    "formation_actuelle": "BUT (3ème année) GEII",
-    "ecole_actuelle": "Université Toulon - IUT La Garde"
-  },
-  "coreCompetencies": [
-    {
-      "title": "Concevoir",
-      "percentage": 90,
-      "circleColor": "text-red-500",
-      "style": "bg-red-100 border-red-300 text-red-900 hover:shadow-red-500/30 hover:bg-red-200",
-      "tagStyle": "bg-red-100 text-red-800 border-red-200",
-      "desc": "Définition de l'architecture matérielle et logicielle, choix des composants, schémas électriques et conception de systèmes embarqués.",
-      "justification": ""
-    },
-    {
-      "title": "Vérifier",
-      "percentage": 85,
-      "circleColor": "text-orange-500",
-      "style": "bg-orange-100 border-orange-300 text-orange-900 hover:shadow-orange-500/30 hover:bg-orange-200",
-      "tagStyle": "bg-orange-100 text-orange-800 border-orange-200",
-      "desc": "Tests unitaires, validation fonctionnelle, simulations et recettes pour assurer la conformité aux cahiers des charges.",
-      "justification": ""
-    },
-    {
-      "title": "Maintenir",
-      "percentage": 80,
-      "circleColor": "text-amber-500",
-      "style": "bg-amber-100 border-amber-300 text-amber-900 hover:shadow-amber-500/30 hover:bg-amber-200",
-      "tagStyle": "bg-amber-100 text-amber-800 border-amber-200",
-      "desc": "Diagnostic de pannes, réparation, amélioration continue et maintenance préventive/corrective des systèmes.",
-      "justification": ""
-    },
-    {
-      "title": "Intégrer",
-      "percentage": 95,
-      "circleColor": "text-emerald-500",
-      "style": "bg-emerald-100 border-emerald-300 text-emerald-900 hover:shadow-emerald-500/30 hover:bg-emerald-200",
-      "tagStyle": "bg-emerald-100 text-emerald-800 border-emerald-200",
-      "desc": "Mise en réseau, communication entre sous-systèmes (API, IHM, Capteurs), installation et mise en service sur site.",
-      "justification": ""
-    }
-  ],
-  "skills": [
-    {
-      "name": "C/C++",
-      "level": "Notions",
-      "val": 50,
-      "desc": "Développement bas niveau pour systèmes embarqués et microcontrôleurs (Arduino, ESP32). Compréhension de la gestion mémoire et des structures de données."
-    },
-    {
-      "name": "Python",
-      "level": "Avancé",
-      "val": 60,
-      "desc": "Scripting avancé, traitement de données et automatisation de tâches. Utilisation de bibliothèques pour l'interfaçage avec des systèmes matériels."
-    },
-    {
-      "name": "Langages Automate",
-      "level": "Avancé",
-      "val": 80,
-      "desc": "Programmation d'automates programmables industriels (API) selon la norme CEI 61131-3. Maîtrise des diagrammes Ladder, Grafcet (SFC) et blocs fonctionnels."
-    },
-    {
-      "name": "Électronique",
-      "level": "Avancé",
-      "val": 70,
-      "desc": "Conception de circuits, soudure, choix de composants et diagnostic de pannes sur cartes électroniques."
-    },
-    {
-      "name": "Énergie",
-      "level": "Notions",
-      "val": 40,
-      "desc": "Sensibilisation aux enjeux d'efficacité énergétique et conception de systèmes durables (ex: gestion de l'eau)."
-    },
-    {
-      "name": "Robotique",
-      "level": "Avancé",
-      "val": 70,
-      "desc": "Asservissement moteurs, cinématique simple et intégration de capteurs pour la navigation robotique."
-    },
-    {
-      "name": "UniLogic",
-      "level": "notion",
-      "val": 40,
-      "desc": "Programmation des automates Unitronics (série UniStream), intégrant automate et IHM."
-    },
-    {
-      "name": "Base de donnée (PHP/SQL)",
-      "level": "Notions",
-      "val": 40,
-      "desc": "Capacité à concevoir, interroger et manipuler des données avec SQL au sein d'applications web PHP."
-    },
-    {
-      "name": "Office 365",
-      "level": "Professionnel",
-      "val": 90,
-      "desc": "Maîtrise avancée des outils collaboratifs et bureautiques (Excel, Word, PowerPoint, Teams) pour optimiser la gestion de projets et la productivité."
-    },
-    {
-      "name": "Vijeo Designer",
-      "level": "Avancé",
-      "val": 70,
-      "desc": "Conception et programmation d'interfaces IHM dynamiques pour le pilotage et la supervision de systèmes automatisés."
-    },
-    {
-      "name": "Codesys/Control Expert",
-      "level": "Avancé",
-      "val": 80,
-      "desc": "Programmation de base et configuration d'automates programmables industriels (API) sur les environnements standards."
-    },
-    {
-      "name": "Système Embarqué",
-      "level": "Avancé",
-      "val": 75,
-      "desc": "Conception et intégration d'architectures électroniques autonomes multi-capteurs, gestion de l'énergie et étanchéité de systèmes embarqués."
-    },
-    {
-      "name": "Adaptabilité logicielle",
-      "level": "Professionnel",
-      "val": 90,
-      "desc": "Prise en main rapide et exploitation autonome de tout nouvel environnement logiciel ou outil technique."
-    },
-    {
-      "name": "Travail en équipe",
-      "level": "Professionnel",
-      "val": 90,
-      "desc": "Capacité à collaborer efficacement, à communiquer clairement et à coordonner des actions au sein d'un groupe projet."
-    }
-  ],
-  "formations": [
-    {
-      "id": "but-geii",
-      "date": "En cours",
-      "title": "BUT (3ème année) GEII",
-      "school": "Université Toulon - IUT La Garde",
-      "desc": "Spécialité AII (Automatisme Informatique Industrielle)",
-      "isClickable": true,
-      "image": "geii.jpg"
-    },
-    {
-      "id": "habil-br",
-      "date": "2024",
-      "title": "Habilitation Électrique BR",
-      "school": "Université de Toulon",
-      "desc": "Chargé d'intervention générale en basse tension.",
-      "isClickable": false
-    },
-    {
-      "id": "bac",
-      "date": "2023",
-      "title": "Baccalauréat Général",
-      "school": "Lycée Bonaparte, Toulon",
-      "desc": "Spécialités Maths, Physique-Chimie, SVT. Option Maths Expertes et Sport.",
-      "isClickable": false
-    },
-    {
-      "id": "bafa",
-      "date": "2023",
-      "title": "BAFA",
-      "school": "Brevet d'aptitude aux fonctions d'animateur",
-      "desc": "",
-      "isClickable": false
-    },
-    {
-      "id": "brevet",
-      "date": "2020",
-      "title": "Brevet des Collèges",
-      "school": "Collège Les Pins d'Alep, Toulon",
-      "desc": "Mention Bien",
-      "isClickable": false
-    }
-  ],
-  "projects": [
-    {
-      "id": "stage-veolia",
-      "featured": true,
-      "year": "2026 (14 sem.)",
-      "title": "Stage Veolia — Architecture embarquée et cartographie",
-      "desc": "Conception et intégration d'une architecture multi-capteurs sur un drone flottant autonome pour la cartographie bathymétrique de l'émissaire du Cap Sicié.",
-      "competencies": [
-        "Concevoir",
-        "Intégrer",
-        "Vérifier"
-      ],
-      "tags": [
-        "Systèmes Embarqués",
-        "Électronique",
-        "Python",
-        "Office 365"
-      ],
-      "content": {
-        "contexteTitle": "Contexte",
-        "contexteText": "L'émissaire du Cap Sicié est une galerie souterraine de 6,4 kilomètres qui achemine les eaux usées de l'ouest toulonnais vers la station d'épuration d'Amphitria. Au fil du temps, des sédiments s'y accumulent, réduisant la capacité hydraulique et favorisant la création de gaz H2S très corrosif et toxique. Cet environnement est extrême : obscurité totale, chutes d'eaux usées, humidité saturée à 100% et forts courants d'air. L'inspection humaine y est très dangereuse et coûteuse, rendant le suivi de l'encrassement extrêmement complexe pour Veolia.",
-        "objectifTitle": "Objectif",
-        "objectifText": "L'objectif de mon stage était de concevoir, d'améliorer et d'intégrer une architecture électronique embarquée multi-capteurs sur un drone flottant autonome. Le but principal était de cartographier la bathymétrie (hauteur des sédiments) et le tirant d'air (distance jusqu'au plafond) sur l'intégralité du tunnel. L'acquisition de ces mesures doit permettre à l'entreprise de passer d'une maintenance curative à une maintenance prédictive en ciblant précisément les zones nécessitant une intervention de curage.",
-        "realisationTitle": "Réalisation",
-        "realisationText": "J'ai sélectionné et intégré des capteurs industriels : un radar Vega C22 pour le plafond, des sondes piézométriques Vega S51 pour le fond, et un enregistreur Odeon pour l'analyse physico-chimique de l'eau. J'ai mis en place des dataloggers autonomes (Lascar EL-USB-4) pour enregistrer les signaux 4-20mA avec une fréquence d'un hertz et validé le dimensionnement énergétique pour garantir 8h d'autonomie. Suite aux premiers tests en conditions réelles, j'ai entièrement fiabilisé le système : intégration de presse-étoupes pour une étanchéité totale des coffrets, organisation du câblage, et renforcement de la structure mécanique en tubes PVC pour résister aux chutes d'eau.",
-        "resultatsTitle": "Résultats",
-        "resultatsText": "Le drone a été déployé avec succès et, pour la première fois dans l'histoire de l'ouvrage, nous avons récupéré des données continues sur la géométrie de l'émissaire ainsi qu'une vidéo à 360 degrés. Le traitement de ces données via un script Python développé sur mesure m'a permis de modéliser le niveau d'eau. En exploitant la constante technique d'une hauteur sous plafond fixe pour l'infrastructure, les calculs ont permis de déduire précisément les variations du niveau du plancher causées par l'accumulation de sédiments. Les courbes générées ont ainsi localisé avec exactitude les amas problématiques.",
-        "bilanTitle": "Bilan",
-        "bilanText": "Ce projet m'a permis de prendre de réelles responsabilités techniques dans un contexte industriel exigeant. J'ai développé une grande autonomie dans la résolution de problèmes complexes sur le terrain et renforcé mes compétences transverses en électricité, instrumentation et traitement de la donnée. J'ai également pu préparer l'avenir du projet en dimensionnant une future architecture basée sur un microcontrôleur NVIDIA Jetson, couplé à un Lidar et un sonar multifaisceaux."
-      },
-      "mediaCaptions": {
-        "2": "Enregistrement vidéo de l'intérieur de l'émissaire",
-        "3": "Extrait du tableau de bord Excel généré par le script Python pour l'analyse des données"
-      }
-    },
-    {
-      "id": "station-epuration",
-      "year": "2025 (En cours)",
-      "title": "Station d'épuration automatisée",
-      "desc": "Conception et automatisation d'une maquette de station d'épuration pouvant nettoyer plus de 200L d'eau.",
-      "competencies": [
-        "Concevoir",
-        "Intégrer",
-        "Vérifier"
-      ],
-      "tags": [
-        "Langages Automate",
-        "Électronique",
-        "Énergie",
-        "Codesys/Control Expert",
-        "Travail en équipe",
-        "Vijeo Designer"
-      ],
-      "content": {
-        "contexteText": "Ce projet a été réalisé dans le cadre de la Saé 5.01 Installer/Intégrer au département GEII de l'IUT de Toulon. Il s'agit d'un projet industriel visant à concevoir, câbler et programmer une maquette simulant le fonctionnement d'une station d'épuration, en se concentrant sur les parties Pompage et Dégrillage.",
-        "objectifText": "L'objectif principal est de réaliser une installation automatisée simulant le traitement des eaux usées en respectant des exigences industrielles strictes. Le système doit gérer la puissance en pilotant des moteurs asynchrones via des variateurs de vitesse tout en assurant l'automatisme global pour gérer les cycles en modes Automatique et Manuel. Le projet impose également la mise en place d'un réseau de communication Modbus pour l'échange de données entre l'automate et les variateurs, ainsi que l'intégration complète via le câblage de l'armoire électrique et la mise en service des capteurs et actionneurs.",
-        "realisationText": "Le projet repose sur l'utilisation de technologies standardisées de la gamme Schneider Electric. L'installation matérielle a nécessité le câblage intégral de la partie opérative et commande, incluant le raccordement physique des variateurs de vitesse et des moteurs ainsi que l'intégration des capteurs de niveau. La programmation a été réalisée sous le logiciel EcoStruxure Control Expert pour gérer les séquences de démarrage et les sécurités du processus. Une communication industrielle Modbus a été configurée pour piloter les variateurs à distance, nécessitant le paramétrage des adresses IP, la gestion des requêtes de lecture/écriture et le mapping des registres pour contrôler numériquement la vitesse et le sens de rotation.",
-        "resultatsText": "La mise en service a permis de valider le fonctionnement global de la station d'épuration. Les variateurs contrôlent avec précision la vitesse des moteurs de pompage et de dégrillage selon les consignes envoyées par l'automate, tandis que le réseau Modbus assure une communication stable et réactive pour la remontée d'informations. Le système bascule correctement entre le mode Manuel dédié à la maintenance et le mode Automatique pour le cycle continu, et toutes les sécurités sont fonctionnelles pour arrêter le système en cas de défaut simulé.",
-        "bilanText": "Cette Saé a permis de passer de la théorie à la pratique sur du matériel industriel réel, validant des compétences clés en électrotechnique comme la lecture de schémas et le câblage d'armoire. Elle a également renforcé la maîtrise de l'automatisme avancé grâce à la gestion des réseaux de terrain Modbus. La nécessité de diagnostiquer et résoudre des pannes réelles de câblage ou de communication a considérablement développé l'autonomie et la rigueur technique indispensables en milieu professionnel."
-      },
-      "mediaCaptions": {
-        "1": "Maquette de la station d'épuration",
-        "2": "Schéma de fonctionnement de la station d'épuration",
-        "3": "Configuration de la communication Modbus du système sur ControlExpert"
-      },
-      "featured": true
-    },
-    {
-      "id": "stage-enedis",
-      "year": "2024 (8 sem.)",
-      "title": "Stage Enedis — Supervision Réseau",
-      "desc": "Supervision du réseau électrique, gestion des accès, suivi des dépannages et validation des préparations de chantiers.",
-      "competencies": [
-        "Maintenir",
-        "Vérifier"
-      ],
-      "tags": [
-        "Électronique",
-        "Adaptabilité logicielle",
-        "Travail en équipe"
-      ],
-      "content": {
-        "contexteTitle": "Contexte",
-        "contexteText": "Dans le cadre de ma deuxième année de BUT GEII au semestre 4, j'ai réalisé un stage de 8 semaines au sein de l'entreprise Enedis, le gestionnaire du réseau de distribution d'électricité en France. J'ai intégré l'agence ASGARD (Agence de Supervision et de Gestion des Accès au Réseau de Distribution) située à Toulon. Cette agence opérationnelle 24h/24 est la tour de contrôle qui garantit la sécurité des interventions et la continuité de la fourniture d'électricité sur le réseau régional.",
-        "objectifTitle": "Objectifs",
-        "objectifText": "L'objectif principal de ce stage était de comprendre et de participer activement au maintien du bon acheminement de l'électricité tout en assurant la sécurité des biens et des personnes. Les missions se décomposaient en deux axes majeurs :\n\nLa Gestion des Accès (GDA) : Vérifier et valider les demandes de travaux pour s'assurer qu'ils respectent les normes de sécurité avant toute intervention sur le réseau.\n\nLa Gestion des Dépannages (GDD) : Superviser les incidents en temps réel et coordonner les équipes d'intervention pour rétablir le courant au plus vite chez les clients.",
-        "realisationTitle": "Missions & réalisations",
-        "realisationText": "Durant ce stage, j'ai été formé aux outils métiers spécifiques d'Enedis (Mercator, Olympe, et les logiciels internes de gestion) et j'ai travaillé en binôme sur des missions concrètes.\n\nPréparation et Validation des Travaux : J'ai participé à la création et à la vérification des DMEO (Dossier de Mise en Exploitation de l'Ouvrage). Cela consistait à contrôler la conformité des dossiers techniques envoyés par les prestataires, notamment pour les raccordements de coffrets individuels (CIBE) ou les extensions de réseau (REMBT). Chaque détail (photos, schémas, normes) devait être validé rigoureusement avant d'autoriser la mise sous tension.\n\nSupervision et Dépannage : J'ai assisté les gestionnaires dans le pilotage des incidents réseaux (HTA et BT). Cela impliquait :\n\n1. L'analyse des pannes signalées par les compteurs Linky ou les appels clients.\n\n2. L'envoi et le guidage des techniciens sur le terrain pour localiser les défauts.\n\n3. La gestion des manœuvres à distance (via des interrupteurs aériens télécommandés) pour isoler les tronçons en défaut et réalimenter les clients.",
-        "resultatsTitle": "Résultats",
-        "resultatsText": "Ce stage m'a permis d'appréhender la complexité d'un réseau de distribution électrique à grande échelle et de garantir concrètement la sécurité des interventions. J'ai contribué activement à la validation de nombreux dossiers d'accès (DMEO), assurant ainsi la conformité technique des travaux pour la protection des biens et des personnes. Mon implication directe dans la chaîne de décision lors des incidents a également aidé à optimiser le rétablissement du courant, réduisant l'impact des pannes pour les clients. Enfin, j'ai acquis une maîtrise opérationnelle des outils spécifiques de cartographie et de gestion d'incidents, validant ma capacité à travailler avec rigueur sous pression dans un environnement industriel exigeant.",
-        "bilanTitle": "Bilan",
-        "bilanText": "Cette expérience a été une étape clé dans mon parcours professionnel. Elle m'a apporté une grande maturité en me confrontant aux exigences de sécurité et de réactivité d'une grande entreprise de service public. Bien que ce stage m'ait permis de confirmer que l'électrotechnique pure est un domaine qui me passionne moins que l'automatisme ou l'informatique industrielle, il a été une expérience humaine et technique très enrichissante pour ma compréhension du monde de l'énergie."
-      },
-      "featured": false,
-      "mediaCaptions": {
-        "1": "",
-        "2": " Capture d’écran de la cartographie des travaux sur la ligne HTA sur le logiciel LEIA",
-        "3": "Photographie d'un poste endommagée à la suite d'un éboulement"
-      }
-    },
-    {
-      "id": "systeme-arrosage",
-      "year": "2025 (120h)",
-      "title": "Système d'arrosage automatisé",
-      "desc": "Projet de Conception d'un système automatisé d'arrosage de plantes.",
-      "competencies": [
-        "Concevoir",
-        "Intégrer"
-      ],
-      "tags": [
-        "C/C++",
-        "Langages Automate",
-        "Base de donnée (PHP/SQL)",
-        "Codesys/Control Expert",
-        "Vijeo Designer",
-        "Office 365"
-      ],
-      "content": {
-        "contexteText": "Ce projet a été réalisé dans le cadre de la Saé 3.01 au département GEII de l'IUT de Toulon. Il porte sur la conception, la supervision et le contrôle d'un système hydroponique d'arrosage de plantes automatisé.",
-        "objectifText": "L'objectif est de piloter un système complet de gestion de fluides pour l'agriculture. Le système doit être capable de :\n\n1. Commander les actionneurs : Piloter deux pompes simulées par des moteurs pas à pas, un mélangeur et des électrovannes.\n2. Gérer les dosages : Contrôler précisément la quantité d'eau de 10L à 2000L et le dosage des nutriments.\n3. Moduler la vitesse : Proposer 3 modes de vitesses différents pour les pompes.\n4. Assurer la supervision : Offrir une interface homme-machine permettant de visualiser l'état du système et d'agir sur les commandes.",
-        "realisationText": "Le système repose sur une architecture matérielle et logicielle précise.\n\n1. Matériel et Communication :\nUtilisation d'un automate WAGO TP 762 relié à deux drivers EM2RS556 par communication Ethernet et liaison série RS485 Modbus. Deux moteurs pas à pas simulent les pompes à nutriments avec une précision de 200 pas par tour.\n\n2. Programmation CodeSys et MotionStudio :\nLe pilotage est assuré via le logiciel CodeSys. Les profils de vitesse sont configurés via MotionStudio et appelés via des requêtes Modbus à l'adresse 0x6002. Un algorithme calcule automatiquement le temps d'activation des pompes selon le dosage, la quantité et la vitesse choisie.\n\n3. Interface de Supervision :\nCréation d'une interface visuelle complète permettant de sélectionner les modes, régler les dosages via des potentiomètres numériques et suivre l'évolution des cycles en temps réel.",
-        "resultatsText": "Le projet a abouti à un système fonctionnel piloté par une interface complète.\n\n1. Contrôle global et individuel : L'interface permet une commande générale pour la vitesse et la quantité de mélange, ainsi qu'une commande spécifique pour chaque pompe pour le dosage et le temps.\n2. Synchronisation : Le programme gère intelligemment les deux pompes en parallèle, assurant que le cycle de mélange ne démarre que lorsque les deux pompes ont terminé leur dosage.\n3. Visualisation temps réel : L'utilisateur peut voir en direct le temps restant pour chaque action et le volume dosé.",
-        "bilanText": "Ce projet a permis de valider des compétences en conception et en intégration de systèmes automatisés complexes. Il a nécessité la maîtrise de nouveaux outils logiciels comme MotionStudio et la gestion de protocoles de communication industriels. La résolution des problèmes de câblage et de programmation a renforcé l'esprit d'équipe et la capacité à maintenir un système technique."
-      },
-      "mediaCaptions": {
-        "2": "Schéma de fonctionnement du système",
-        "3": "Interface de visualisation du système "
-      }
-    },
-    {
-      "id": "emetteur-recepteur-sonore",
-      "year": "2024 (45h)",
-      "title": "Système Émetteur/Récepteur Sonore",
-      "desc": "Maintenance et conception d'un émetteur sonore permettant l'allumage d'un robot.",
-      "competencies": [
-        "Concevoir",
-        "Maintenir"
-      ],
-      "tags": [
-        "Électronique",
-        "Travail en équipe"
-      ],
-      "content": {
-        "objectifText": "Fréquence précise : Le robot doit réagir spécifiquement à une fréquence de 7800 Hz.\n\n\nFiabilité : Le signal doit être émis pendant au moins 2 secondes pour être validé.\n\n\nSélectivité : L'appareil ne doit pas réagir aux bruits ambiants ni aux fréquences des autres robots.\n\n\nPortée : Le signal doit être efficace jusqu'à une distance de 3 mètres.",
-        "contexteText": "Ce projet a été réalisé dans le cadre de la Saé 2.02 \"Vérifier\" au département GEII de l'IUT de l'Université de Toulon. L'étude porte sur la conception technique d'une télécommande sonore destinée à contrôler l'allumage et l'extinction d'un robot détecteur d'obstacles. Le travail se concentre spécifiquement sur la partie émettrice du système.",
-        "realisationText": "Le système est composé de trois blocs fonctionnels :\n\n1. Génération du signal (Astable) :\nUtilisation d'un montage astable pour générer un signal de base à 7800 Hz. La résistance théorique de 5835 Ohms a été obtenue grâce à une résistance de 5600 Ohms en série avec un potentiomètre de 470 Ohms pour un réglage précis. Un montage suiveur et un pont diviseur assurent une tension de référence de 2,5V.\n\n2. Filtrage (Filtre Passe-bas) :\nMise en œuvre d'un filtre passe-bas du 2nd ordre pour transformer le signal triangulaire en sinusoïde pure. Les composants calculés (R = 855 Ohms et C2 = 57 nF) permettent d'atténuer fortement les harmoniques indésirables.\n\n3. Amplification :\nUtilisation d'un amplificateur de puissance LM4818 pour convertir le signal filtré en ondes sonores via un haut-parleur. L'émission est pilotée par un bouton poussoir.",
-        "resultatsText": "Les tests effectués à l'oscilloscope valident les performances du prototype. \nLa fréquence de sortie est calée avec précision sur 7800 Hz. \nLe filtre atteint une atténuation de -38 dB entre la fondamentale et la 3ème harmonique. \nOn constate une erreur de seulement 5% par rapport à la théorie pour la partie astable. \nLa puissance utile mesurée est de 0,836 W avec une charge de 33 Ohms. \nLe signal sonore final est bien sinusoïdal.",
-        "bilanText": "L'étude pratique a confirmé la validité des calculs théoriques effectués lors de la conception. Le système génère et émet avec succès la fréquence de 7800 Hz requise par le cahier des charges. L'émetteur est désormais opérationnel pour être testé avec la partie réceptrice du robot."
-      },
-      "mediaCaptions": {
-        "1": "Photo du câblage du système ",
-        "2": "Schéma électrique global du système",
-        "3": "Visualisation à l'oscilloscope des signaux d'entrée et de sortie d'un filtre passe-bas pour mesurer l'atténuation"
-      }
-    },
-    {
-      "id": "robot-detecteur-obstacles",
-      "year": "2024 (70h)",
-      "title": "Robot détecteur d'obstacles",
-      "desc": "Conception et Réalisation d'un robot roulant télécommandé sous Arduino.",
-      "competencies": [
-        "Concevoir",
-        "Intégrer"
-      ],
-      "tags": [
-        "C/C++",
-        "Électronique",
-        "Énergie",
-        "Travail en équipe"
-      ],
-      "content": {
-        "objectifText": "L'objectif est de construire un robot mobile polyvalent capable de se déplacer et d'interagir avec son environnement de manière autonome ou pilotée. Le système doit répondre aux besoins suivants :\n\n1. Autonomie énergétique : Dimensionner une batterie adaptée pour alimenter les moteurs de puissance et la carte de commande.\n2. Pilotage à distance : Être contrôlable manuellement via une radiocommande (Avancer, Reculer, Tourner).\n3. Intelligence embarquée : Disposer d'un mode autonome pour détecter et éviter les obstacles grâce à des capteurs.\n4. Interface : Afficher des informations d'état et de distance sur un écran LCD embarqué.",
-        "contexteText": "Ce projet a été réalisé dans le cadre de la Saé 2.01 \"Concevoir\" au département GEII de l'IUT de l'Université de Toulon. L'étude porte sur la conception et la réalisation d'un robot détecteur d'obstacle commandé grâce à une télécommande et programmé grâce à une carte Arduino en langage C++",
-        "realisationText": "Le développement du robot repose sur une architecture matérielle et logicielle articulée autour d'une carte Arduino.\n\n1. Alimentation et Motorisation :\nL'énergie est fournie par une batterie dimensionnée spécifiquement pour l'autonomie du système. La propulsion est assurée par deux moteurs à courant continu, pilotés par un pont en H (L298N) qui gère le sens de rotation et la vitesse via modulation PWM.\n\n2. Programmation et Algorithmique (Le Cerveau) :\nLe programme, développé en C++, structure l'intelligence du robot.\n- Architecture : Le code est modulaire, utilisant une fonction dédiée `cmd_motor` pour abstraire la complexité du pilotage des moteurs.\n- Mode Manuel : Le robot lit les signaux PWM du récepteur radio. Un algorithme de mixage ajuste la vitesse de chaque roue pour permettre des virages fluides (pilotage différentiel).\n- Mode Automatique : Le robot utilise une formule mathématique de linéarisation (Power Law) pour convertir les signaux analogiques des capteurs en distance réelle (cm). Une logique conditionnelle analyse ensuite l'environnement pour décider de la trajectoire (ex: si obstacle au centre, tourner vers la zone libre).\n\n3. Capteurs et Interface :\nLa perception est assurée par des capteurs ultrasons et infrarouges positionnés à l'avant. Un écran LCD communique en temps réel les données internes (mode actif, distances mesurées) pour faciliter le débogage et l'utilisation.",
-        "resultatsText": "L'intégration des composants et du code a permis d'obtenir un robot pleinement fonctionnel.\n\n1. Réactivité : Le robot bascule instantanément entre le mode \"Manuel\" et \"Automatique\" via l'interrupteur de la radiocommande.\n2. Fiabilité du code : La linéarisation des capteurs permet une détection précise des obstacles, évitant les collisions en mode autonome.\n3. Motricité : La gestion PWM offre une conduite souple, capable de ralentir dans les virages plutôt que de pivoter brusquement.\n4. Supervision : L'écran LCD affiche correctement les informations, validant la bonne communication entre tous les modules.",
-        "bilanText": "Ce projet a permis de maîtriser la chaîne complète de développement d'un système embarqué : du dimensionnement électrique à la programmation algorithmique en C++, en passant par l'interfaçage des capteurs. Il a mis en évidence l'importance de structurer son code pour gérer simultanément la lecture des capteurs, la réception radio et le pilotage des moteurs sans latence."
-      },
-      "mediaCaptions": {
-        "2": "Schéma de câblage du pont en H",
-        "3": "Courbe de réponse du capteur infrarouge : Tension en fonction de la distance"
-      }
-    },
-    {
-      "id": "lampe-smartlight",
-      "year": "2023 (90h)",
-      "title": "Lampe intelligente SmartLight",
-      "desc": "Conception et Réalisation d'une lampe intelligente sous Arduino.",
-      "competencies": [
-        "Concevoir"
-      ],
-      "tags": [
-        "C/C++",
-        "Électronique",
-        "Office 365",
-        "Adaptabilité logicielle"
-      ],
-      "content": {
-        "objectifText": "L'objectif est de concevoir un système d'éclairage autonome et pilotable capable de s'adapter dynamiquement à son environnement. Le cahier des charges impose une gestion intelligente où la lampe adapte automatiquement son intensité lumineuse en fonction de la lumière ambiante mesurée par un capteur. Le projet exige également la réalisation complète du matériel, incluant le routage d'une carte électronique sur mesure (PCB) sous le logiciel KiCad intégrant un Arduino Nano et les interfaces de puissance. Enfin, le système doit offrir une expérience utilisateur complète grâce à un contrôle via télécommande infrarouge et boutons physiques, le tout expliqué dans une notice d'utilisation claire.",
-        "contexteText": "Ce projet a été réalisé dans le cadre du semestre 1 de la formation GEII et porte sur la conception intégrale d'un système électronique embarqué. L'objectif était de créer une carte électronique \"Smartlight\" dédiée au pilotage intelligent d'une lampe, en partant du schéma structurel jusqu'au produit fini et documenté.",
-        "realisationText": "Le projet a suivi une démarche de développement produit rigoureuse, débutant par une étude photométrique pour dimensionner le système. La conception matérielle s'est déroulée sous KiCad avec la saisie du schéma électrique, le choix des empreintes et le routage complet du PCB intégrant un Arduino Nano et des connecteurs multiples comme l'USB-C et le Jack. La phase de fabrication a consisté à souder les composants traversants et les connecteurs sur le circuit imprimé avant de passer à la programmation. Le code Arduino développé gère plusieurs modes de fonctionnement : un mode Manuel pour varier l'intensité via des boutons ou la télécommande, un mode Automatique activé par la touche \"9\" qui régule la lumière selon l'éclairage ambiant, et un mode Dégradé pour les variations de couleurs.",
-        "resultatsText": "Le projet a abouti à un prototype électronique robuste et pleinement fonctionnel. La carte Smartlight présente des soudures propres et une connectique fiable, assurant une alimentation stable via USB ou Jack. L'ergonomie a été validée par la fluidité du basculement entre les modes manuel et automatique, ainsi que par la réactivité de la télécommande pour le pilotage ON/OFF et le choix des couleurs. Une notice d'utilisation graphique et professionnelle a également été produite pour guider l'utilisateur final sur les branchements et les fonctionnalités.",
-        "bilanText": "Ce projet a permis de maîtriser la chaîne complète de création d'un objet connecté, validant des compétences techniques variées allant de la CAO électronique sous KiCad à la fabrication par soudure et la programmation embarquée. Au-delà de l'aspect technique, la rédaction de la notice d'utilisation a apporté une dimension professionnelle supplémentaire, obligeant à vulgariser le fonctionnement complexe du système pour le rendre accessible à un utilisateur grand public."
-      }
-    },
-    {
-      "id": "maintenance-unilogic",
-      "year": "2023 (45h)",
-      "title": "Maintenance Automate UniLogic",
-      "desc": "Maintenance du système électrique d'un automate UniLogic sous UniStream.",
-      "competencies": [
-        "Maintenir",
-        "Vérifier"
-      ],
-      "tags": [
-        "Langages Automate",
-        "Travail en équipe",
-        "Adaptabilité logicielle",
-        "Électronique"
-      ],
-      "content": {}
-    }
-  ],
-  "competencyLevels": {
-    "Concevoir": [
-      {
-        "id": "n1",
-        "label": "Niveau 1",
-        "mastery": 92,
-        "desc": "Mener une conception partielle intégrant une démarche projet.",
-        "justification": "Test test test "
-      },
-      {
-        "id": "n2",
-        "label": "Niveau 2",
-        "mastery": 85,
-        "desc": "Concevoir un système en fiabilisant les solutions proposées.",
-        "justification": ""
-      },
-      {
-        "id": "n3",
-        "label": "Niveau 3",
-        "mastery": 78,
-        "desc": "Concevoir un système en adoptant une approche sélective dans ses choix technologiques.",
-        "justification": ""
-      }
-    ],
-    "Vérifier": [
-      {
-        "id": "n1",
-        "label": "Niveau 1",
-        "mastery": 88,
-        "desc": "Effectuer les tests et mesures nécessaires à une vérification d'un système.",
-        "justification": ""
-      },
-      {
-        "id": "n2",
-        "label": "Niveau 2",
-        "mastery": 80,
-        "desc": "Mettre en place un protocole de tests pour valider le fonctionnement d'un système.",
-        "justification": ""
-      },
-      {
-        "id": "n3",
-        "label": "Niveau 3",
-        "mastery": 70,
-        "desc": "Élaborer une procédure intégrant une démarche qualité pour valider le fonctionnement d'un système.",
-        "justification": ""
-      }
-    ],
-    "Maintenir": [
-      {
-        "id": "n1",
-        "label": "Niveau 1",
-        "mastery": 85,
-        "desc": "Intervenir sur un système pour effectuer une opération de maintenance.",
-        "justification": ""
-      },
-      {
-        "id": "n2",
-        "label": "Niveau 2",
-        "mastery": 72,
-        "desc": "Mettre en place une stratégie de maintenance pour garantir un fonctionnement optimal.",
-        "justification": ""
-      }
-    ],
-    "Intégrer": [
-      {
-        "id": "n1",
-        "label": "Niveau 1",
-        "mastery": 95,
-        "desc": "Réaliser / intégrer un système en conformité avec le dossier de fabrication et une démarche qualité.",
-        "justification": ""
-      },
-      {
-        "id": "n2",
-        "label": "Niveau 2",
-        "mastery": 88,
-        "desc": "Interagir avec les différents acteurs lors de l'installation et de la mise en service d'un système, dans une démarche qualité.",
-        "justification": ""
-      }
-    ]
-  },
-  "projectLevelMap": {
-    "station-epuration": {
-      "Concevoir": "n3",
-      "Vérifier": "n3",
-      "Intégrer": "n2"
-    },
-    "systeme-arrosage": {
-      "Concevoir": "n2",
-      "Intégrer": "n1"
-    },
-    "emetteur-recepteur-sonore": {
-      "Concevoir": "n1",
-      "Maintenir": "n1"
-    },
-    "robot-detecteur-obstacles": {
-      "Concevoir": "n2",
-      "Intégrer": "n1",
-      "Vérifier": "n1"
-    },
-    "lampe-smartlight": {
-      "Concevoir": "n1"
-    },
-    "maintenance-unilogic": {
-      "Maintenir": "n2",
-      "Vérifier": "n2"
-    },
-    "stage-enedis": {},
-    "": {},
-    "Stage - Veolia": {},
-    "stage-veolia": {
-      "Concevoir": "n3",
-      "Intégrer": "n2",
-      "Vérifier": "n2"
-    }
-  },
-  "experiences": [
-    {
-      "id": "Veolia",
-      "date": "2026 (14 sem.)",
-      "company": "Veolia Eau, Agence Assainissement (La Seyne-sur-Mer)",
-      "title": "Stage Informatique Industrielle et Systèmes Embarqués",
-      "desc": "Conception et intégration d'une architecture multi-capteurs sur un drone flottant pour la cartographie bathymétrique d'un émissaire sous-marin.",
-      "isClickable": true,
-      "logo": "veolia.jpg",
-      "details": "Au sein de l'agence d'assainissement, j'ai mené à bien l'équipement d'un drone destiné à évoluer dans l'environnement hostile de l'émissaire du Cap Sicié. Ce projet m'a permis de gérer une chaîne d'acquisition de données complète, de l'intégration des capteurs industriels jusqu'au développement d'un script d'analyse en Python, tout en optimisant la robustesse et l'autonomie énergétique du système.",
-      "tasks": [
-        "Sélection, paramétrage et intégration de capteurs de mesure (radar Vega C22, sondes piézométriques, Dataloggers).",
-        "Dimensionnement électrique et validation de l'autonomie de l'architecture embarquée.",
-        "Développement d'un outil d'analyse en Python (Pandas, NumPy) pour la synchronisation temporelle de milliers de données asynchrones.",
-        "Amélioration mécanique et fiabilisation de l'étanchéité du prototype (conception de coffrets, structure en PVC 110).",
-        "Réalisation de tests sur le terrain et post-traitement des données cartographiques et physico-chimiques."
-      ],
-      "linkedProjectId": "stage-veolia"
-    },
-    {
-      "id": "enedis",
-      "date": "2024 (8 sem.)",
-      "company": "Enedis, Agence ASGARD",
-      "title": "Stage Supervision Réseau",
-      "desc": "Supervision du réseau électrique, gestion des accès, suivi des dépannages et validation des préparations de chantiers.",
-      "details": "Au sein de l'Agence ASGARD (Agence de Supervision, Gestion, Accès, Réseau et Dépannage), j'ai découvert le pilotage en temps réel du réseau de distribution électrique. Ce stage m'a permis de comprendre les enjeux de la continuité de service et de la sécurité électrique à grande échelle.",
-      "tasks": [
-        "Assistance à la supervision du réseau HTA/BT en temps réel.",
-        "Analyse des incidents et suivi des dépannages avec les équipes terrain.",
-        "Validation technique des accès pour les chantiers (préparation des manœuvres).",
-        "Utilisation des outils métiers de cartographie et de gestion (ADMS)."
-      ],
-      "isClickable": true,
-      "logo": "enedis.jpg",
-      "linkedProjectId": "stage-enedis"
-    },
-    {
-      "id": "univ-toulon",
-      "date": "2024 - 2025",
-      "company": "Université de Toulon",
-      "title": "Étudiant Ambassadeur GEII",
-      "desc": "Participation à la promotion du BUT GEII lors de salons d’orientation et de la Journée Portes Ouvertes : présentation de la formation aux lycéens et à leurs parents, réponse aux questions et accompagnement sur les stands.",
-      "isClickable": false,
-      "logo": "univ-toulon.jpg"
-    },
-    {
-      "id": "norauto",
-      "date": "2020 (1 sem.)",
-      "company": "Norauto Bon-Rencontre",
-      "title": "Stage de Découverte",
-      "desc": "Observation des mécaniciens en charge des réparations de véhicules.",
-      "isClickable": false,
-      "logo": "norauto.jpg"
-    }
-  ],
-  "interests": [
-    {
-      "id": "scoutisme",
-      "title": "Scoutisme",
-      "text": "Responsable groupe local (depuis 1 an) et Animateur de camps (11-17 ans).",
-      "details": "Engagement fort dans le mouvement scout depuis de nombreuses années. En tant que responsable de groupe local et animateur, je développe des compétences en leadership, gestion de groupe, organisation logistique et pédagogie. J'encadre des jeunes de 11 à 17 ans lors de camps et d'activités tout au long de l'année, favorisant l'entraide et la vie dans la nature.",
-      "iconName": "Leaf",
-      "color": "bg-green-100 text-green-700"
-    },
-    {
-      "id": "musique",
-      "title": "Musique",
-      "text": "Pratique de la guitare classique et du piano depuis 3 ans avec un groupe.",
-      "details": "La musique est une passion qui me permet de développer ma créativité et mon écoute. Je pratique la guitare classique et le piano. Jouer en groupe depuis 3 ans m'a appris l'importance de la coordination, de l'écoute mutuelle et du travail collectif pour atteindre une harmonie.",
-      "iconName": "Music",
-      "color": "bg-purple-100 text-purple-700"
-    },
-    {
-      "id": "sport",
-      "title": "Sport",
-      "text": "Tennis (8 ans, classé 30/0), Option Sport au lycée et pratique régulière.",
-      "details": "Le sport fait partie intégrante de mon équilibre de vie. J'ai pratiqué le tennis en compétition pendant 8 ans, atteignant le classement 30/0. J'ai également suivi l'option Sport au lycée. Ces expériences m'ont inculqué le goût de l'effort, la persévérance et le fair-play.",
-      "iconName": "Trophy",
-      "color": "bg-orange-100 text-orange-700"
-    }
-  ],
-  "uiText": {
-    "competencesSubtitle": "Savoir-faire technique & Logiciels. Cliquez pour voir les projets associés.",
-    "projetsSubtitle": "Projets techniques réalisés en groupe et en autonomie",
-    "heroBadgeVisible": false,
-    "heroBadgeText": "🚀 En recherche de stage (Mars 2026)",
-    "contactTitle": "Prêt à collaborer ?",
-    "contactSubtitle": "Discutons de la manière dont je peux vous aider!"
+/* Full Admin (statique) pour GitHub Pages
+   - Charge /data/content.json (et/ou /data/content.js)
+   - Permet d'éditer les sections
+   - Export/Import de content.json
+   IMPORTANT: GitHub Pages ne permet pas d'écrire sur le serveur.
+   => Après export, remplace data/content.json ET data/content.js dans ton repo puis push.
+*/
+
+const $ = (sel) => document.querySelector(sel);
+const el = (tag, attrs = {}, children = []) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') n.className = v;
+    else if (k === 'html') n.innerHTML = v;
+    else if (k.startsWith('on') && typeof v === 'function') n.addEventListener(k.slice(2).toLowerCase(), v);
+    else n.setAttribute(k, v);
   }
+  for (const c of children) n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+  return n;
 };
+
+const ICON_NAMES = ['Leaf', 'Music', 'Trophy', 'Heart', 'Star', 'Cpu', 'Code', 'Users', 'Briefcase', 'GraduationCap', 'Home'];
+
+let state = null;
+let activeSection = 'global';
+
+function setStatus(type, msg) {
+  const box = $('#status');
+  const cls = type === 'error'
+    ? 'bg-red-50 border-red-200 text-red-900'
+    : type === 'success'
+      ? 'bg-emerald-50 border-emerald-200 text-emerald-900'
+      : 'bg-slate-50 border-slate-200 text-slate-900';
+  box.innerHTML = '';
+  box.appendChild(
+    el('div', { class: `border rounded-xl px-4 py-3 ${cls}` }, [
+      el('div', { class: 'font-semibold mb-1' }, [type === 'error' ? 'Erreur' : type === 'success' ? 'OK' : 'Info']),
+      el('div', { class: 'text-sm leading-relaxed' }, [msg])
+    ])
+  );
+}
+
+async function loadRemoteContent() {
+  // 1) Mode "hébergé" (GitHub Pages / serveur) => fetch OK
+  try {
+    const res = await fetch('../data/content.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();
+  } catch (e) {
+    // 2) Mode local file:// => fetch bloqué par le navigateur
+    if (window.__PORTFOLIO_CONTENT__) {
+      // clone (évite de modifier l'objet global)
+      return JSON.parse(JSON.stringify(window.__PORTFOLIO_CONTENT__));
+    }
+    throw new Error('Failed to fetch (ouvre le dossier via un petit serveur local, ou utilise Importer JSON).');
+  }
+}
+
+function downloadJson(filename, data) {
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = el('a', { href: url, download: filename });
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+// Pour que le site marche aussi en local via file:// (sans serveur),
+// on génère un fichier JS statique qui pose window.__PORTFOLIO_CONTENT__.
+function downloadContentJs(filename, data) {
+  const js = 'window.__PORTFOLIO_CONTENT__ = ' + JSON.stringify(data, null, 2) + ';\n';
+  const blob = new Blob([js], { type: 'application/javascript;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = el('a', { href: url, download: filename });
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function copyToClipboard(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    setStatus('success', 'JSON copié dans le presse-papiers.');
+  } catch {
+    setStatus('error', "Impossible de copier. Utilise le bouton Télécharger.");
+  }
+}
+
+function navButton(id, label, desc) {
+  const isActive = id === activeSection;
+  return el('button', {
+    class: `w-full text-left px-4 py-3 rounded-xl border transition ${isActive ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-900 border-slate-200 hover:bg-slate-50'}`,
+    onclick: () => { activeSection = id; render(); }
+  }, [
+    el('div', { class: 'font-semibold' }, [label]),
+    el('div', { class: `text-xs mt-1 ${isActive ? 'text-slate-200' : 'text-slate-500'}` }, [desc])
+  ]);
+}
+
+function inputRow(label, value, { type = 'text', placeholder = '', oninput } = {}) {
+  const id = 'i_' + Math.random().toString(36).slice(2);
+  const inp = el('input', {
+    id,
+    type,
+    value: value ?? '',
+    placeholder,
+    class: 'w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900'
+  });
+  if (oninput) inp.addEventListener('input', (e) => oninput(e.target.value));
+  return el('div', { class: 'grid md:grid-cols-3 gap-3 items-center' }, [
+    el('label', { for: id, class: 'text-sm font-semibold text-slate-700' }, [label]),
+    el('div', { class: 'md:col-span-2' }, [inp])
+  ]);
+}
+
+function textareaRow(label, value, { placeholder = '', oninput } = {}) {
+  const id = 't_' + Math.random().toString(36).slice(2);
+
+  // Mini-toolbar : gras via Markdown **texte**
+  const wrapSelection = (textarea, before, after) => {
+    const start = textarea.selectionStart ?? 0;
+    const end = textarea.selectionEnd ?? 0;
+    const text = textarea.value ?? '';
+    const selected = text.slice(start, end);
+
+    const next = text.slice(0, start) + before + selected + after + text.slice(end);
+    textarea.value = next;
+
+    // Replace focus + selection (garde l'UX agréable)
+    textarea.focus();
+    const newStart = start + before.length;
+    const newEnd = newStart + selected.length;
+    textarea.setSelectionRange(newStart, newEnd);
+  };
+
+  const ta = el('textarea', {
+    id,
+    placeholder,
+    class: 'w-full min-h-[110px] rounded-xl border border-slate-200 px-3 py-2 text-sm mono focus:outline-none focus:ring-2 focus:ring-slate-900'
+  }, []);
+  ta.value = value ?? '';
+  if (oninput) ta.addEventListener('input', (e) => oninput(e.target.value));
+
+  const btnBold = el('button', {
+    type: 'button',
+    class: 'inline-flex items-center justify-center w-9 h-9 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-900 font-extrabold',
+    title: 'Gras (Markdown: **texte**)',
+    onclick: () => {
+      wrapSelection(ta, '**', '**');
+      // Force l'event input pour mettre à jour state même si on clique sans taper
+      ta.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }, ['B']);
+
+  const toolbar = el('div', { class: 'flex items-center gap-2 mb-2' }, [
+    btnBold,
+    el('div', { class: 'text-xs text-slate-500' }, ['Astuce : utilise ', el('span', { class: 'mono bg-slate-100 px-1 rounded' }, ['**gras**']), ' dans tes textes.'])
+  ]);
+
+  return el('div', { class: 'grid md:grid-cols-3 gap-3' }, [
+    el('label', { for: id, class: 'text-sm font-semibold text-slate-700 pt-2' }, [label]),
+    el('div', { class: 'md:col-span-2' }, [toolbar, ta])
+  ]);
+}
+
+function numberRow(label, value, { min = 0, max = 100, step = 1, oninput } = {}) {
+  return inputRow(label, value, { type: 'number', placeholder: `${min}-${max}`, oninput: (v) => oninput(Number(v)) });
+}
+
+function selectRow(label, value, options, { onchange } = {}) {
+  const id = 's_' + Math.random().toString(36).slice(2);
+  const sel = el('select', {
+    id,
+    class: 'w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900'
+  });
+  options.forEach(opt => {
+    sel.appendChild(el('option', { value: opt }, [opt]));
+  });
+  sel.value = value ?? options[0];
+  if (onchange) sel.addEventListener('change', (e) => onchange(e.target.value));
+  return el('div', { class: 'grid md:grid-cols-3 gap-3 items-center' }, [
+    el('label', { for: id, class: 'text-sm font-semibold text-slate-700' }, [label]),
+    el('div', { class: 'md:col-span-2' }, [sel])
+  ]);
+}
+
+// Select avec couple value/label
+function selectRowKV(label, value, options, { onchange } = {}) {
+  const id = 's_' + Math.random().toString(36).slice(2);
+  const sel = el('select', {
+    id,
+    class: 'w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900'
+  });
+  (options || []).forEach(opt => {
+    sel.appendChild(el('option', { value: opt.value }, [opt.label]));
+  });
+  sel.value = (value ?? (options && options[0] ? options[0].value : ''));
+  if (onchange) sel.addEventListener('change', (e) => onchange(e.target.value));
+  return el('div', { class: 'grid md:grid-cols-3 gap-3 items-center' }, [
+    el('label', { for: id, class: 'text-sm font-semibold text-slate-700' }, [label]),
+    el('div', { class: 'md:col-span-2' }, [sel])
+  ]);
+}
+
+function checkboxRow(label, checked, { onchange } = {}) {
+  const id = 'c_' + Math.random().toString(36).slice(2);
+  const inp = el('input', {
+    id,
+    type: 'checkbox',
+    class: 'h-5 w-5 rounded border-slate-300 text-slate-900 focus:ring-slate-900'
+  });
+  inp.checked = !!checked;
+  if (onchange) inp.addEventListener('change', (e) => onchange(!!e.target.checked));
+  return el('div', { class: 'grid md:grid-cols-3 gap-3 items-center' }, [
+    el('label', { for: id, class: 'text-sm font-semibold text-slate-700' }, [label]),
+    el('div', { class: 'md:col-span-2 flex items-center gap-3' }, [
+      inp,
+      el('span', { class: 'text-xs text-slate-500' }, ["Afficher sur la page d'accueil"])
+    ])
+  ]);
+}
+
+function card(title, children, actions = []) {
+  return el('div', { class: 'bg-white rounded-2xl border border-slate-200 shadow-sm p-5' }, [
+    el('div', { class: 'flex items-start justify-between gap-4 mb-4' }, [
+      el('div', {}, [
+        el('div', { class: 'text-lg font-extrabold text-slate-900' }, [title]),
+      ]),
+      el('div', { class: 'flex gap-2 flex-wrap justify-end' }, actions)
+    ]),
+    ...children
+  ]);
+}
+
+function smallBtn(label, cls, onClick) {
+  return el('button', {
+    class: `px-3 py-1.5 rounded-xl text-xs font-bold border ${cls}`,
+    onclick: onClick
+  }, [label]);
+}
+
+function renderTopBar() {
+  return el('div', { class: 'flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-6' }, [
+    el('div', {}, [
+      el('div', { class: 'text-2xl font-extrabold text-slate-900' }, ['Admin — Contenu du portfolio']),
+      el('div', { class: 'text-sm text-slate-600 mt-1' }, [
+        'Tu édites le contenu puis tu exportes un nouveau ',
+        el('span', { class: 'mono bg-slate-100 px-1.5 py-0.5 rounded' }, ['data/content.json']),
+        ' à commit/push sur GitHub.'
+      ])
+    ]),
+    el('div', { class: 'flex gap-2 flex-wrap' }, [
+      smallBtn('Télécharger content.json (+ content.js)', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
+        downloadJson('content.json', state);
+        downloadContentJs('content.js', state);
+        setStatus('success', "Téléchargé : content.json + content.js. Remplace les 2 fichiers dans /data puis commit/push.");
+      }),
+      smallBtn('Copier JSON', 'bg-white text-slate-900 border-slate-200 hover:bg-slate-50', () => {
+        copyToClipboard(JSON.stringify(state, null, 2));
+      }),
+      smallBtn('Importer content.json', 'bg-white text-slate-900 border-slate-200 hover:bg-slate-50', () => {
+        $('#importFile').click();
+      }),
+      smallBtn('Ouvrir le site', 'bg-white text-slate-900 border-slate-200 hover:bg-slate-50', () => {
+        window.open('../index.html', '_blank');
+      })
+    ])
+  ]);
+}
+
+function renderImportHidden() {
+  const inp = el('input', {
+    id: 'importFile',
+    type: 'file',
+    accept: 'application/json',
+    class: 'hidden',
+    onchange: async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      try {
+        const txt = await file.text();
+        const parsed = JSON.parse(txt);
+        state = parsed;
+        setStatus('success', 'Import OK. N’oublie pas de télécharger puis commit/push.');
+        render();
+      } catch (err) {
+        setStatus('error', 'JSON invalide: ' + err.message);
+      } finally {
+        e.target.value = '';
+      }
+    }
+  });
+  return inp;
+}
+
+function renderGlobal() {
+  const s = state.personalInfo || (state.personalInfo = {});
+  const cc = state.coreCompetencies || (state.coreCompetencies = []);
+  const ui = state.uiText || (state.uiText = {});
+
+  const children = [
+    el('div', { class: 'grid lg:grid-cols-2 gap-6' }, [
+      card('Infos personnelles', [
+        inputRow('Nom', s.name, { oninput: (v) => { s.name = v; } }),
+        inputRow('Âge', s.age, { oninput: (v) => { s.age = v; } }),
+        inputRow('Adresse', s.address, { oninput: (v) => { s.address = v; } }),
+        inputRow('Téléphone', s.phone, { oninput: (v) => { s.phone = v; } }),
+        inputRow('Email', s.email, { oninput: (v) => { s.email = v; } }),
+        inputRow('Permis', s.permis, { oninput: (v) => { s.permis = v; } }),
+        inputRow('Objectif', s.objective, { oninput: (v) => { s.objective = v; } }),
+        inputRow('Formation actuelle', s.formation_actuelle, { oninput: (v) => { s.formation_actuelle = v; } }),
+        inputRow('École actuelle', s.ecole_actuelle, { oninput: (v) => { s.ecole_actuelle = v; } })
+      ]),
+
+      card('Compétences GEII (pourcentages + descriptions)', [
+        el('div', { class: 'text-sm text-slate-600 mb-3' }, [
+          'Ces 4 blocs ouvrent ensuite la page par niveaux (N1/N2/N3).'
+        ]),
+        ...cc.map((c, idx) => card(`${c.title}`, [
+          numberRow('Pourcentage', c.percentage, { oninput: (v) => { c.percentage = Math.max(0, Math.min(100, v||0)); } }),
+          inputRow('circleColor (classe Tailwind)', c.circleColor, { oninput: (v) => { c.circleColor = v; } }),
+          textareaRow('Description', c.desc, { oninput: (v) => { c.desc = v; } }),
+          textareaRow('Justification autoévaluation (optionnel)', c.justification || '', { oninput: (v) => { c.justification = v; } })
+        ], [
+          smallBtn('↑', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx>0){ cc.splice(idx-1,0,cc.splice(idx,1)[0]); render(); } }),
+          smallBtn('↓', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx<cc.length-1){ cc.splice(idx+1,0,cc.splice(idx,1)[0]); render(); } }),
+          smallBtn('Supprimer', 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100', () => { cc.splice(idx,1); render(); })
+        ])),
+        el('div', { class: 'mt-3' }, [
+          smallBtn('+ Ajouter une compétence coeur', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
+            cc.push({ title: 'Nouvelle', percentage: 50, circleColor: 'text-slate-900', style: '', tagStyle: '', desc: '', justification: '' });
+            render();
+          })
+        ])
+      ]),
+
+      card('Textes UI (titres / sous-titres)', [
+        el('div', { class: 'text-sm text-slate-600 mb-3' }, [
+          "Personnalise les textes affichés sur le site."
+        ]),
+
+        // --- Badge "En recherche de stage" ---
+        el('div', { class: 'pt-2 pb-1 text-xs font-bold uppercase tracking-widest text-slate-400' }, ['Badge Accueil (pop-up recherche)']),
+        (() => {
+          const id = 'cb_heroBadgeVisible';
+          const chk = el('input', { id, type: 'checkbox', class: 'h-5 w-5 rounded border-slate-300 text-slate-900 focus:ring-slate-900' });
+          chk.checked = (ui.heroBadgeVisible !== false);
+          chk.addEventListener('change', (e) => { ui.heroBadgeVisible = !!e.target.checked; });
+          return el('div', { class: 'grid md:grid-cols-3 gap-3 items-center' }, [
+            el('label', { for: id, class: 'text-sm font-semibold text-slate-700' }, ['Afficher le badge']),
+            el('div', { class: 'md:col-span-2 flex items-center gap-3' }, [
+              chk,
+              el('span', { class: 'text-xs text-slate-500' }, ['Visible sur la page d\'accueil'])
+            ])
+          ]);
+        })(),
+        inputRow('Texte du badge', ui.heroBadgeText || '🚀 En recherche de stage (Mars 2026)', {
+          oninput: (v) => { ui.heroBadgeText = v; }
+        }),
+
+        // --- Section Contact ---
+        el('div', { class: 'pt-4 pb-1 text-xs font-bold uppercase tracking-widest text-slate-400' }, ['Section "Prêt à collaborer ?" (bas de page)']),
+        inputRow('Titre', ui.contactTitle || 'Prêt à collaborer ?', {
+          oninput: (v) => { ui.contactTitle = v; }
+        }),
+        textareaRow('Sous-titre / description', ui.contactSubtitle || "Je suis actuellement à la recherche d'opportunités de stage pour 2026. Discutons de la manière dont je peux apporter de la valeur à votre équipe.", {
+          oninput: (v) => { ui.contactSubtitle = v; }
+        }),
+
+        // --- Sous-titres de sections ---
+        el('div', { class: 'pt-4 pb-1 text-xs font-bold uppercase tracking-widest text-slate-400' }, ['Sous-titres de sections']),
+        inputRow('Sous-titre Compétences', ui.competencesSubtitle || '', { oninput: (v) => { ui.competencesSubtitle = v; } }),
+        inputRow('Sous-titre Projets', ui.projetsSubtitle || '', { oninput: (v) => { ui.projetsSubtitle = v; } })
+      ])
+    ])
+  ];
+
+  return el('div', { class: 'space-y-6' }, children);
+}
+
+function renderSkills() {
+  const skills = state.skills || (state.skills = []);
+  return el('div', { class: 'space-y-4' }, [
+    el('div', { class: 'text-sm text-slate-600' }, ['Compétences techniques (barres + %).']),
+    ...skills.map((sk, idx) => card(sk.name || `Compétence ${idx+1}`, [
+      inputRow('Nom', sk.name, { oninput: (v) => { sk.name = v; } }),
+      inputRow('Niveau (texte)', sk.level, { oninput: (v) => { sk.level = v; } }),
+      numberRow('Valeur (%)', sk.val, { oninput: (v) => { sk.val = Math.max(0, Math.min(100, v||0)); } }),
+      textareaRow('Description', sk.desc, { oninput: (v) => { sk.desc = v; } })
+    ], [
+      smallBtn('↑', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx>0){ skills.splice(idx-1,0,skills.splice(idx,1)[0]); render(); } }),
+      smallBtn('↓', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx<skills.length-1){ skills.splice(idx+1,0,skills.splice(idx,1)[0]); render(); } }),
+      smallBtn('Supprimer', 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100', () => { skills.splice(idx,1); render(); })
+    ])),
+    smallBtn('+ Ajouter', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
+      skills.push({ name: 'Nouvelle compétence', level: 'Notions', val: 50, desc: '' });
+      render();
+    })
+  ]);
+}
+
+function renderFormations() {
+  const formations = state.formations || (state.formations = []);
+  return el('div', { class: 'space-y-4' }, [
+    el('div', { class: 'text-sm text-slate-600' }, ['Formation / diplômes. Pour la carte cliquable, mets isClickable=true et une image (dans /images).']),
+    ...formations.map((f, idx) => card(f.title || `Formation ${idx+1}`, [
+      inputRow('id (unique, sans espaces)', f.id, { oninput: (v) => { f.id = v; } }),
+      inputRow('Date', f.date, { oninput: (v) => { f.date = v; } }),
+      inputRow('Titre', f.title, { oninput: (v) => { f.title = v; } }),
+      inputRow('École', f.school, { oninput: (v) => { f.school = v; } }),
+      textareaRow('Description', f.desc, { oninput: (v) => { f.desc = v; } }),
+      selectRow('isClickable', String(!!f.isClickable), ['true','false'], { onchange: (v) => { f.isClickable = (v === 'true'); } }),
+      inputRow('Image (ex: geii.jpg)', f.image || '', { oninput: (v) => { f.image = v || undefined; } }),
+      f.image ? el('div', { class: 'mt-2 text-xs text-slate-600' }, [
+        'Preview: ', el('img', { src: `../images/${f.image}`, class: 'mt-2 w-full max-w-sm rounded-xl border border-slate-200', onerror: "this.style.display='none'" })
+      ]) : el('div')
+    ], [
+      smallBtn('↑', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx>0){ formations.splice(idx-1,0,formations.splice(idx,1)[0]); render(); } }),
+      smallBtn('↓', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx<formations.length-1){ formations.splice(idx+1,0,formations.splice(idx,1)[0]); render(); } }),
+      smallBtn('Supprimer', 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100', () => { formations.splice(idx,1); render(); })
+    ])),
+    smallBtn('+ Ajouter', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
+      formations.push({ id: 'nouvelle-formation', date: '2026', title: 'Nouvelle formation', school: '', desc: '', isClickable: false });
+      render();
+    })
+  ]);
+}
+
+function renderProjects() {
+  const projects = state.projects || (state.projects = []);
+  const coreTitles = (state.coreCompetencies || []).map(c => c.title);
+  const levelsByComp = state.competencyLevels || (state.competencyLevels = {});
+  const projectLevelMap = state.projectLevelMap || (state.projectLevelMap = {});
+
+  return el('div', { class: 'space-y-4' }, [
+    el('div', { class: 'text-sm text-slate-600' }, [
+      'Projets. Images attendues: ',
+      el('span', { class: 'mono bg-slate-100 px-1.5 py-0.5 rounded' }, ['images/<id>-1.jpg']),
+      ' et PDF: ',
+      el('span', { class: 'mono bg-slate-100 px-1.5 py-0.5 rounded' }, ['projects/<id>.pdf']),
+      '.'
+    ]),
+
+    ...projects.map((p, idx) => {
+      const tagsText = (p.tags || []).join(', ');
+      const compsText = (p.competencies || []).join(', ');
+
+      // 1) Texte détaillé du projet (sections modifiables)
+      const c = p.content || (p.content = {});
+      // Compat: anciens champs block1/block2/block3
+      if (!c.contexteText && c.block1Text) c.contexteText = c.block1Text;
+      if (!c.realisationText && c.block2Text) c.realisationText = c.block2Text;
+      if (!c.resultatsText && c.block3Text) c.resultatsText = c.block3Text;
+
+      // 2) Mapping projet -> niveaux GEII (pour afficher dans pages niveaux)
+      if (!projectLevelMap[p.id]) projectLevelMap[p.id] = {};
+      const levelRowEls = (p.competencies || []).map((compTitle) => {
+        const allowed = (levelsByComp[compTitle] || []).map(l => l.id);
+        const opts = ['(aucun)', ...allowed];
+        const cur = projectLevelMap[p.id][compTitle] || '(aucun)';
+        return selectRow(`${compTitle} — niveau`, cur, opts, {
+          onchange: (v) => {
+            projectLevelMap[p.id][compTitle] = (v === '(aucun)') ? undefined : v;
+          }
+        });
+      });
+
+      return card(p.title || `Projet ${idx+1}`, [
+        inputRow('id (unique)', p.id, { oninput: (v) => {
+          const oldId = p.id;
+          p.id = v;
+          // Si tu renomme l'id, on tente de conserver le mapping niveaux
+          if (oldId && oldId !== v && projectLevelMap[oldId] && !projectLevelMap[v]) {
+            projectLevelMap[v] = projectLevelMap[oldId];
+            delete projectLevelMap[oldId];
+          }
+        } }),
+        inputRow('Année / durée', p.year, { oninput: (v) => { p.year = v; } }),
+        inputRow('Titre', p.title, { oninput: (v) => { p.title = v; } }),
+        textareaRow('Description', p.desc, { oninput: (v) => { p.desc = v; } }),
+        checkboxRow('Projet à la une (Accueil)', !!p.featured, { onchange: (v) => { p.featured = v; } }),
+        card('Légendes des médias (optionnel)', [
+          el('div', { class: 'text-xs text-slate-600 mb-2' }, [
+            "Si tu laisses vide, rien ne s'affiche sur le site."
+          ]),
+          inputRow('Légende média 1 (images/<id>-1)', (p.mediaCaptions && p.mediaCaptions['1']) || '', { placeholder: 'Ex: Vue d\'ensemble / Schéma global…', oninput: (v) => {
+            const t = (v || '').trim();
+            if (!p.mediaCaptions) p.mediaCaptions = {};
+            if (!t) { delete p.mediaCaptions['1']; } else { p.mediaCaptions['1'] = v; }
+            if (p.mediaCaptions && Object.keys(p.mediaCaptions).length === 0) delete p.mediaCaptions;
+          }}),
+          inputRow('Légende média 2 (images/<id>-2)', (p.mediaCaptions && p.mediaCaptions['2']) || '', { placeholder: 'Ex: Câblage / Interface / Étape 1…', oninput: (v) => {
+            const t = (v || '').trim();
+            if (!p.mediaCaptions) p.mediaCaptions = {};
+            if (!t) { delete p.mediaCaptions['2']; } else { p.mediaCaptions['2'] = v; }
+            if (p.mediaCaptions && Object.keys(p.mediaCaptions).length === 0) delete p.mediaCaptions;
+          }}),
+          inputRow('Légende média 3 (images/<id>-3)', (p.mediaCaptions && p.mediaCaptions['3']) || '', { placeholder: 'Ex: Résultat / Prototype / Étape 2…', oninput: (v) => {
+            const t = (v || '').trim();
+            if (!p.mediaCaptions) p.mediaCaptions = {};
+            if (!t) { delete p.mediaCaptions['3']; } else { p.mediaCaptions['3'] = v; }
+            if (p.mediaCaptions && Object.keys(p.mediaCaptions).length === 0) delete p.mediaCaptions;
+          }}),
+        ]),
+        textareaRow('Compétences GEII (séparées par virgule)', compsText, { oninput: (v) => {
+          p.competencies = v.split(',').map(x => x.trim()).filter(Boolean);
+          render();
+        }}),
+        textareaRow('Tags (séparés par virgule)', tagsText, { oninput: (v) => {
+          p.tags = v.split(',').map(x => x.trim()).filter(Boolean);
+        }}),
+
+        card('Détail du projet (page projet)', [
+          inputRow('Titre section Contexte', c.contexteTitle || 'Contexte', { oninput: (v) => { c.contexteTitle = v; } }),
+          textareaRow('Texte Contexte', c.contexteText || '', { oninput: (v) => { c.contexteText = v; } }),
+          inputRow('Titre section Objectif', c.objectifTitle || 'Objectif', { oninput: (v) => { c.objectifTitle = v; } }),
+          textareaRow('Texte Objectif', c.objectifText || '', { oninput: (v) => { c.objectifText = v; } }),
+          inputRow('Titre section Réalisation', c.realisationTitle || 'Réalisation', { oninput: (v) => { c.realisationTitle = v; } }),
+          textareaRow('Texte Réalisation', c.realisationText || '', { oninput: (v) => { c.realisationText = v; } }),
+          inputRow('Titre section Résultats', c.resultatsTitle || 'Résultats', { oninput: (v) => { c.resultatsTitle = v; } }),
+          textareaRow('Texte Résultats', c.resultatsText || '', { oninput: (v) => { c.resultatsText = v; } }),
+          inputRow('Titre section Bilan', c.bilanTitle || 'Bilan', { oninput: (v) => { c.bilanTitle = v; } }),
+          textareaRow('Texte Bilan', c.bilanText || '', { oninput: (v) => { c.bilanText = v; } }),
+        ]),
+
+        card('Relier à un niveau GEII (affiché dans les pages niveaux)', [
+          el('div', { class: 'text-xs text-slate-600 mb-2' }, [
+            "Tu choisis le niveau pour chaque compétence (Concevoir/Vérifier/etc). Sur la page projet, on affiche seulement la compétence (pas le niveau)."
+          ]),
+          ...(levelRowEls.length ? levelRowEls : [el('div', { class: 'text-xs text-slate-500' }, ["Ajoute d’abord des compétences GEII ci-dessus."])])
+        ]),
+
+        el('div', { class: 'grid md:grid-cols-3 gap-3 items-center' }, [
+          el('div', { class: 'text-sm font-semibold text-slate-700' }, ['Preview image 1']),
+          el('div', { class: 'md:col-span-2' }, [
+            el('img', { src: `../images/${p.id}-1.jpg`, class: 'w-full max-w-sm rounded-xl border border-slate-200', onerror: "this.style.display='none'" }),
+            el('div', { class: 'text-xs text-slate-500 mt-2' }, [`../images/${p.id}-1.jpg`])
+          ])
+        ])
+      ], [
+        smallBtn('↑', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx>0){ projects.splice(idx-1,0,projects.splice(idx,1)[0]); render(); } }),
+        smallBtn('↓', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx<projects.length-1){ projects.splice(idx+1,0,projects.splice(idx,1)[0]); render(); } }),
+        smallBtn('Supprimer', 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100', () => { projects.splice(idx,1); render(); })
+      ]);
+    }),
+
+    el('div', { class: 'flex gap-2 flex-wrap' }, [
+      smallBtn('+ Ajouter', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
+        projects.push({
+          id: 'nouveau-projet',
+          featured: false,
+          year: '2026',
+          title: 'Nouveau projet',
+          desc: '',
+          competencies: [],
+          tags: [],
+          content: {
+            contexteTitle: 'Contexte',
+            contexteText: '',
+            objectifTitle: 'Objectif',
+            objectifText: '',
+            realisationTitle: 'Réalisation',
+            realisationText: '',
+            resultatsTitle: 'Résultats',
+            resultatsText: '',
+            bilanTitle: 'Bilan',
+            bilanText: ''
+          }
+        });
+        render();
+      }),
+      smallBtn('Outil: renommer image/pdf', 'bg-white text-slate-900 border-slate-200 hover:bg-slate-50', () => {
+        activeSection = 'assets';
+        render();
+      })
+    ])
+  ]);
+}
+
+function renderExperiences() {
+  const exps = state.experiences || (state.experiences = []);
+  const projectOptions = [
+    { value: '', label: '(Aucun projet lié)' },
+    ...((state.projects || []).map(p => ({ value: p.id, label: `${p.id} — ${p.title || ''}`.trim() })))
+  ];
+  return el('div', { class: 'space-y-4' }, [
+    el('div', { class: 'text-sm text-slate-600' }, ['Expériences. Le champ tasks est une liste (une ligne = une tâche).']),
+    ...exps.map((x, idx) => card(x.company || `Expérience ${idx+1}`, [
+      inputRow('id', x.id, { oninput: (v) => { x.id = v; } }),
+      inputRow('Date', x.date, { oninput: (v) => { x.date = v; } }),
+      inputRow('Entreprise', x.company, { oninput: (v) => { x.company = v; } }),
+      inputRow('Titre', x.title, { oninput: (v) => { x.title = v; } }),
+      textareaRow('Description courte', x.desc, { oninput: (v) => { x.desc = v; } }),
+      textareaRow('Détails (long)', x.details || '', { oninput: (v) => { x.details = v; } }),
+      textareaRow('Tâches (1 par ligne)', (x.tasks || []).join('\n'), { oninput: (v) => { x.tasks = v.split('\n').map(t=>t.trim()).filter(Boolean); } }),
+      selectRow('isClickable', String(!!x.isClickable), ['true','false'], { onchange: (v) => { x.isClickable = (v === 'true'); } }),
+      selectRowKV('Page projet liée (optionnel)', x.linkedProjectId || '', projectOptions, { onchange: (v) => { x.linkedProjectId = v || undefined; } }),
+      inputRow('Logo (ex: enedis.jpg)', x.logo || '', { oninput: (v) => { x.logo = v || undefined; } }),
+      x.logo ? el('img', { src: `../images/${x.logo}`, class: 'mt-2 w-full max-w-sm rounded-xl border border-slate-200', onerror: "this.style.display='none'" }) : el('div')
+    ], [
+      smallBtn('↑', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx>0){ exps.splice(idx-1,0,exps.splice(idx,1)[0]); render(); } }),
+      smallBtn('↓', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx<exps.length-1){ exps.splice(idx+1,0,exps.splice(idx,1)[0]); render(); } }),
+      smallBtn('Supprimer', 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100', () => { exps.splice(idx,1); render(); })
+    ])),
+    smallBtn('+ Ajouter', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
+      exps.push({ id: 'nouvelle-exp', date: '2026', company: 'Entreprise', title: 'Poste', desc: '', isClickable: false, logo: '' });
+      render();
+    })
+  ]);
+}
+
+function renderInterests() {
+  const ints = state.interests || (state.interests = []);
+  return el('div', { class: 'space-y-4' }, [
+    el('div', { class: 'text-sm text-slate-600' }, [
+      'Centres d’intérêt. Image attendue: ',
+      el('span', { class: 'mono bg-slate-100 px-1.5 py-0.5 rounded' }, ['images/<id>.jpg']),
+      '.'
+    ]),
+    ...ints.map((it, idx) => card(it.title || `Intérêt ${idx+1}`, [
+      inputRow('id', it.id, { oninput: (v) => { it.id = v; } }),
+      inputRow('Titre', it.title, { oninput: (v) => { it.title = v; } }),
+      textareaRow('Texte court', it.text || '', { oninput: (v) => { it.text = v; } }),
+      textareaRow('Détails', it.details || '', { oninput: (v) => { it.details = v; } }),
+      selectRow('iconName', it.iconName || 'Star', ICON_NAMES, { onchange: (v) => { it.iconName = v; } }),
+      inputRow('Couleur (classes Tailwind)', it.color || '', { oninput: (v) => { it.color = v; } }),
+      el('img', { src: `../images/${it.id}.jpg`, class: 'mt-2 w-full max-w-sm rounded-xl border border-slate-200', onerror: "this.style.display='none'" })
+    ], [
+      smallBtn('↑', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx>0){ ints.splice(idx-1,0,ints.splice(idx,1)[0]); render(); } }),
+      smallBtn('↓', 'bg-white border-slate-200 hover:bg-slate-50', () => { if (idx<ints.length-1){ ints.splice(idx+1,0,ints.splice(idx,1)[0]); render(); } }),
+      smallBtn('Supprimer', 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100', () => { ints.splice(idx,1); render(); })
+    ])),
+    smallBtn('+ Ajouter', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
+      ints.push({ id: 'nouvel-interet', title: 'Nouvel intérêt', text: '', details: '', iconName: 'Star', color: 'bg-slate-100 text-slate-700' });
+      render();
+    })
+  ]);
+}
+
+function renderCompetencyLevels() {
+  const levels = state.competencyLevels || (state.competencyLevels = {});
+  const coreTitles = (state.coreCompetencies || []).map(c => c.title);
+
+  // ensure keys exist
+  coreTitles.forEach(t => { if (!levels[t]) levels[t] = []; });
+
+  const wrap = el('div', { class: 'space-y-6' });
+  wrap.appendChild(el('div', { class: 'text-sm text-slate-600' }, [
+    'Niveaux par compétence GEII (N1/N2/N3). Maintenir et Intégrer n’ont pas de niveau 3 dans ton cas (tu peux gérer ici).'
+  ]));
+
+  coreTitles.forEach(title => {
+    const arr = levels[title];
+    const section = card(title, [
+      ...arr.map((lvl, idx) => card(`${lvl.label || lvl.id}`, [
+        inputRow('id (n1/n2/n3)', lvl.id, { oninput: (v) => { lvl.id = v; } }),
+        inputRow('Label', lvl.label, { oninput: (v) => { lvl.label = v; } }),
+        numberRow('Mastery (%)', lvl.mastery, { oninput: (v) => { lvl.mastery = Math.max(0, Math.min(100, v||0)); } }),
+        textareaRow('Description', lvl.desc, { oninput: (v) => { lvl.desc = v; } }),
+        textareaRow('Justification autoévaluation (optionnel)', lvl.justification || '', { oninput: (v) => { lvl.justification = v; } })
+      ], [
+        smallBtn('↑', 'bg-white border-slate-200 hover:bg-slate-50', () => { if(idx>0){ arr.splice(idx-1,0,arr.splice(idx,1)[0]); render(); } }),
+        smallBtn('↓', 'bg-white border-slate-200 hover:bg-slate-50', () => { if(idx<arr.length-1){ arr.splice(idx+1,0,arr.splice(idx,1)[0]); render(); } }),
+        smallBtn('Supprimer', 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100', () => { arr.splice(idx,1); render(); })
+      ])),
+
+      smallBtn('+ Ajouter un niveau', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
+        arr.push({ id: 'nX', label: 'Nouveau niveau', mastery: 50, desc: '', justification: '' });
+        render();
+      })
+    ]);
+    wrap.appendChild(section);
+  });
+
+  return wrap;
+}
+
+function renderProjectLevelMap() {
+  const map = state.projectLevelMap || (state.projectLevelMap = {});
+  const projects = state.projects || [];
+  const coreTitles = (state.coreCompetencies || []).map(c => c.title);
+  const levels = state.competencyLevels || {};
+
+  const wrap = el('div', { class: 'space-y-6' });
+  wrap.appendChild(el('div', { class: 'text-sm text-slate-600' }, [
+    "Associe chaque projet à un niveau par compétence (pour que la page 'Niveau' affiche les bons projets)."
+  ]));
+
+  projects.forEach(p => {
+    if (!map[p.id]) map[p.id] = {};
+    const row = map[p.id];
+
+    const children = [];
+    coreTitles.forEach(ct => {
+      const allowed = (levels[ct] || []).map(l => l.id);
+      const opts = ['(aucun)', ...allowed];
+      children.push(selectRow(`${ct}`, row[ct] || '(aucun)', opts, { onchange: (v) => { row[ct] = v === '(aucun)' ? undefined : v; } }));
+    });
+
+    wrap.appendChild(card(`${p.title} — ${p.id}`, [
+      el('div', { class: 'text-xs text-slate-500 mb-2' }, ['Tip: si tu changes un id de projet, pense à l’aligner ici.']),
+      ...children
+    ]));
+  });
+
+  wrap.appendChild(card('JSON brut (advanced)', [
+    textareaRow('projectLevelMap (JSON)', JSON.stringify(map, null, 2), {
+      oninput: (v) => {
+        try {
+          state.projectLevelMap = JSON.parse(v);
+          setStatus('success', 'projectLevelMap: JSON OK');
+        } catch {
+          setStatus('error', 'projectLevelMap: JSON invalide');
+        }
+      }
+    })
+  ]));
+
+  return wrap;
+}
+
+function renderAssetsTool() {
+  const projects = state.projects || [];
+  const wrap = el('div', { class: 'space-y-6' });
+
+  wrap.appendChild(el('div', { class: 'bg-white border border-slate-200 rounded-2xl p-5' }, [
+    el('div', { class: 'font-extrabold text-slate-900 text-lg' }, ['Outil — Renommer images et PDF']),
+    el('div', { class: 'text-sm text-slate-600 mt-1' }, [
+      'GitHub Pages ne permet pas l’upload serveur. Ici tu choisis un fichier et le navigateur télécharge une copie renommée au bon format. ',
+      'Ensuite tu la mets dans ',
+      el('span', { class: 'mono bg-slate-100 px-1.5 py-0.5 rounded' }, ['images/']),
+      ' ou ',
+      el('span', { class: 'mono bg-slate-100 px-1.5 py-0.5 rounded' }, ['projects/']),
+      ' et tu push.'
+    ])
+  ]));
+
+  const pick = el('select', { class: 'w-full rounded-xl border border-slate-200 px-3 py-2 text-sm' });
+  projects.forEach(p => pick.appendChild(el('option', { value: p.id }, [`${p.title} (${p.id})`])));
+
+  let selectedId = projects[0]?.id || '';
+  pick.value = selectedId;
+  pick.addEventListener('change', (e) => { selectedId = e.target.value; });
+
+  const imgIndex = el('select', { class: 'rounded-xl border border-slate-200 px-3 py-2 text-sm' }, [
+    el('option', { value: '1' }, ['1 (principale)']),
+    el('option', { value: '2' }, ['2']),
+    el('option', { value: '3' }, ['3'])
+  ]);
+
+  let imageFile = null;
+  let pdfFile = null;
+
+  const imgInput = el('input', { type: 'file', accept: 'image/*', class: 'w-full text-sm', onchange: (e) => { imageFile = e.target.files?.[0] || null; } });
+  const pdfInput = el('input', { type: 'file', accept: 'application/pdf', class: 'w-full text-sm', onchange: (e) => { pdfFile = e.target.files?.[0] || null; } });
+
+  const dlRenamed = (file, newName) => {
+    const url = URL.createObjectURL(file);
+    const a = el('a', { href: url, download: newName });
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  wrap.appendChild(card('1) Choisir le projet', [
+    el('div', { class: 'grid md:grid-cols-3 gap-3 items-center' }, [
+      el('div', { class: 'text-sm font-semibold text-slate-700' }, ['Projet']),
+      el('div', { class: 'md:col-span-2' }, [pick])
+    ]),
+    el('div', { class: 'bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-slate-700 mt-3 mono' }, [
+      'images/<id>-1.jpg, images/<id>-2.jpg, images/<id>-3.jpg\nprojects/<id>.pdf'
+    ])
+  ]));
+
+  wrap.appendChild(card('2) Renommer une image', [
+    el('div', { class: 'grid md:grid-cols-3 gap-3 items-center' }, [
+      el('div', { class: 'text-sm font-semibold text-slate-700' }, ['Fichier image']),
+      el('div', { class: 'md:col-span-2' }, [imgInput])
+    ]),
+    el('div', { class: 'grid md:grid-cols-3 gap-3 items-center' }, [
+      el('div', { class: 'text-sm font-semibold text-slate-700' }, ['Numéro']),
+      el('div', { class: 'md:col-span-2' }, [imgIndex])
+    ]),
+    smallBtn('Générer (download)', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
+      if (!imageFile || !selectedId) return setStatus('error', 'Choisis un fichier image + un projet.');
+      const newName = `${selectedId}-${imgIndex.value}.jpg`;
+      dlRenamed(imageFile, newName);
+      setStatus('success', `Image prête: ${newName} (à mettre dans images/)`);
+    })
+  ]));
+
+  wrap.appendChild(card('3) Renommer un PDF', [
+    el('div', { class: 'grid md:grid-cols-3 gap-3 items-center' }, [
+      el('div', { class: 'text-sm font-semibold text-slate-700' }, ['Fichier PDF']),
+      el('div', { class: 'md:col-span-2' }, [pdfInput])
+    ]),
+    smallBtn('Générer (download)', 'bg-slate-900 text-white border-slate-900 hover:bg-slate-800', () => {
+      if (!pdfFile || !selectedId) return setStatus('error', 'Choisis un fichier PDF + un projet.');
+      const newName = `${selectedId}.pdf`;
+      dlRenamed(pdfFile, newName);
+      setStatus('success', `PDF prêt: ${newName} (à mettre dans projects/)`);
+    })
+  ]));
+
+  return wrap;
+}
+
+function renderRawJson() {
+  return card('JSON complet', [
+    textareaRow('content.json', JSON.stringify(state, null, 2), {
+      oninput: (v) => {
+        try {
+          const parsed = JSON.parse(v);
+          state = parsed;
+          setStatus('success', 'JSON OK (chargé en mémoire).');
+        } catch (err) {
+          setStatus('error', 'JSON invalide: ' + err.message);
+        }
+      }
+    }),
+    el('div', { class: 'text-xs text-slate-600 mt-3' }, [
+      "Tip: si tu casses le JSON ici, utilise Importer pour récupérer une version valide."
+    ])
+  ]);
+}
+
+function renderSection() {
+  switch (activeSection) {
+    case 'global': return renderGlobal();
+    case 'skills': return renderSkills();
+    case 'formations': return renderFormations();
+    case 'projects': return renderProjects();
+    case 'experiences': return renderExperiences();
+    case 'interests': return renderInterests();
+    case 'levels': return renderCompetencyLevels();
+    case 'map': return renderProjectLevelMap();
+    case 'assets': return renderAssetsTool();
+    case 'json': return renderRawJson();
+    default: return renderGlobal();
+  }
+}
+
+function render() {
+  const nav = $('#nav');
+  nav.innerHTML = '';
+  nav.appendChild(navButton('global', 'Global', 'Infos + GEII (4 compétences)'));
+  nav.appendChild(navButton('skills', 'Skills', 'Compétences techniques'));
+  nav.appendChild(navButton('formations', 'Formation', 'Parcours / diplômes'));
+  nav.appendChild(navButton('projects', 'Projets', 'Ajouter / éditer projets'));
+  nav.appendChild(navButton('levels', 'Niveaux GEII', 'N1/N2/N3 + %'));
+  nav.appendChild(navButton('map', 'Mapping projets↔niveaux', 'Projets par niveau'));
+  nav.appendChild(navButton('experiences', 'Expérience', 'Stages / jobs'));
+  nav.appendChild(navButton('interests', 'Centres d\'intérêt', 'Cartes + icônes'));
+  nav.appendChild(navButton('assets', 'Outil fichiers', 'Renommer image/pdf'));
+  nav.appendChild(navButton('json', 'JSON brut', 'Édition avancée'));
+
+  const content = $('#content');
+  content.innerHTML = '';
+  content.appendChild(renderImportHidden());
+  content.appendChild(renderTopBar());
+  content.appendChild(renderSection());
+}
+
+(async function init() {
+  // On rend toujours l'UI disponible, même si le fetch est bloqué (cas file://)
+  state = window.__PORTFOLIO_CONTENT__ || {};
+  render();
+
+  // Branche 1: si content.js a déjà fourni le contenu, on est bon.
+  if (window.__PORTFOLIO_CONTENT__) {
+    setStatus('success', "Content chargé (via content.js). Modifie, puis clique 'Télécharger content.json (+ content.js)'.");
+  } else {
+    setStatus('info', "Chargement de data/content.json…");
+    try {
+      state = await loadRemoteContent();
+      setStatus('success', "Content chargé. Modifie, puis clique 'Télécharger content.json (+ content.js)'.");
+      render();
+    } catch (err) {
+      setStatus('error', "Failed to fetch. Astuce: clique 'Importer JSON' pour charger /data/content.json, puis télécharge et remplace /data/content.json ET /data/content.js.");
+    }
+  }
+
+  // Wire les boutons de la sidebar (ils restent visibles même si le fetch échoue)
+  const btnDownload = document.getElementById('btnDownload');
+  if (btnDownload) btnDownload.onclick = () => {
+    downloadJson('content.json', state);
+    downloadContentJs('content.js', state);
+    setStatus('success', "Téléchargé : content.json + content.js. Remplace les 2 fichiers dans /data puis commit/push.");
+  };
+  const btnCopy = document.getElementById('btnCopy');
+  if (btnCopy) btnCopy.onclick = () => copyToClipboard(JSON.stringify(state, null, 2));
+
+  const fileImport = document.getElementById('fileImport');
+  if (fileImport) fileImport.onchange = async (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    try {
+      const txt = await file.text();
+      const parsed = JSON.parse(txt);
+      state = parsed;
+      setStatus('success', 'Import OK. N’oublie pas de télécharger puis commit/push.');
+      render();
+    } catch (err) {
+      setStatus('error', 'JSON invalide: ' + err.message);
+    } finally {
+      e.target.value = '';
+    }
+  };
+})();
