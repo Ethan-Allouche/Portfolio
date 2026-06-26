@@ -168,7 +168,7 @@ window.__PORTFOLIO_CONTENT__ = {
   "projects": [
     {
       "id": "stage-veolia",
-      "featured": true,
+      "featured": false,
       "year": "2026 (14 sem.)",
       "title": "Stage Veolia — Architecture embarquée et cartographie",
       "desc": "Conception et intégration d'une architecture multi-capteurs sur un drone flottant autonome pour la cartographie bathymétrique de l'émissaire du Cap Sicié.",
@@ -588,6 +588,10 @@ window.__PORTFOLIO_CONTENT__ = {
   ],
   "uiText": {
     "competencesSubtitle": "Savoir-faire technique & Logiciels. Cliquez pour voir les projets associés.",
-    "projetsSubtitle": "Projets techniques réalisés en groupe et en autonomie"
+    "projetsSubtitle": "Projets techniques réalisés en groupe et en autonomie",
+    "heroBadgeVisible": true,
+    "heroBadgeText": "🚀 En recherche de stage (Mars 2026)",
+    "contactTitle": "Prêt à collaborer ?",
+    "contactSubtitle": "Je suis actuellement à la recherche d'opportunités de stage pour 2026. Discutons de la manière dont je peux apporter de la valeur à votre équipe."
   }
 };
