@@ -398,7 +398,17 @@ window.__PORTFOLIO_CONTENT__ = {
         "Électronique",
         "Unilogic"
       ],
-      "content": {}
+      "content": {
+        "contexteText": "Ce projet s'inscrit dans le cadre de mon premier semestre au sein du département Génie Électrique et Informatique Industrielle (GEII) à l'Université de Toulon. Pour cette étude, je me suis placé dans les conditions réelles d'un technicien travaillant pour une société spécialisée dans la réalisation d'armoires électriques pour l'industrie et le bâtiment.",
+        "objectifText": "L'objectif principal de cette intervention était de réaliser un dossier de mise en service rigoureux afin de vérifier la parfaite conformité de l'armoire électrique avec son cahier des charges. Ce processus de validation était une étape indispensable pour pouvoir livrer la partie électrique de ce système domotique de manière sécurisée et fonctionnelle à notre entreprise partenaire, qui était quant à elle chargée de développer la partie automatisme.",
+        "realisationText": "Pour mener à bien cette vérification, l'analyse du système a été structurée en quatre grandes étapes de tests matériels, mobilisant des appareils de mesure tels que le multimètre et l'oscilloscope. Dans un premier temps, j'ai contrôlé la fiabilité de la sonde de température Pt100 en mesurant sa résistance en position ohmmètre pour la comparer avec précision aux valeurs théoriques fournies par le constructeur. Ensuite, je me suis assuré de la bonne réponse des actionneurs (lampes H1/H2/H3 et ventilateurs V0/V1) en mesurant leurs tensions de commande respectives, qui devaient varier de 0 à 24V, et en analysant les signaux PWM à l'oscilloscope. Enfin, une vérification approfondie des signaux TOR (Tout Ou Rien) a été menée en modifiant leurs états directement depuis le pupitre de commande, ce qui a permis de valider la bonne réception des informations par les entrées de l'automate industriel.",
+        "resultatsText": "Les différentes séries de mesures effectuées ont permis de valider une parfaite cohérence entre les valeurs électriques réelles observées sur la maquette et le fonctionnement théorique attendu par l'entreprise partenaire. L'isolation et l'analyse de la fréquence du signal du tachymètre ont notamment confirmé que le ventilateur tournait à la bonne vitesse de rotation (RPM). De plus, les tests sur les états discrets, comme l'enclenchement du disjoncteur ou le signal du compteur d'énergie, ont démontré que le système générait correctement les tensions maximales attendues sur les borniers de l'automate.",
+        "bilanText": "Cette mise en service s'est avérée être une expérience très formatrice pour appréhender les exigences du milieu industriel. Elle m'a permis de consolider mes compétences d'analyse sur un système complet et de maîtriser l'utilisation rigoureuse des différents appareils de mesure électriques. Surtout, ce projet a aiguisé ma capacité à interpréter des données techniques concrètes pour tirer des conclusions fiables sur la conformité et la sécurité d'une installation."
+      },
+      "mediaCaptions": {
+        "2": "Mesure de la tension sur les entrées TOR de l'API au multimètre.",
+        "3": "Analyse du rapport cyclique et de la fréquence du signal PWM (115,2 Hz) à l'oscilloscope."
+      }
     }
   ],
   "competencyLevels": {
