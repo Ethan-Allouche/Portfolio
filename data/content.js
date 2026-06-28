@@ -22,7 +22,7 @@ window.__PORTFOLIO_CONTENT__ = {
     },
     {
       "title": "Vérifier",
-      "percentage": 85,
+      "percentage": 88,
       "circleColor": "text-orange-500",
       "style": "bg-orange-100 border-orange-300 text-orange-900 hover:shadow-orange-500/30 hover:bg-orange-200",
       "tagStyle": "bg-orange-100 text-orange-800 border-orange-200",
@@ -31,7 +31,7 @@ window.__PORTFOLIO_CONTENT__ = {
     },
     {
       "title": "Maintenir",
-      "percentage": 80,
+      "percentage": 55,
       "circleColor": "text-amber-500",
       "style": "bg-amber-100 border-amber-300 text-amber-900 hover:shadow-amber-500/30 hover:bg-amber-200",
       "tagStyle": "bg-amber-100 text-amber-800 border-amber-200",
@@ -187,7 +187,8 @@ window.__PORTFOLIO_CONTENT__ = {
       "competencies": [
         "Concevoir",
         "Intégrer",
-        "Vérifier"
+        "Vérifier",
+        "Maintenir"
       ],
       "tags": [
         "Système Embarqué",
@@ -251,7 +252,6 @@ window.__PORTFOLIO_CONTENT__ = {
       "title": "Stage Enedis — Supervision Réseau",
       "desc": "Supervision du réseau électrique, gestion des accès, suivi des dépannages et validation des préparations de chantiers.",
       "competencies": [
-        "Maintenir",
         "Vérifier"
       ],
       "tags": [
@@ -310,10 +310,10 @@ window.__PORTFOLIO_CONTENT__ = {
       "id": "emetteur-recepteur-sonore",
       "year": "2024 (45h)",
       "title": "Système Émetteur/Récepteur Sonore",
-      "desc": "Maintenance et conception d'un émetteur sonore permettant l'allumage d'un robot.",
+      "desc": "Conception d'un émetteur sonore sélectif permettant l'allumage à distance d'un robot.",
       "competencies": [
         "Concevoir",
-        "Maintenir"
+        "Vérifier"
       ],
       "tags": [
         "Électronique",
@@ -339,7 +339,8 @@ window.__PORTFOLIO_CONTENT__ = {
       "desc": "Conception et Réalisation d'un robot roulant télécommandé sous Arduino.",
       "competencies": [
         "Concevoir",
-        "Intégrer"
+        "Intégrer",
+        "Vérifier"
       ],
       "tags": [
         "C/C++",
@@ -385,10 +386,9 @@ window.__PORTFOLIO_CONTENT__ = {
     {
       "id": "maintenance-unilogic",
       "year": "2023 (45h)",
-      "title": "Maintenance Automate UniLogic",
-      "desc": "Maintenance du système électrique d'un automate UniLogic sous UniStream.",
+      "title": "Mise en service Automate UniLogic",
+      "desc": "Vérification de conformité et mise en service du système électrique d'un automate UniLogic sous UniStream.",
       "competencies": [
-        "Maintenir",
         "Vérifier"
       ],
       "tags": [
@@ -418,21 +418,35 @@ window.__PORTFOLIO_CONTENT__ = {
         "label": "Niveau 1",
         "mastery": 90,
         "desc": "Mener une conception partielle intégrant une démarche projet.",
-        "justification": "J'ai été amené à intervenir directement sur des composants pour des opérations de maintien en condition opérationnelle, comme lors de la maintenance d'un émetteur sonore dédié à l'allumage d'un robot."
+        "justification": "Sur le système émetteur sonore, j'ai conçu seul la partie filtrage et amplification (calcul du filtre passe-bas du 2nd ordre, choix des composants) à partir d'un cahier des charges fonctionnel imposé, sans reprendre l'ensemble de la chaîne émission/réception.",
+        "apprentissagesCritiques": [
+          "AC11.01 | Produire une analyse fonctionnelle d'un système simple",
+          "AC11.02 | Réaliser un prototype pour des solutions techniques matériel et/ou logiciel",
+          "AC11.03 | Rédiger un dossier de fabrication à partir d'un dossier de conception"
+        ]
       },
       {
         "id": "n2",
         "label": "Niveau 2",
         "mastery": 90,
         "desc": "Concevoir un système en fiabilisant les solutions proposées.",
-        "justification": "J'ai conçu des systèmes fiables répondant à des cahiers des charges précis, notamment un système automatisé de gestion de fluides pour l'arrosage. J'ai aussi développé l'architecture matérielle et logicielle sous Arduino d'un robot mobile autonome détecteur d'obstacles."
+        "justification": "J'ai mené la conception complète de deux systèmes autonomes répondant à un cahier des charges précis : la carte SmartLight (étude photométrique, routage PCB sous KiCad, code multi-modes) et l'architecture matérielle/logicielle du robot détecteur d'obstacles, fiabilisée par la linéarisation des capteurs pour éviter les fausses détections.",
+        "apprentissagesCritiques": [
+          "AC21.01 | Proposer des solutions techniques liées à l'analyse fonctionnelle",
+          "AC21.02 | Dérisquer les solutions techniques retenues"
+        ]
       },
       {
         "id": "n3",
         "label": "Niveau 3",
         "mastery": 95,
         "desc": "Concevoir un système en adoptant une approche sélective dans ses choix technologiques.",
-        "justification": "J'ai fait preuve de sélectivité technologique sur des projets industriels complexes, comme le choix de capteurs Vega et d'enregistreurs Lascar pour l'architecture embarquée du drone Veolia. J'ai également conçu l'automatisation d'une station d'épuration en sélectionnant des technologies standardisées Schneider Electric."
+        "justification": "J'ai sélectionné et justifié des choix technologiques sur deux projets industriels : les capteurs Vega C22 et les dataloggers Lascar pour l'architecture embarquée du drone Veolia (contrainte d'autonomie et d'étanchéité), et les automatismes standardisés Schneider Electric pour la station d'épuration, en argumentant ces choix face à un cahier des charges contraint.",
+        "apprentissagesCritiques": [
+          "AC31.01 | Contribuer à la rédaction d'un cahier des charges",
+          "AC31.02 | Prouver la pertinence de ses choix technologiques",
+          "AC31.03 | Rédiger un dossier de conception"
+        ]
       }
     ],
     "Vérifier": [
@@ -441,53 +455,88 @@ window.__PORTFOLIO_CONTENT__ = {
         "label": "Niveau 1",
         "mastery": 95,
         "desc": "Effectuer les tests et mesures nécessaires à une vérification d'un système.",
-        "justification": "J'ai effectué des campagnes de mesures rigoureuses pour valider mes conceptions, notamment en utilisant un oscilloscope pour confirmer avec précision la fréquence de 7800 Hz générée par mon système émetteur/récepteur."
+        "justification": "J'ai mesuré à l'oscilloscope la fréquence de sortie de mon émetteur sonore (7800 Hz, erreur de 5% par rapport à la théorie) et l'atténuation de mon filtre passe-bas (-38 dB), puis validé par capteurs la fiabilité de détection d'obstacles du robot autonome.",
+        "apprentissagesCritiques": [
+          "AC12.01 | Appliquer une procédure d'essais",
+          "AC12.02 | Identifier un dysfonctionnement",
+          "AC12.03 | Décrire un dysfonctionnement"
+        ]
       },
       {
         "id": "n2",
         "label": "Niveau 2",
         "mastery": 85,
         "desc": "Mettre en place un protocole de tests pour valider le fonctionnement d'un système.",
-        "justification": "J'ai mis en œuvre des protocoles de tests en environnement hostile pour valider la chaîne d'acquisition de données et la robustesse mécanique du drone Veolia. J'ai également testé et vérifié le fonctionnement électrique d'automates UniLogic."
+        "justification": "J'ai structuré un protocole de vérification en 4 étapes (sonde Pt100, actionneurs, signaux TOR, tachymètre) pour certifier la conformité d'un automate UniLogic avant livraison, et validé les dossiers DMEO chez Enedis en contrôlant la conformité technique des raccordements avant mise sous tension.",
+        "apprentissagesCritiques": [
+          "AC22.01 | Identifier les tests et mesures à mettre en place pour valider le fonctionnement d'un système",
+          "AC22.02 | Certifier le fonctionnement d'un nouvel équipement industriel"
+        ]
       },
       {
         "id": "n3",
         "label": "Niveau 3",
-        "mastery": 70,
+        "mastery": 80,
         "desc": "Élaborer une procédure intégrant une démarche qualité pour valider le fonctionnement d'un système.",
-        "justification": "J'ai élaboré des procédures de mise en service complètes sur des installations industrielles, en validant par exemple le contrôle précis de la vitesse des moteurs par les variateurs sur la maquette de station d'épuration."
+        "justification": "Sur le drone Veolia, j'ai conçu un protocole de test en conditions hostiles réelles (chaleur, humidité saturée, H2S) qui a révélé une faiblesse d'étanchéité ; j'en ai analysé la cause racine et fiabilisé le système (presse-étoupes, structure PVC) avant de revalider son fonctionnement sur le terrain. J'ai aussi validé les sécurités et le contrôle moteur de la station d'épuration en conditions de défaut simulé.",
+        "apprentissagesCritiques": [
+          "AC32.01 | Évaluer la cause racine d'un dysfonctionnement",
+          "AC32.02 | Proposer une solution corrective à un dysfonctionnement",
+          "AC32.03 | Produire une procédure d'essais pour valider la conformité d'un système"
+        ]
       }
     ],
     "Maintenir": [
       {
         "id": "n1",
         "label": "Niveau 1",
-        "mastery": 85,
+        "mastery": 70,
         "desc": "Intervenir sur un système pour effectuer une opération de maintenance.",
-        "justification": "J'ai été amené à intervenir directement sur des composants pour des opérations de maintien en condition opérationnelle, comme lors de la maintenance d'un émetteur sonore dédié à l'allumage d'un robot."
+        "justification": "Lors de mon stage Veolia, les premiers tests terrain du drone ont révélé une étanchéité insuffisante des coffrets ; j'ai diagnostiqué cette défaillance et réalisé l'intervention corrective (presse-étoupes, renforcement de la structure PVC) avant de revalider le système en conditions réelles.",
+        "apprentissagesCritiques": [
+          "AC23.01 | Exécuter l'entretien et le contrôle d'un système en respectant une procédure",
+          "AC23.02 | Exécuter une opération de maintenance (corrective, préventive, améliorative)",
+          "AC23.03 | Diagnostiquer un dysfonctionnement dans un système",
+          "AC23.04 | Identifier la cause racine du dysfonctionnement"
+        ]
       },
       {
         "id": "n2",
         "label": "Niveau 2",
-        "mastery": 90,
+        "mastery": 45,
         "desc": "Mettre en place une stratégie de maintenance pour garantir un fonctionnement optimal.",
-        "justification": "J'ai participé activement à des stratégies de maintenance à grande échelle lors de mon stage chez Enedis, en assurant la supervision du réseau, le suivi des dépannages et la validation de préparations de chantiers. J'ai aussi assuré la maintenance électrique d'un automate UniLogic sous UniStream."
+        "justification": "Chez Enedis, j'ai observé et assisté à la gestion des dépannages réseau (GDD) sans en avoir la responsabilité directe : ce niveau reste à consolider en alternance, sur un système où je pourrais piloter moi-même une stratégie de maintenance complète.",
+        "apprentissagesCritiques": [
+          "AC33.01 | Proposer une solution de maintenance",
+          "AC33.02 | Évaluer les coûts d'indisponibilité et de maintenance d'un système",
+          "AC33.03 | Produire une procédure de maintenance",
+          "AC33.03 | Proposer un appui technique aux différents acteurs à l'échelle nationale et internationale"
+        ]
       }
     ],
     "Intégrer": [
       {
         "id": "n1",
         "label": "Niveau 1",
-        "mastery": 95,
+        "mastery": 90,
         "desc": "Réaliser / intégrer un système en conformité avec le dossier de fabrication et une démarche qualité.",
-        "justification": "J'ai intégré avec succès des architectures mêlant électronique et programmation, en assemblant les composants (pont en H, capteurs) et le code Arduino pour rendre un robot roulant pleinement fonctionnel."
+        "justification": "J'ai assemblé et mis en service en autonomie deux systèmes complets : le robot détecteur d'obstacles (pont en H, capteurs, code Arduino) et le système d'arrosage automatisé (automate WAGO, drivers EM2RS556, moteurs pas à pas), chacun conforme à son dossier de conception.",
+        "apprentissagesCritiques": [
+          "AC24.01 | Appliquer la procédure d'installation d'un système",
+          "AC24.02 | Exécuter la mise en service d'un système en respectant la procédure"
+        ]
       },
       {
         "id": "n2",
         "label": "Niveau 2",
-        "mastery": 95,
+        "mastery": 90,
         "desc": "Interagir avec les différents acteurs lors de l'installation et de la mise en service d'un système, dans une démarche qualité.",
-        "justification": "J'ai coordonné l'intégration de technologies variées dans une démarche qualité, de l'installation de capteurs 4-20mA industriels sur un drone autonome, à la configuration de la communication réseau Modbus d'une station d'épuration automatisée."
+        "justification": "Sur la station d'épuration, j'ai câblé l'armoire électrique et configuré la communication Modbus entre automate et variateurs en équipe ; chez Veolia, j'ai planifié l'intégration des capteurs 4-20mA sur le drone en tenant compte des contraintes d'accès remontées par les équipes terrain et des délais de l'agence d'assainissement.",
+        "apprentissagesCritiques": [
+          "AC34.01 | Planifier l'installation et la mise en service d'un nouvel équipement",
+          "AC34.02 | Produire une procédure d'installation et de mise en service d'un système",
+          "AC34.03 | Produire le dossier de conformité du système en gérant le versionnage"
+        ]
       }
     ]
   },
@@ -503,7 +552,7 @@ window.__PORTFOLIO_CONTENT__ = {
     },
     "emetteur-recepteur-sonore": {
       "Concevoir": "n1",
-      "Maintenir": "n1"
+      "Vérifier": "n1"
     },
     "robot-detecteur-obstacles": {
       "Concevoir": "n2",
@@ -511,19 +560,19 @@ window.__PORTFOLIO_CONTENT__ = {
       "Vérifier": "n1"
     },
     "lampe-smartlight": {
-      "Concevoir": "n1"
+      "Concevoir": "n2"
     },
     "maintenance-unilogic": {
-      "Maintenir": "n2",
       "Vérifier": "n2"
     },
-    "stage-enedis": {},
-    "": {},
-    "Stage - Veolia": {},
+    "stage-enedis": {
+      "Vérifier": "n2"
+    },
     "stage-veolia": {
       "Concevoir": "n3",
       "Intégrer": "n2",
-      "Vérifier": "n2"
+      "Vérifier": "n3",
+      "Maintenir": "n1"
     }
   },
   "experiences": [
