@@ -416,7 +416,7 @@ window.__PORTFOLIO_CONTENT__ = {
       {
         "id": "n1",
         "label": "Niveau 1",
-        "mastery": 90,
+        "mastery": 75,
         "desc": "Mener une conception partielle intégrant une démarche projet.",
         "justification": "Sur le système émetteur sonore, j'ai conçu seul la partie filtrage et amplification (calcul du filtre passe-bas du 2nd ordre, choix des composants) à partir d'un cahier des charges fonctionnel imposé, sans reprendre l'ensemble de la chaîne émission/réception.",
         "apprentissagesCritiques": [
@@ -428,7 +428,7 @@ window.__PORTFOLIO_CONTENT__ = {
       {
         "id": "n2",
         "label": "Niveau 2",
-        "mastery": 90,
+        "mastery": 80,
         "desc": "Concevoir un système en fiabilisant les solutions proposées.",
         "justification": "J'ai mené la conception complète de deux systèmes autonomes répondant à un cahier des charges précis : la carte SmartLight (étude photométrique, routage PCB sous KiCad, code multi-modes) et l'architecture matérielle/logicielle du robot détecteur d'obstacles, fiabilisée par la linéarisation des capteurs pour éviter les fausses détections.",
         "apprentissagesCritiques": [
@@ -453,7 +453,7 @@ window.__PORTFOLIO_CONTENT__ = {
       {
         "id": "n1",
         "label": "Niveau 1",
-        "mastery": 95,
+        "mastery": 90,
         "desc": "Effectuer les tests et mesures nécessaires à une vérification d'un système.",
         "justification": "J'ai mesuré à l'oscilloscope la fréquence de sortie de mon émetteur sonore (7800 Hz, erreur de 5% par rapport à la théorie) et l'atténuation de mon filtre passe-bas (-38 dB), puis validé par capteurs la fiabilité de détection d'obstacles du robot autonome.",
         "apprentissagesCritiques": [
@@ -490,7 +490,7 @@ window.__PORTFOLIO_CONTENT__ = {
       {
         "id": "n1",
         "label": "Niveau 1",
-        "mastery": 70,
+        "mastery": 80,
         "desc": "Intervenir sur un système pour effectuer une opération de maintenance.",
         "justification": "Lors de mon stage Veolia, les premiers tests terrain du drone ont révélé une étanchéité insuffisante des coffrets ; j'ai diagnostiqué cette défaillance et réalisé l'intervention corrective (presse-étoupes, renforcement de la structure PVC) avant de revalider le système en conditions réelles.",
         "apprentissagesCritiques": [
@@ -503,7 +503,7 @@ window.__PORTFOLIO_CONTENT__ = {
       {
         "id": "n2",
         "label": "Niveau 2",
-        "mastery": 45,
+        "mastery": 80,
         "desc": "Mettre en place une stratégie de maintenance pour garantir un fonctionnement optimal.",
         "justification": "Chez Enedis, j'ai observé et assisté à la gestion des dépannages réseau (GDD) sans en avoir la responsabilité directe : ce niveau reste à consolider en alternance, sur un système où je pourrais piloter moi-même une stratégie de maintenance complète.",
         "apprentissagesCritiques": [
@@ -555,12 +555,12 @@ window.__PORTFOLIO_CONTENT__ = {
       "Vérifier": "n1"
     },
     "robot-detecteur-obstacles": {
-      "Concevoir": "n2",
+      "Concevoir": "n1",
       "Intégrer": "n1",
       "Vérifier": "n1"
     },
     "lampe-smartlight": {
-      "Concevoir": "n2"
+      "Concevoir": "n1"
     },
     "maintenance-unilogic": {
       "Vérifier": "n2"
@@ -572,7 +572,7 @@ window.__PORTFOLIO_CONTENT__ = {
       "Concevoir": "n3",
       "Intégrer": "n2",
       "Vérifier": "n3",
-      "Maintenir": "n1"
+      "Maintenir": "n2"
     }
   },
   "experiences": [
