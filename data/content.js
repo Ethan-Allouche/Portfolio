@@ -13,7 +13,7 @@ window.__PORTFOLIO_CONTENT__ = {
   "coreCompetencies": [
     {
       "title": "Concevoir",
-      "percentage": 90,
+      "percentage": 80,
       "circleColor": "text-red-500",
       "style": "bg-red-100 border-red-300 text-red-900 hover:shadow-red-500/30 hover:bg-red-200",
       "tagStyle": "bg-red-100 text-red-800 border-red-200",
@@ -22,7 +22,7 @@ window.__PORTFOLIO_CONTENT__ = {
     },
     {
       "title": "Vérifier",
-      "percentage": 88,
+      "percentage": 85,
       "circleColor": "text-orange-500",
       "style": "bg-orange-100 border-orange-300 text-orange-900 hover:shadow-orange-500/30 hover:bg-orange-200",
       "tagStyle": "bg-orange-100 text-orange-800 border-orange-200",
@@ -31,7 +31,7 @@ window.__PORTFOLIO_CONTENT__ = {
     },
     {
       "title": "Maintenir",
-      "percentage": 55,
+      "percentage": 80,
       "circleColor": "text-amber-500",
       "style": "bg-amber-100 border-amber-300 text-amber-900 hover:shadow-amber-500/30 hover:bg-amber-200",
       "tagStyle": "bg-amber-100 text-amber-800 border-amber-200",
@@ -40,7 +40,7 @@ window.__PORTFOLIO_CONTENT__ = {
     },
     {
       "title": "Intégrer",
-      "percentage": 95,
+      "percentage": 90,
       "circleColor": "text-emerald-500",
       "style": "bg-emerald-100 border-emerald-300 text-emerald-900 hover:shadow-emerald-500/30 hover:bg-emerald-200",
       "tagStyle": "bg-emerald-100 text-emerald-800 border-emerald-200",
@@ -439,7 +439,7 @@ window.__PORTFOLIO_CONTENT__ = {
       {
         "id": "n3",
         "label": "Niveau 3",
-        "mastery": 95,
+        "mastery": 90,
         "desc": "Concevoir un système en adoptant une approche sélective dans ses choix technologiques.",
         "justification": "J'ai sélectionné et justifié des choix technologiques sur deux projets industriels : les capteurs Vega C22 et les dataloggers Lascar pour l'architecture embarquée du drone Veolia (contrainte d'autonomie et d'étanchéité), et les automatismes standardisés Schneider Electric pour la station d'épuration, en argumentant ces choix face à un cahier des charges contraint.",
         "apprentissagesCritiques": [
