@@ -129,6 +129,8 @@ function render() {
     h('button', { class: 'primary', type: 'button', onclick: () => window.print() }, t('cv.save')));
   document.getElementById('tip').textContent = t('cv.tip');
 
+  const EXP = (D.experience || []).filter((e) => !e.hideInCv);
+  const EDU = (D.education || []).filter((e) => !e.hideInCv);
   const inExp = new Set((D.experience || []).map((e) => e.projectId).filter(Boolean));
   const others = (D.projects || []).filter((p) => !inExp.has(p.id));
   const when = (date, dur) => [date, P(dur)].filter(Boolean).join(' · ');
@@ -146,14 +148,14 @@ function render() {
     h('div', { class: 'grid' },
       h('div', { class: 'main' },
         h('section', null, h('h2', null, t('sec.profile')), h('p', { class: 'lead' }, P(pr.pitch)), P(pr.status) && h('p', { class: 'goal' }, P(pr.status))),
-        (D.experience || []).length > 0 && h('section', null, h('h2', null, t('sec.experience')), D.experience.map((e) => h('div', { class: 'item' },
+        EXP.length > 0 && h('section', null, h('h2', null, t('sec.experience')), EXP.map((e) => h('div', { class: 'item' },
           h('div', { class: 'item__top' }, h('h3', null, P(e.role)), h('span', { class: 'when' }, when(e.date, e.duration))),
           h('p', { class: 'org' }, P(e.org)),
           (e.tasks || []).length > 0 && h('ul', null, e.tasks.map((x) => h('li', null, P(x))))))),
         others.length > 0 && h('section', null, h('h2', null, t('sec.projects')), others.map((p) => h('div', { class: 'item' },
           h('div', { class: 'item__top' }, h('h3', null, P(p.title)), h('span', { class: 'when' }, when(p.year, p.duration))),
           h('p', { class: 'txt' }, P(p.summary))))),
-        (D.education || []).length > 0 && h('section', null, h('h2', null, t('sec.education')), D.education.map((e) => h('div', { class: 'item' },
+        EDU.length > 0 && h('section', null, h('h2', null, t('sec.education')), EDU.map((e) => h('div', { class: 'item' },
           h('div', { class: 'item__top' }, h('h3', null, P(e.title)), h('span', { class: 'when' }, e.date || '')),
           h('p', { class: 'org' }, [P(e.school), P(e.detail)].filter(Boolean).join(' – ')))))),
       h('aside', { class: 'side' },

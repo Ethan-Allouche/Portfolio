@@ -112,6 +112,32 @@ function choice(label, holder, key, options, opt = {}) {
   sel.addEventListener('change', () => { holder[key] = sel.value; save(); });
   return h('label', { class: 'f' }, h('span', { class: 'lab' }, label), sel, opt.hint && h('span', { class: 'hint' }, opt.hint));
 }
+function tick(label, holder, key, opt = {}) {
+  const box = h('input', { type: 'checkbox' });
+  box.checked = !!holder[key];
+  box.addEventListener('change', () => { if (box.checked) holder[key] = true; else delete holder[key]; save(); });
+  return h('label', { class: 'f tick' }, h('span', { class: 'tick__row' }, box, h('span', null, label)), opt.hint && h('span', { class: 'hint' }, opt.hint));
+}
+/** Image unique (logo, illustration) : aperçu, chemin, bouton pour en choisir une. */
+function imageField(label, holder, key, base, hint) {
+  const row = h('div', { class: 'media-row' });
+  const paint = () => row.replaceChildren(thumb(holder[key]), h('div', { class: 'stack' },
+    field(label, holder, key, { ltr: true, placeholder: 'images/…jpg', hint }),
+    h('p', null, filePicker('Choisir une image', 'image/*', async (f) => { holder[key] = await stage(f, 'images/' + (base() || 'image-' + Date.now().toString(36))); save(); paint(); }))), h('span'));
+  paint();
+  return row;
+}
+/** Cases à cocher : les projets qui prouvent une compétence. */
+function projectPicker(label, holder, key, hint) {
+  holder[key] ||= [];
+  return h('fieldset', { class: 'f' }, h('legend', null, label), hint && h('p', { class: 'hint' }, hint),
+    h('div', { class: 'picks' }, data.projects.map((p) => {
+      const box = h('input', { type: 'checkbox' });
+      box.checked = holder[key].includes(p.id);
+      box.addEventListener('change', () => { holder[key] = data.projects.map((x) => x.id).filter((id) => (id === p.id ? box.checked : holder[key].includes(id))); save(); });
+      return h('label', { class: 'pick1' }, box, h('span', null, asL(p.title).fr || p.id));
+    })));
+}
 const ico = (label, glyph, onclick, disabled) => h('button', { class: 'ico', type: 'button', 'aria-label': label, title: label, disabled, onclick: (e) => { e.preventDefault(); e.stopPropagation(); onclick(); } }, glyph);
 function move(list, i, d) {
   const j = i + d;
@@ -237,6 +263,17 @@ function mediaEditor(p) {
 
 // ---------- rubriques ----------
 const slug = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+function modules(page) {
+  page.modules ||= [];
+  const box = h('div', { class: 'mini' });
+  const paint = () => box.replaceChildren(
+    ...page.modules.map((m, i) => h('div', { class: 'mini__row' },
+      h('div', { class: 'stack' }, fieldL('Matière', m, 'title'), fieldL('Contenu', m, 'text', { multi: true, rows: 2 })),
+      h('span', { class: 'tools' }, ico('Monter', '↑', () => { if (i > 0) { [page.modules[i - 1], page.modules[i]] = [page.modules[i], page.modules[i - 1]]; save(); paint(); } }, i === 0), ico('Supprimer', '✕', () => { page.modules.splice(i, 1); save(); paint(); })))),
+    h('p', null, h('button', { class: 'btn btn--quiet', type: 'button', onclick: () => { page.modules.push({ title: blankL(), text: blankL() }); save(); paint(); } }, 'Ajouter une matière')));
+  paint();
+  return h('div', { class: 'f' }, h('span', { class: 'lab' }, 'Matières'), box);
+}
 const SECTIONS = {
   profile: {
     label: 'Profil',
@@ -268,7 +305,7 @@ const SECTIONS = {
     label: 'Projets',
     count: () => data.projects.length,
     draw: () => [
-      h('p', { class: 'intro' }, 'L’ordre de cette liste est l’ordre de visite sur le site. Chaque projet a sa maquette 3D, son résumé et sa fiche détaillée.'),
+      h('p', { class: 'intro' }, 'L’ordre de cette liste est l’ordre de visite sur le site. La première photo ou vidéo d’un projet s’affiche en grand, avant le texte ; la maquette 3D vient en complément.'),
       cards(data.projects, {
         what: 'ce projet',
         add: 'Ajouter un projet',
@@ -284,6 +321,7 @@ const SECTIONS = {
               field('Année', p, 'year', { onchange: () => { card.querySelector('.ttl').textContent = [p.year, p.title.fr].filter(Boolean).join('  ·  '); } }),
               choice('Maquette 3D', p, 'model', MODELS, { hint: 'La scène animée affichée pour ce projet.' }),
               field('Identifiant', p, 'id', { ltr: true, hint: 'Sert au lien direct et aux noms de fichiers. Minuscules, chiffres et tirets.', onchange: () => { p.id = slug(p.id); } })),
+            tick('Mettre en avant sur la page d’accueil', p, 'featured', { hint: 'Deux projets en avant, c’est l’idéal.' }),
             fieldL('Titre', p, 'title', { onchange: () => { card.querySelector('.ttl').textContent = [p.year, p.title.fr].filter(Boolean).join('  ·  '); } }),
             fieldL('Cadre', p, 'org', { placeholder: 'Stage chez…, Projet à l’IUT…' }),
             fieldL('Durée', p, 'duration', { placeholder: '120 heures, 8 semaines…' }),
@@ -311,11 +349,13 @@ const SECTIONS = {
         body: (e) => [
           h('div', { class: 'row2' },
             field('Dates', e, 'date', { placeholder: '2026 ou 2024 – 2025' }),
-            choice('Projet lié', e, 'projectId', [['', 'Aucun'], ...data.projects.map((p) => [p.id, asL(p.title).fr || p.id])], { hint: 'Ajoute un lien « Voir le projet ». Un projet lié n’est pas répété dans le CV.' })),
+            choice('Projet lié', e, 'projectId', [['', 'Aucun'], ...data.projects.map((p) => [p.id, asL(p.title).fr || p.id])], { hint: 'Un clic sur l’expérience ouvre ce projet. Un projet lié n’est pas répété dans le CV.' })),
           fieldL('Poste', e, 'role'),
           fieldL('Entreprise et lieu', e, 'org'),
           fieldL('Durée', e, 'duration'),
+          imageField('Logo de l’entreprise', e, 'logo', () => 'logo-' + slug(asL(e.org).fr).slice(0, 24)),
           miniList('Missions', e, 'tasks', 'Ajouter une mission'),
+          tick('Ne pas afficher dans le CV', e, 'hideInCv', { hint: 'L’expérience reste visible sur le site.' }),
         ],
       }),
     ],
@@ -330,15 +370,47 @@ const SECTIONS = {
         add: 'Ajouter une formation',
         title: (e) => [e.date, asL(e.title).fr].filter(Boolean).join('  ·  '),
         make: () => ({ id: 'edu-' + Date.now().toString(36), date: String(new Date().getFullYear()), title: blankL(), school: blankL(), detail: blankL() }),
-        body: (e) => [field('Dates', e, 'date', { placeholder: '2023 – 2026' }), fieldL('Diplôme', e, 'title'), fieldL('Établissement', e, 'school'), fieldL('Précision', e, 'detail', { hint: 'Spécialité, mention, équivalence pour un lecteur étranger…' })],
+        body: (e) => {
+          const box = h('div', { class: 'stack' });
+          const paint = () => box.replaceChildren(...(e.page ? [
+            h('h3', null, 'Page détaillée'),
+            fieldL('Sous-titre', e.page, 'subtitle'),
+            fieldL('Présentation', e.page, 'intro', { multi: true, rows: 6, hint: 'Une ligne vide sépare deux paragraphes.' }),
+            miniList('Objectifs', e.page, 'goals', 'Ajouter un objectif'),
+            modules(e.page),
+            h('p', null, h('button', { class: 'btn btn--quiet', type: 'button', onclick: () => { if (confirm('Supprimer la page détaillée de cette formation ?')) { delete e.page; save(); paint(); } } }, 'Supprimer la page détaillée')),
+          ] : [h('p', null, h('button', { class: 'btn btn--quiet', type: 'button', onclick: () => { e.page = { subtitle: blankL(), intro: blankL(), goals: [], modules: [] }; save(); paint(); } }, 'Ajouter une page détaillée'))]));
+          paint();
+          return [
+            field('Dates', e, 'date', { placeholder: '2023 – 2026' }), fieldL('Diplôme', e, 'title'), fieldL('Établissement', e, 'school'),
+            fieldL('Précision', e, 'detail', { hint: 'Spécialité, mention, équivalence pour un lecteur étranger…' }),
+            imageField('Image', e, 'image', () => slug(asL(e.title).fr).slice(0, 24), 'Facultatif.'),
+            tick('Ne pas afficher dans le CV', e, 'hideInCv', { hint: 'La formation reste visible sur le site.' }),
+            box,
+          ];
+        },
       }),
     ],
   },
   skills: {
     label: 'Compétences',
-    count: () => data.skills.length,
+    count: () => (data.skillList ||= []).length,
     draw: () => [
-      h('p', { class: 'intro' }, 'Des familles de compétences, sans pourcentage : chaque ligne doit pouvoir se prouver par un projet.'),
+      h('p', { class: 'intro' }, 'Chaque compétence a sa page : une description et les projets qui la prouvent. Un clic sur la compétence y mène.'),
+      cards((data.skillList ||= []), {
+        what: 'cette compétence',
+        add: 'Ajouter une compétence',
+        title: (k) => [asL(k.name).fr, asL(k.level).fr].filter(Boolean).join('  ·  '),
+        make: () => ({ id: 'comp-' + Date.now().toString(36), name: blankL(), level: blankL(), desc: blankL(), projects: [] }),
+        body: (k) => [
+          fieldL('Nom', k, 'name', { onchange: () => { if (/^comp-/.test(k.id) && slug(k.name.fr)) k.id = slug(k.name.fr); } }),
+          fieldL('Niveau', k, 'level', { placeholder: 'Notions, Intermédiaire, Avancé…' }),
+          fieldL('En savoir plus', k, 'desc', { multi: true, rows: 4 }),
+          projectPicker('Projets liés', k, 'projects', 'Ils s’affichent sous la compétence, avec un lien vers chaque projet.'),
+        ],
+      }),
+      h('h3', { class: 'sub' }, 'Familles (colonne du CV)'),
+      h('p', { class: 'intro' }, 'La version courte, par familles, reprise dans le CV.'),
       cards(data.skills, {
         what: 'cette famille',
         add: 'Ajouter une famille',
@@ -370,7 +442,7 @@ const SECTIONS = {
         add: 'Ajouter un centre d’intérêt',
         title: (i) => asL(i.title).fr,
         make: () => ({ id: 'int-' + Date.now().toString(36), title: blankL(), text: blankL() }),
-        body: (i) => [fieldL('Titre', i, 'title'), fieldL('En une phrase', i, 'text', { multi: true, rows: 2 })],
+        body: (i) => [fieldL('Titre', i, 'title'), fieldL('En une phrase', i, 'text', { multi: true, rows: 2, hint: 'Texte de la carte et du CV.' }), imageField('Photo', i, 'image', () => slug(asL(i.title).fr).slice(0, 24)), fieldL('Page détaillée', i, 'details', { multi: true, rows: 7, hint: 'Une ligne vide sépare deux paragraphes.' })],
       }),
     ],
   },

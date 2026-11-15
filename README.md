@@ -16,6 +16,10 @@ Ouvre `https://ethan-allouche.github.io/Portfolio/admin/`.
 - Tes modifications sont gardées en brouillon dans le navigateur. Le bouton **Aperçu** montre le site avec ce brouillon.
 - **Publier** envoie le contenu sur GitHub avec un jeton d'accès (à créer une fois, les étapes sont dans l'admin), ou te donne le fichier `data/content.js` à déposer à la main.
 - Les photos ajoutées depuis l'admin sont allégées automatiquement.
+- **Projets** : la première photo ou vidéo s'affiche en grand en haut de la page du projet, les suivantes illustrent le texte, puis viennent la maquette 3D et l'aperçu du rapport PDF. La case « Mettre en avant » place le projet sur l'accueil.
+- **Compétences** : chaque compétence a un niveau, une description et les projets qui la prouvent (cases à cocher). Sur le site, un clic sur la compétence mène à ces projets.
+- **Expérience** : logo de l'entreprise et projet lié (un clic sur l'expérience ouvre ce projet). La case « Ne pas afficher dans le CV » garde une ligne sur le site sans l'imprimer dans le CV. Même case pour les formations.
+- **Formation** et **Centres d'intérêt** : image et page détaillée facultatives.
 
 L'adresse de l'admin n'est pas secrète, mais personne ne peut rien publier sans ton jeton GitHub.
 
@@ -30,6 +34,7 @@ L'adresse de l'admin n'est pas secrète, mais personne ne peut rien publier sans
 | `images/`, `projects/` | Photos, vidéos et rapports PDF des projets. |
 | `assets/js/app.js` | Affichage des pages et navigation. |
 | `assets/js/i18n.js` | Détection de la langue et textes de l'interface. |
+| `assets/js/mascot.js` | Le robot qui se promène sur les pages : déplacements, émotes, répliques (les textes sont dans `i18n.js`, clés `rb.*`). |
 | `assets/js/decks.js` | Afficheurs et commandes de chaque maquette 3D. |
 | `assets/js/world/` | La scène 3D : moteur (`world.js`), outils (`kit.js`) et une maquette par fichier dans `models/`. |
 | `assets/vendor/` | three.js, hébergé avec le site (aucun chargement depuis un autre serveur). |

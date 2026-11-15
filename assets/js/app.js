@@ -2,6 +2,7 @@
 // Centres d'intérêt), rendus dans la langue du visiteur, avec la scène 3D sur l'accueil et dans chaque projet.
 import { LANGS, DIR, SHORT, NAMES, detectLang, rememberLang, pick, translator } from './i18n.js';
 import { buildConsole } from './decks.js';
+import { createMascot } from './mascot.js';
 
 // ---------- données ----------
 const isDraft = new URLSearchParams(location.search).has('draft');
@@ -89,50 +90,14 @@ const el = { view: $('#view'), tabs: $('#tabs'), langs: $('#langs'), brand: $('#
 
 function parseRoute() {
   const [a, b] = location.hash.replace(/^#\/?/, '').split('/');
-  if (a === 'projets' && b) {
-    const k = projects.findIndex((p) => p.id === decodeURIComponent(b));
-    if (k >= 0) return { page: 'projets', k };
+  const sub = b ? decodeURIComponent(b) : '';
+  if (a === 'projets' && sub) {
+    const k = projects.findIndex((p) => p.id === sub);
+    if (k >= 0) return { page: 'projets', k, sub: '' };
   }
-  return { page: TABS.some((x) => x[0] === a) ? a : 'accueil', k: -1, anchor: a === 'contact' ? 'contact' : '' };
+  return { page: TABS.some((x) => x[0] === a) ? a : 'accueil', k: -1, sub: a === 'projets' ? '' : sub, anchor: a === 'contact' ? 'contact' : '' };
 }
 const href = (page, id) => '#/' + (page === 'accueil' ? '' : page) + (id ? '/' + encodeURIComponent(id) : '');
-
-// ---------- robot ----------
-const ROBOT = {
-  accueil: { color: '#3b82f6' },
-  competences: { color: '#eab308', star: true },
-  formation: { color: '#2563eb', hat: true },
-  projets: { color: '#06b6d4' },
-  experience: { color: '#9333ea', tie: true, briefcase: true },
-  interets: { color: '#db2777', guitar: true },
-};
-function mascot(page) {
-  const c = ROBOT[page] || ROBOT.accueil;
-  const eyes = c.star
-    ? '<polygon points="42,29 43,31 45,31 43.5,32.5 44,34.5 42,33.5 40,34.5 40.5,32.5 39,31 41,31" fill="#fbbf24"/><polygon points="58,29 59,31 61,31 59.5,32.5 60,34.5 58,33.5 56,34.5 56.5,32.5 55,31 57,31" fill="#fbbf24"/>'
-    : '<circle cx="42" cy="32" r="3" fill="#60a5fa"/><circle cx="58" cy="32" r="3" fill="#60a5fa"/>';
-  const top = c.hat
-    ? '<g transform="translate(0,-8)"><path d="M30 20 50 10l20 10-20 10z" fill="#1e1e24" stroke="#000"/><rect x="48" y="18" width="4" height="4" fill="#fcd34d"/><path d="M52 20q8 5 10 15" stroke="#fcd34d" stroke-width="2" fill="none"/><circle cx="62" cy="35" r="2" fill="#fcd34d"/></g>'
-    : '<path d="M50 20V10" stroke="#64748b" stroke-width="3"/><circle cx="50" cy="8" r="4" fill="#ef4444"/>';
-  const chest = c.tie ? '<path d="M50 45l5 35-5 5-5-5z" fill="#4c1d95"/>' : '<rect x="35" y="50" width="30" height="25" rx="2" fill="#fff" fill-opacity=".3"/><circle cx="50" cy="62" r="5" fill="#fff" fill-opacity=".5"/>';
-  const left = c.guitar ? '<g transform="translate(15,55) rotate(-45)"><rect width="15" height="25" rx="5" fill="#9d174d"/><rect x="5" y="-15" width="5" height="20" fill="#713f12"/><circle cx="7.5" cy="18" r="4" fill="#fce7f3"/></g>' : '';
-  const right = c.briefcase ? '<g transform="translate(75,65)"><rect width="16" height="12" rx="1" fill="#581c87"/><path d="M5 0v-3h6v3" stroke="#581c87" stroke-width="2" fill="none"/></g>' : '';
-  const b = h('button', { class: 'mascot', type: 'button', 'aria-label': t('mascot.hi'), html: `<svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
-    <ellipse cx="50" cy="90" rx="20" ry="5" fill="#000" fill-opacity=".2"/>
-    <g class="mascot__body"><path d="M40 85h20V75H40z" fill="#334155"/><circle cx="40" cy="85" r="5" fill="#1e293b"/><circle cx="60" cy="85" r="5" fill="#1e293b"/>
-    <rect x="30" y="45" width="40" height="35" rx="5" fill="${c.color}"/>${chest}
-    <g class="mascot__head"><rect x="32" y="20" width="36" height="25" rx="8" fill="#cbd5e1"/><rect x="35" y="25" width="30" height="15" rx="4" fill="#0f172a"/><g class="mascot__eyes">${eyes}</g>${top}</g>
-    <path d="M30 55 20 65" stroke="#334155" stroke-width="4" stroke-linecap="round"/>${left}
-    <g class="mascot__arm"><path d="M70 55l10 10" stroke="#334155" stroke-width="4" stroke-linecap="round"/></g>${right}</g></svg><span class="mascot__say">${''}</span>` });
-  b.lastChild.textContent = t('mascot.hi');
-  b.addEventListener('click', () => {
-    b.classList.remove('is-waving');
-    void b.offsetWidth;
-    b.classList.add('is-waving');
-    setTimeout(() => b.classList.remove('is-waving'), 1800);
-  });
-  return b;
-}
 
 // ---------- éléments partagés ----------
 const tagList = (p) => (p.tags && p.tags.length ? h('ul', { class: 'tags' }, p.tags.map((x) => h('li', { dir: 'auto' }, P(x)))) : null);
@@ -143,7 +108,6 @@ const firstPhoto = (p) => {
 };
 function pageHead(page, iconName, title, sub) {
   return h('header', { class: 'phead' },
-    mascot(page),
     h('span', { class: 'phead__icon', html: icon(iconName) }),
     h('div', { class: 'phead__main' }, h('h1', { class: 'phead__title' }, title), sub && h('p', { class: 'phead__sub' }, sub)));
 }
@@ -161,14 +125,17 @@ function projectCard(p) {
 }
 
 // ---------- pages ----------
+const backPill = (page, label) => h('a', { class: 'pill pill--dark', href: href(page) }, ic('back', 'flip'), t(label));
+const HOBBY_ICON = { scoutisme: 'compass', musique: 'music', sport: 'trophy' };
+
 const PAGES = {
   accueil() {
     const pr = D.profile;
     const name = P(pr.name) || '';
     const cut = name.indexOf(' ');
     const cv = 'cv.html?lang=' + lang;
+    const featured = projects.filter((p) => p.featured);
     return [
-      mascot('accueil'),
       h('section', { class: 'hero' },
         h('div', { class: 'hero__text' },
           P(pr.status) && h('p', { class: 'hero__badge' }, h('i'), P(pr.status)),
@@ -187,11 +154,12 @@ const PAGES = {
               h('span', { class: 'cvcard__page' }, h('iframe', { src: 'cv.html?thumb&lang=' + lang, tabindex: '-1', 'aria-hidden': 'true', loading: 'lazy', title: 'CV' })))))),
       N > 0 && h('section', { class: 'sec' },
         h('div', { class: 'sec__head' },
-          h('div', null, h('h2', { class: 'sec__title' }, t('home.featured')), h('p', { class: 'sec__sub' }, t(no3d ? 'home.featuredFlat' : 'home.featuredSub'))),
+          h('div', null, h('h2', { class: 'sec__title' }, t('home.featured')), h('p', { class: 'sec__sub' }, t('home.recent'))),
           h('a', { class: 'more', href: href('projets') }, t('home.all'), ic('next', 'flip'))),
-        no3d
-          ? h('div', { class: 'grid' }, projects.slice(0, 2).map(projectCard))
-          : h('div', { class: 'bench', 'data-world': '-1' }, h('p', { class: 'bench__hint' }, t('hint.pick')))),
+        h('div', { class: 'grid' }, (featured.length ? featured : projects.slice(0, 2)).map(projectCard))),
+      N > 0 && !no3d && h('section', { class: 'sec' },
+        h('div', { class: 'sec__head' }, h('div', null, h('h2', { class: 'sec__title' }, t('home.bench')), h('p', { class: 'sec__sub' }, t('home.benchSub')))),
+        h('div', { class: 'bench', 'data-world': '-1' }, h('p', { class: 'bench__hint' }, t('hint.pick')))),
       h('section', { class: 'contact', id: 'contact' },
         h('h2', null, t('contact.title')),
         h('p', null, t('contact.sub')),
@@ -203,11 +171,32 @@ const PAGES = {
   },
 
   competences() {
+    const list = D.skillList || [];
+    const related = (sk) => (sk.projects || []).map((id) => projects.find((p) => p.id === id)).filter(Boolean);
+    const sk = route.sub && list.find((x) => x.id === route.sub);
+    if (sk) {
+      const rel = related(sk);
+      return [
+        h('header', { class: 'phead phead--stack' },
+          h('span', { class: 'phead__icon', html: icon('star') }),
+          h('div', { class: 'phead__main' }, h('h1', { class: 'phead__title' }, P(sk.name)), P(sk.level) && h('p', { class: 'phead__sub' }, P(sk.level))),
+          backPill('competences', 'skills.back'),
+          P(sk.desc) && h('div', { class: 'infobox' }, h('h2', null, t('skills.more')), h('p', null, P(sk.desc)))),
+        h('h2', { class: 'h2' }, t('skills.related', { n: rel.length })),
+        rel.length ? h('div', { class: 'grid' }, rel.map(projectCard)) : h('p', { class: 'card lead' }, t('skills.none')),
+      ];
+    }
     return [
       pageHead('competences', 'star', t('page.skills'), t('page.skillsSub')),
-      h('section', { class: 'card panel' },
+      list.length > 0 && h('section', { class: 'card panel' },
         h('h2', { class: 'panel__title' }, ic('cube'), h('span', null, t('page.skillsAll'))),
-        h('div', { class: 'families' }, (D.skills || []).map((g) => h('div', { class: 'family' }, h('h3', null, P(g.group)), h('ul', null, (g.items || []).map((x) => h('li', null, P(x)))))))),
+        h('p', { class: 'hintline' }, t('skills.hint')),
+        h('div', { class: 'skillgrid' }, list.map((x) => h('a', { class: 'skillrow', href: href('competences', x.id) },
+          h('span', { dir: 'auto' }, P(x.name)),
+          h('span', { class: 'skillrow__meta' }, P(x.level) && h('span', { class: 'level' }, P(x.level)), h('span', { class: 'count', title: t('skills.related', { n: related(x).length }) }, String(related(x).length))))))),
+      (D.skills || []).length > 0 && h('section', { class: 'card panel', style: 'margin-block-start:22px' },
+        h('h2', { class: 'panel__title' }, ic('cube'), h('span', null, t('skills.domains'))),
+        h('div', { class: 'families' }, D.skills.map((g) => h('div', { class: 'family' }, h('h3', null, P(g.group)), h('ul', null, (g.items || []).map((x) => h('li', null, P(x)))))))),
       (D.languages || []).length > 0 && h('section', { class: 'card panel', style: 'margin-block-start:22px' },
         h('h2', { class: 'panel__title' }, ic('users'), h('span', null, t('sec.languages'))),
         h('dl', { class: 'langlist' }, D.languages.map((l) => h('div', null, h('dt', null, P(l.name)), h('dd', null, P(l.level)))))),
@@ -215,13 +204,37 @@ const PAGES = {
   },
 
   formation() {
+    const e = route.sub && (D.education || []).find((x) => x.id === route.sub && x.page);
+    if (e) {
+      const pg = e.page;
+      return [
+        h('header', { class: 'phead' },
+          h('span', { class: 'phead__icon', html: icon('cap') }),
+          h('div', { class: 'phead__main' }, h('h1', { class: 'phead__title' }, P(e.title)), P(pg.subtitle) && h('p', { class: 'phead__sub' }, P(pg.subtitle))),
+          backPill('formation', 'edu.back')),
+        h('div', { class: 'two' },
+          h('div', { style: 'display:grid;gap:22px' },
+            e.image && h('img', { class: 'bigimg', src: e.image, alt: P(e.school) }),
+            P(pg.intro) && h('section', { class: 'card story__text' }, h('div', null, h('h3', null, t('edu.intro')), paragraphs(P(pg.intro)))),
+            (pg.goals || []).length > 0 && h('section', { class: 'infobox', style: 'margin:0' }, h('h3', null, t('edu.goals')), h('ul', { class: 'checks' }, pg.goals.map((g) => h('li', null, P(g)))))),
+          (pg.modules || []).length > 0 && h('section', { class: 'card panel' },
+            h('h2', { class: 'panel__title' }, ic('file'), h('span', null, t('edu.modules'))),
+            h('div', { class: 'modules' }, pg.modules.map((m) => h('div', null, h('h3', null, P(m.title)), h('p', null, P(m.text))))))),
+      ];
+    }
     return [
       pageHead('formation', 'cap', t('page.education'), t('page.educationSub')),
       h('section', { class: 'card panel' },
-        h('ol', { class: 'tl' }, (D.education || []).map((e) => h('li', { class: 'tl__item' },
-          h('div', { class: 'tl__top' }, h('h2', { class: 'tl__title' }, P(e.title)), e.date && h('span', { class: 'datepill', dir: 'ltr' }, e.date)),
-          P(e.school) && h('p', { class: 'tl__org' }, P(e.school)),
-          P(e.detail) && h('p', { class: 'tl__detail' }, P(e.detail)))))),
+        h('ol', { class: 'tl' }, (D.education || []).map((x) => {
+          const inner = [
+            x.image && h('img', { class: 'tl__img', src: x.image, alt: '', loading: 'lazy' }),
+            h('div', { class: 'tl__top' }, h('h2', { class: 'tl__title' }, P(x.title)), x.date && h('span', { class: 'datepill', dir: 'ltr' }, x.date)),
+            P(x.school) && h('p', { class: 'tl__org' }, P(x.school)),
+            P(x.detail) && h('p', { class: 'tl__detail' }, P(x.detail)),
+            x.page && h('span', { class: 'tl__see' }, t('edu.more'), ic('next', 'flip')),
+          ];
+          return h('li', { style: 'display:contents' }, x.page ? h('a', { class: 'tl__item tl__item--link', href: href('formation', x.id) }, inner) : h('div', { class: 'tl__item' }, inner));
+        }))),
     ];
   },
 
@@ -236,26 +249,42 @@ const PAGES = {
   experience() {
     return [
       pageHead('experience', 'briefcase', t('page.experience'), t('page.experienceSub')),
-      h('ol', { class: 'tl tl--cards' }, (D.experience || []).map((e) => {
+      h('ol', { class: 'tl tl--cards tl--logos' }, (D.experience || []).map((e) => {
         const linked = e.projectId && projects.find((p) => p.id === e.projectId);
-        return h('li', { class: 'tl__item' },
+        const inner = [
+          e.logo && h('img', { class: 'tl__logo', src: e.logo, alt: '', loading: 'lazy' }),
           h('div', { class: 'tl__top' },
-            h('h2', { class: 'tl__title' }, P(e.role), linked && h('a', { class: 'badge', href: href('projets', linked.id) }, t('exp.badge'))),
+            h('h2', { class: 'tl__title' }, P(e.role), linked && h('span', { class: 'badge' }, t('exp.badge'))),
             h('span', { class: 'datepill', dir: 'auto' }, whenOf(e))),
           P(e.org) && h('p', { class: 'tl__org' }, P(e.org)),
-          (e.tasks || []).length > 0 && h('ul', { class: 'tl__tasks' }, e.tasks.map((x) => h('li', null, P(x)))));
+          (e.tasks || []).length > 0 && h('ul', { class: 'tl__tasks' }, e.tasks.map((x) => h('li', null, P(x)))),
+          linked && h('span', { class: 'tl__see' }, t('exp.open'), ic('next', 'flip')),
+        ];
+        return h('li', { style: 'display:contents' }, linked ? h('a', { class: 'tl__item tl__item--link', href: href('projets', linked.id) }, inner) : h('div', { class: 'tl__item' }, inner));
       })),
     ];
   },
 
   interets() {
-    const icons = { scoutisme: 'compass', musique: 'music', sport: 'trophy' };
+    const i = route.sub && (D.interests || []).find((x) => x.id === route.sub);
+    if (i) {
+      return [
+        h('header', { class: 'phead' },
+          h('span', { class: 'phead__icon', html: icon(HOBBY_ICON[i.id] || 'heart') }),
+          h('div', { class: 'phead__main' }, h('h1', { class: 'phead__title' }, P(i.title)), h('p', { class: 'phead__sub' }, P(i.text))),
+          backPill('interets', 'int.back')),
+        h('div', { class: 'two' },
+          i.image ? h('img', { class: 'bigimg', style: 'max-block-size:520px', src: i.image, alt: P(i.title) }) : h('span'),
+          h('div', { style: 'display:grid;gap:22px' },
+            h('section', { class: 'card story__text' }, h('div', null, h('h3', null, t('int.about')), paragraphs(P(i.details) || P(i.text)))),
+            h('section', { class: 'gain' }, h('h3', null, ic('star'), t('int.gain')), h('p', null, t('int.gainText'))))),
+      ];
+    }
     return [
       pageHead('interets', 'heart', t('page.interests'), t('page.interestsSub')),
-      h('div', { class: 'hobbies' }, (D.interests || []).map((i) => h('article', { class: 'card hobby' },
-        h('span', { class: 'hobby__icon', html: icon(icons[i.id] || 'heart') }),
-        h('h2', { style: 'font-size:1.1rem;font-weight:700;color:var(--ink)' }, P(i.title)),
-        h('p', null, P(i.text))))),
+      h('div', { class: 'hobbies' }, (D.interests || []).map((x) => h('a', { class: 'card hcard', href: href('interets', x.id) },
+        h('div', { class: 'hcard__img' }, x.image && h('img', { src: x.image, alt: '', loading: 'lazy' })),
+        h('div', { class: 'hcard__body' }, h('h2', null, ic(HOBBY_ICON[x.id] || 'heart'), P(x.title)), h('p', null, P(x.text)))))),
     ];
   },
 };
@@ -263,7 +292,7 @@ const PAGES = {
 // ---------- page d'un projet ----------
 const api = {
   night: () => lightsOff,
-  setNight(v) { lightsOff = !!v; if (world) world.setTheme(lightsOff ? 0 : 1); },
+  setNight(v) { lightsOff = !!v; if (world) world.setTheme(lightsOff ? 0 : 1); robot.setNight(lightsOff); },
 };
 function paragraphs(text) {
   return String(text).split(/\n\s*\n/).map((block) => {
@@ -274,18 +303,18 @@ function paragraphs(text) {
     return p;
   });
 }
-function figure(m) {
+function mediaFig(m, cls) {
   const cap = P(m.caption);
-  return h('figure', { class: 'story__fig' },
-    h('img', { src: m.src, alt: cap, loading: 'lazy', decoding: 'async' }),
-    h('button', { class: 'zoom', type: 'button', 'aria-label': t('sheet.zoom'), onclick: () => openLightbox(m.src, cap) }),
+  return h('figure', { class: cls },
+    isVideo(m.src)
+      ? h('video', { src: m.src, poster: m.poster || null, controls: true, preload: m.poster ? 'none' : 'metadata', playsinline: true })
+      : [h('img', { src: m.src, alt: cap, loading: cls === 'heromedia' ? null : 'lazy', decoding: 'async' }), h('button', { class: 'zoom', type: 'button', 'aria-label': t('sheet.zoom'), onclick: () => openLightbox(m.src, cap) })],
     cap && h('figcaption', null, cap));
 }
 function projectPage(k) {
   const p = projects[k];
   const S = p.sections || {};
   const media = (p.media || []).filter((m) => m && m.src);
-  const photos = media.filter((m) => !isVideo(m.src));
   const part = (key) => (P(S[key]) ? h('div', null, h('h3', null, t('sheet.' + key)), paragraphs(P(S[key]))) : null);
   const con = buildConsole(items[k].model, items[k].state, t, api);
   liveConsole = no3d ? null : con;
@@ -293,57 +322,57 @@ function projectPage(k) {
     h('a', { class: 'round', href: k > 0 ? href('projets', projects[k - 1].id) : null, 'aria-label': t('deck.prev'), title: t('deck.prev'), 'aria-disabled': k === 0 ? 'true' : null, style: k === 0 ? 'opacity:.4;pointer-events:none' : null, html: icon('prev', 'flip') }),
     h('a', { class: 'round', href: k < N - 1 ? href('projets', projects[k + 1].id) : null, 'aria-label': t('deck.next'), title: t('deck.next'), 'aria-disabled': k === N - 1 ? 'true' : null, style: k === N - 1 ? 'opacity:.4;pointer-events:none' : null, html: icon('next', 'flip') }));
 
+  // Comme sur l'ancien site : le premier média en grand, les deux suivants à côté du texte, le reste en galerie.
   const first = [part('context'), part('goal')].filter(Boolean);
   const blocks = [];
-  let used = 0;
-  if (first.length) blocks.push(h('section', { class: 'card story__block' + (photos[used] ? '' : ' story__block--solo') }, h('div', { class: 'story__text' }, first), photos[used] && figure(photos[used++])));
-  if (part('build')) blocks.push(h('section', { class: 'card story__block story__block--flip' + (photos[used] ? '' : ' story__block--solo') }, h('div', { class: 'story__text' }, part('build')), photos[used] && figure(photos[used++])));
+  let used = 1;
+  if (first.length) blocks.push(h('section', { class: 'card story__block' + (media[used] ? '' : ' story__block--solo') }, h('div', { class: 'story__text' }, first), media[used] && mediaFig(media[used++], 'story__fig')));
+  if (part('build')) blocks.push(h('section', { class: 'card story__block story__block--flip' + (media[used] ? '' : ' story__block--solo') }, h('div', { class: 'story__text' }, part('build')), media[used] && mediaFig(media[used++], 'story__fig')));
   const last = [part('results'), part('review')].filter(Boolean);
   if (last.length) blocks.push(h('div', { class: last.length > 1 ? 'pair' : null }, last.map((x) => h('section', { class: 'card story__text' }, x))));
-  // En 3D, toutes les photos non placées vont dans la galerie ; sans 3D, la première sert d'image d'en-tête.
-  const hero = no3d ? photos[used++] || photos[0] : null;
-  const rest = media.filter((m) => isVideo(m.src) || (photos.indexOf(m) >= used && m !== hero));
+  const rest = media.slice(used);
 
   return [
     h('header', { class: 'phead phead--project' },
-      mascot('projets'),
       h('div', { class: 'phead__main' },
         h('p', { class: 'phead__row' }, h('span', { class: 'datepill', dir: 'auto' }, whenOf(p)), P(p.org) && h('span', { class: 'phead__org' }, P(p.org))),
         h('h1', { class: 'phead__title', style: 'margin-block-start:8px' }, P(p.title)),
         tagList(p)),
-      h('div', { class: 'phead__nav' }, h('a', { class: 'pill pill--dark', href: href('projets') }, ic('back', 'flip'), t('proj.back')), stepper())),
-    h('section', { class: 'card stage', 'aria-label': t('stage.title') },
-      h('div', { class: 'stage__view', 'data-world': no3d ? null : String(k) },
-        no3d && hero && h('img', { class: 'stage__photo', src: hero.src, alt: P(hero.caption) }),
-        !no3d && h('p', { class: 'bench__hint' }, t('hint.orbit'))),
-      !no3d && h('div', { class: 'stage__side' },
-        h('h2', { class: 'stage__title' }, h('i'), t('stage.title')),
-        con.el,
-        h('p', { class: 'stage__note' }, t('stage.note')))),
+      h('div', { class: 'phead__nav' }, backPill('projets', 'proj.back'), stepper())),
+    media[0] && mediaFig(media[0], 'heromedia'),
     P(p.summary) && h('p', { class: 'card lead', style: 'margin-block-start:22px' }, P(p.summary)),
     h('div', { class: 'story' }, blocks,
       rest.length > 0 && h('section', { class: 'card panel' },
         h('h2', { class: 'panel__title' }, ic('cube'), h('span', null, t('sheet.media'))),
-        h('div', { class: 'gallery' }, rest.map((m) => {
-          const cap = P(m.caption);
-          return isVideo(m.src)
-            ? h('figure', { class: 'shot shot--video' }, h('video', { src: m.src, poster: m.poster || null, controls: true, preload: 'none', playsinline: true }), cap && h('figcaption', null, cap))
-            : h('figure', { class: 'shot' }, h('img', { src: m.src, alt: cap, loading: 'lazy', decoding: 'async' }), h('button', { class: 'zoom', type: 'button', 'aria-label': t('sheet.zoom'), onclick: () => openLightbox(m.src, cap) }), cap && h('figcaption', null, cap));
-        })))),
-    h('div', { class: 'endrow' },
-      p.pdf ? h('a', { class: 'pill pill--white', href: p.pdf, target: '_blank', rel: 'noopener' }, ic('file'), t('sheet.report')) : h('span'),
-      stepper()),
+        h('div', { class: 'gallery' }, rest.map((m) => mediaFig(m, isVideo(m.src) ? 'shot shot--video' : 'shot'))))),
+    !no3d && [
+      h('div', { class: 'stage__head' }, h('h2', null, t('stage.title')), h('p', null, t('stage.sub'))),
+      h('section', { class: 'card stage', 'aria-label': t('stage.title') },
+        h('div', { class: 'stage__view', 'data-world': String(k) }, h('p', { class: 'bench__hint' }, t('hint.orbit'))),
+        h('div', { class: 'stage__side' },
+          h('h3', { class: 'stage__title' }, h('i'), t('stage.title')),
+          con.el,
+          h('p', { class: 'stage__note' }, t('stage.note')))),
+    ],
+    p.pdf && h('section', { class: 'pdfbox', style: 'margin-block-start:30px' },
+      h('div', { class: 'pdfbox__top' },
+        h('div', null, h('h2', null, ic('file'), t('pdf.title')), h('p', null, t('pdf.sub'))),
+        h('div', { class: 'pdfbox__btns' },
+          h('button', { class: 'ghost', type: 'button', onclick: () => openLightbox(p.pdf, '') }, t('pdf.full')),
+          h('a', { class: 'ghost solid', href: p.pdf, target: '_blank', rel: 'noopener' }, t('pdf.open')))),
+      h('iframe', { src: p.pdf + '#page=1&view=FitH&toolbar=0&navpanes=0', title: t('pdf.title'), loading: 'lazy' })),
+    h('div', { class: 'endrow' }, backPill('projets', 'proj.back'), stepper()),
   ];
 }
 
 function openLightbox(src, caption) {
   el.lightbox.replaceChildren(
     h('button', { class: 'round', type: 'button', 'aria-label': t('sheet.close'), html: icon('close'), onclick: () => el.lightbox.close() }),
-    h('img', { src, alt: caption || '' }),
+    /\.pdf$/i.test(src) ? h('iframe', { src, title: 'PDF' }) : h('img', { src, alt: caption || '' }),
     caption ? h('p', null, caption) : h('span'));
   el.lightbox.showModal();
 }
-el.lightbox.addEventListener('click', (e) => { if (e.target.tagName !== 'IMG' && e.target.tagName !== 'P') el.lightbox.close(); });
+el.lightbox.addEventListener('click', (e) => { if (!['IMG', 'P', 'IFRAME'].includes(e.target.tagName)) el.lightbox.close(); });
 
 async function copyMail(e) {
   const b = e.currentTarget;
@@ -356,6 +385,10 @@ async function copyMail(e) {
     location.href = 'mailto:' + D.profile.email;
   }
 }
+
+// ---------- robot ----------
+const robot = createMascot({ reduced, say: (key, page) => t(key === 'page' ? 'rb.p.' + page : 'rb.' + key) });
+let robotPage = '';
 
 // ---------- rendu ----------
 function renderNav() {
@@ -386,6 +419,8 @@ function render(resetScroll) {
   document.title = route.k >= 0 ? `${P(projects[route.k].title)} – ${name}` : route.page === 'accueil' ? `${name} – ${P(D.profile.title)}` : `${t(tab[1])} – ${name}`;
   mountWorld();
   if (resetScroll) scrollTo(0, 0);
+  const where = route.page + '/' + (route.k >= 0 ? route.k : route.sub || '');
+  if (where !== robotPage) { robotPage = where; robot.setPage(route.page); } else robot.relabel();
   if (route.anchor) requestAnimationFrame(() => document.getElementById(route.anchor)?.scrollIntoView({ block: 'center' }));
 }
 
@@ -416,7 +451,7 @@ async function startWorld() {
       rtl: DIR[lang] === 'rtl',
       lux: 1,
       reduced,
-      onPick: (k) => { location.hash = href('projets', projects[k].id); },
+      onPick: (k) => { robot.cheer(); location.hash = href('projets', projects[k].id); },
       onFirstFrame: () => root.classList.add('world-on'),
     });
     el.canvas.addEventListener('webglcontextlost', (e) => { e.preventDefault(); world.setRunning(false); });

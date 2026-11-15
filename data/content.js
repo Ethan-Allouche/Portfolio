@@ -139,7 +139,8 @@ window.PORTFOLIO = {
      }
     }
    ],
-   "pdf": "projects/stage-veolia.pdf"
+   "pdf": "projects/stage-veolia.pdf",
+   "featured": true
   },
   {
    "id": "station-epuration",
@@ -241,7 +242,8 @@ window.PORTFOLIO = {
      }
     }
    ],
-   "pdf": "projects/station-epuration.pdf"
+   "pdf": "projects/station-epuration.pdf",
+   "featured": true
   },
   {
    "id": "systeme-arrosage",
@@ -342,7 +344,8 @@ window.PORTFOLIO = {
      }
     }
    ],
-   "pdf": "projects/systeme-arrosage.pdf"
+   "pdf": "projects/systeme-arrosage.pdf",
+   "featured": false
   },
   {
    "id": "stage-enedis",
@@ -414,6 +417,14 @@ window.PORTFOLIO = {
    },
    "media": [
     {
+     "src": "images/stage-enedis-1.jpg",
+     "caption": {
+      "fr": "",
+      "en": "",
+      "he": ""
+     }
+    },
+    {
      "src": "images/stage-enedis-2.jpg",
      "caption": {
       "fr": "Cartographie des travaux sur la ligne HTA dans le logiciel LEIA",
@@ -430,7 +441,8 @@ window.PORTFOLIO = {
      }
     }
    ],
-   "pdf": "projects/stage-enedis.pdf"
+   "pdf": "projects/stage-enedis.pdf",
+   "featured": false
   },
   {
    "id": "emetteur-recepteur-sonore",
@@ -526,7 +538,8 @@ window.PORTFOLIO = {
      }
     }
    ],
-   "pdf": "projects/emetteur-recepteur-sonore.pdf"
+   "pdf": "projects/emetteur-recepteur-sonore.pdf",
+   "featured": false
   },
   {
    "id": "robot-detecteur-obstacles",
@@ -627,7 +640,8 @@ window.PORTFOLIO = {
      }
     }
    ],
-   "pdf": "projects/robot-detecteur-obstacles.pdf"
+   "pdf": "projects/robot-detecteur-obstacles.pdf",
+   "featured": false
   },
   {
    "id": "lampe-smartlight",
@@ -712,6 +726,14 @@ window.PORTFOLIO = {
      }
     },
     {
+     "src": "images/lampe-smartlight-2.jpg",
+     "caption": {
+      "fr": "",
+      "en": "",
+      "he": ""
+     }
+    },
+    {
      "src": "images/lampe-smartlight-3.jpg",
      "caption": {
       "fr": "Routage du circuit imprimé sous KiCad",
@@ -720,7 +742,8 @@ window.PORTFOLIO = {
      }
     }
    ],
-   "pdf": "projects/lampe-smartlight.pdf"
+   "pdf": "projects/lampe-smartlight.pdf",
+   "featured": false
   },
   {
    "id": "maintenance-unilogic",
@@ -821,7 +844,8 @@ window.PORTFOLIO = {
      }
     }
    ],
-   "pdf": "projects/maintenance-unilogic.pdf"
+   "pdf": "projects/maintenance-unilogic.pdf",
+   "featured": false
   }
  ],
  "experience": [
@@ -870,7 +894,8 @@ window.PORTFOLIO = {
      "he": "ניסויי שטח ועיבוד הנתונים הקרטוגרפיים והפיזיקו־כימיים."
     }
    ],
-   "projectId": "stage-veolia"
+   "projectId": "stage-veolia",
+   "logo": "images/veolia.jpg"
   },
   {
    "id": "enedis",
@@ -912,7 +937,8 @@ window.PORTFOLIO = {
      "he": "שימוש בכלי המיפוי וניהול הרשת (ADMS)."
     }
    ],
-   "projectId": "stage-enedis"
+   "projectId": "stage-enedis",
+   "logo": "images/enedis.jpg"
   },
   {
    "id": "ambassadeur",
@@ -939,7 +965,37 @@ window.PORTFOLIO = {
      "he": "קידום התואר בירידי השכלה וביום הפתוח: הצגת המסלול לתלמידי תיכון ולהוריהם ומענה לשאלות."
     }
    ],
-   "projectId": ""
+   "projectId": "",
+   "logo": "images/univ-toulon.jpg"
+  },
+  {
+   "id": "norauto",
+   "date": "2020",
+   "duration": {
+    "fr": "1 semaine",
+    "en": "1 week",
+    "he": "שבוע"
+   },
+   "logo": "images/norauto.jpg",
+   "hideInCv": true,
+   "projectId": "",
+   "role": {
+    "fr": "Stage de découverte",
+    "en": "Work-shadowing placement",
+    "he": "שבוע היכרות עם עולם העבודה"
+   },
+   "org": {
+    "fr": "Norauto Bon-Rencontre",
+    "en": "Norauto Bon-Rencontre",
+    "he": "Norauto Bon-Rencontre"
+   },
+   "tasks": [
+    {
+     "fr": "Observation des mécaniciens en charge des réparations de véhicules.",
+     "en": "Observed the mechanics in charge of vehicle repairs.",
+     "he": "תצפית על עבודת המכונאים האחראים על תיקון כלי הרכב."
+    }
+   ]
   }
  ],
  "education": [
@@ -960,6 +1016,74 @@ window.PORTFOLIO = {
     "fr": "Diplôme Bac+3. Parcours Automatisme et Informatique Industrielle (AII).",
     "en": "Three-year university bachelor of technology. Specialisation in automation and industrial computing (AII).",
     "he": "תואר ראשון טכנולוגי תלת־שנתי. התמחות בבקרה ומחשוב תעשייתי (AII)."
+   },
+   "image": "images/geii.jpg",
+   "page": {
+    "subtitle": {
+     "fr": "Bachelor Universitaire de Technologie",
+     "en": "Three-year university bachelor of technology",
+     "he": "תואר ראשון טכנולוגי אוניברסיטאי, שלוש שנים"
+    },
+    "intro": {
+     "fr": "Le BUT Génie Électrique et Informatique Industrielle (GEII) est une formation en 3 ans (niveau Bac+3) qui forme des cadres intermédiaires capables de concevoir, vérifier et maintenir des systèmes automatisés complexes.\n\nMa spécialité, Automatisme et Informatique Industrielle (AII), met l'accent sur la programmation d'automates, la supervision de processus industriels et l'intégration de systèmes robotisés.",
+     "en": "The BUT in Electrical Engineering and Industrial Computing (GEII) is a three-year degree that trains technicians and junior engineers to design, test and maintain complex automated systems.\n\nMy track, Automation and Industrial Computing (AII), focuses on PLC programming, supervision of industrial processes and integration of robotic systems.",
+     "he": "תואר BUT בהנדסת חשמל ומחשוב תעשייתי (GEII) הוא מסלול של שלוש שנים שמכשיר הנדסאים ומהנדסים זוטרים לתכנן, לבדוק ולתחזק מערכות אוטומטיות מורכבות.\n\nההתמחות שלי, בקרה ומחשוב תעשייתי (AII), מתמקדת בתכנות בקרים, בפיקוח על תהליכים תעשייתיים ובשילוב מערכות רובוטיות."
+    },
+    "goals": [
+     {
+      "fr": "Concevoir la partie commande des systèmes automatisés.",
+      "en": "Design the control side of automated systems.",
+      "he": "תכנון חלק הבקרה של מערכות אוטומטיות."
+     },
+     {
+      "fr": "Mettre en place des réseaux de communication industriels.",
+      "en": "Set up industrial communication networks.",
+      "he": "הקמת רשתות תקשורת תעשייתיות."
+     },
+     {
+      "fr": "Superviser et piloter des installations à distance.",
+      "en": "Supervise and control installations remotely.",
+      "he": "פיקוח ושליטה מרחוק על מתקנים."
+     }
+    ],
+    "modules": [
+     {
+      "title": {
+       "fr": "Énergie et électronique",
+       "en": "Energy and electronics",
+       "he": "אנרגיה ואלקטרוניקה"
+      },
+      "text": {
+       "fr": "Distribution électrique, électronique de puissance, conversion d'énergie.",
+       "en": "Electrical distribution, power electronics, energy conversion.",
+       "he": "חלוקת חשמל, אלקטרוניקת הספק, המרת אנרגיה."
+      }
+     },
+     {
+      "title": {
+       "fr": "Automatisme et robotique",
+       "en": "Automation and robotics",
+       "he": "בקרה ורובוטיקה"
+      },
+      "text": {
+       "fr": "Programmation API (Ladder, Grafcet), robots industriels, IHM.",
+       "en": "PLC programming (Ladder, Grafcet), industrial robots, HMI.",
+       "he": "תכנות בקרים (סולם, Grafcet), רובוטים תעשייתיים, ממשקי מפעיל."
+      }
+     },
+     {
+      "title": {
+       "fr": "Informatique industrielle",
+       "en": "Industrial computing",
+       "he": "מחשוב תעשייתי"
+      },
+      "text": {
+       "fr": "C/C++, Python, réseaux locaux, systèmes embarqués.",
+       "en": "C/C++, Python, local networks, embedded systems.",
+       "he": "C/C++‎, Python, רשתות מקומיות, מערכות משובצות."
+      }
+     }
+    ]
    }
   },
   {
@@ -1017,6 +1141,26 @@ window.PORTFOLIO = {
     "fr": "Encadrement d'enfants et d'adolescents en séjours et en accueils de loisirs.",
     "en": "Qualifies its holder to supervise children and teenagers in camps and activity centres.",
     "he": "מסמיכה להדריך ילדים ונוער במחנות ובמסגרות פנאי."
+   }
+  },
+  {
+   "id": "brevet",
+   "date": "2020",
+   "hideInCv": true,
+   "title": {
+    "fr": "Brevet des collèges",
+    "en": "Brevet des collèges (lower secondary certificate)",
+    "he": "תעודת סיום חטיבת ביניים"
+   },
+   "school": {
+    "fr": "Collège Les Pins d'Alep, Toulon",
+    "en": "Collège Les Pins d'Alep, Toulon",
+    "he": "חטיבת הביניים Les Pins d'Alep, טולון"
+   },
+   "detail": {
+    "fr": "Mention Bien",
+    "en": "With honours (mention Bien)",
+    "he": "בהצטיינות"
    }
   }
  ],
@@ -1196,6 +1340,12 @@ window.PORTFOLIO = {
     "fr": "Responsable d'un groupe local depuis un an et animateur depuis trois ans : camps d'été de quatre semaines avec des jeunes de 11 à 17 ans.",
     "en": "Leader of a local group for the past year and camp leader for three years: four-week summer camps with 11-to-17-year-olds.",
     "he": "אחראי על קבוצה מקומית בשנה האחרונה ומדריך זה שלוש שנים: מחנות קיץ של ארבעה שבועות עם בני נוער בגילאי 11 עד 17."
+   },
+   "image": "images/scoutisme.jpg",
+   "details": {
+    "fr": "Engagement fort dans le mouvement scout depuis de nombreuses années. En tant que responsable de groupe local et animateur, je développe des compétences en leadership, gestion de groupe, organisation logistique et pédagogie. J'encadre des jeunes de 11 à 17 ans lors de camps et d'activités tout au long de l'année, en favorisant l'entraide et la vie dans la nature.",
+    "en": "A strong commitment to scouting for many years. As a local group leader and camp leader I build skills in leadership, group management, logistics and teaching. I supervise 11-to-17-year-olds at camps and activities all year round, encouraging mutual help and outdoor life.",
+    "he": "מחויבות עמוקה לתנועת הצופים זה שנים רבות. כאחראי על קבוצה מקומית וכמדריך אני מפתח כישורי מנהיגות, ניהול קבוצה, ארגון לוגיסטי והדרכה. אני מלווה בני נוער בגילאי 11 עד 17 במחנות ובפעילויות לאורך כל השנה, ומעודד עזרה הדדית וחיים בטבע."
    }
   },
   {
@@ -1209,6 +1359,12 @@ window.PORTFOLIO = {
     "fr": "Guitare classique et piano, pratiqués en groupe depuis trois ans.",
     "en": "Classical guitar and piano, played in a band for three years.",
     "he": "גיטרה קלאסית ופסנתר, בנגינה בהרכב זה שלוש שנים."
+   },
+   "image": "images/musique.jpg",
+   "details": {
+    "fr": "La musique est une passion qui me permet de développer ma créativité et mon écoute. Je pratique la guitare classique et le piano. Jouer en groupe depuis 3 ans m'a appris l'importance de la coordination, de l'écoute mutuelle et du travail collectif pour atteindre une harmonie.",
+    "en": "Music is a passion that develops my creativity and my ear. I play classical guitar and piano. Three years of playing in a band have taught me how much coordination, listening to one another and collective work matter to reach harmony.",
+    "he": "המוזיקה היא תשוקה שמפתחת אצלי יצירתיות והקשבה. אני מנגן בגיטרה קלאסית ובפסנתר. שלוש שנות נגינה בהרכב לימדו אותי כמה חשובים התיאום, ההקשבה ההדדית והעבודה המשותפת כדי להגיע להרמוניה."
    }
   },
   {
@@ -1222,6 +1378,329 @@ window.PORTFOLIO = {
     "fr": "Huit ans de tennis en compétition (classé 30/0), option sport au lycée et pratique régulière.",
     "en": "Eight years of competitive tennis (French ranking 30/0), sport option in high school and regular practice.",
     "he": "שמונה שנות טניס תחרותי (דירוג צרפתי 30/0), מגמת ספורט בתיכון ופעילות קבועה."
+   },
+   "image": "images/sport.jpg",
+   "details": {
+    "fr": "Le sport fait partie intégrante de mon équilibre de vie. J'ai pratiqué le tennis en compétition pendant 8 ans, jusqu'au classement 30/0. J'ai également suivi l'option sport au lycée. Ces expériences m'ont donné le goût de l'effort, la persévérance et le fair-play.",
+    "en": "Sport is an integral part of my balance. I played competitive tennis for 8 years, reaching the French 30/0 ranking, and took the sport option in high school. These experiences gave me a taste for effort, perseverance and fair play.",
+    "he": "הספורט הוא חלק בלתי נפרד מהאיזון בחיי. שיחקתי טניס תחרותי במשך 8 שנים והגעתי לדירוג הצרפתי 30/0, ולמדתי גם במגמת ספורט בתיכון. החוויות האלה נטעו בי אהבה למאמץ, התמדה והגינות ספורטיבית."
+   }
+  }
+ ],
+ "skillList": [
+  {
+   "id": "c-cpp",
+   "name": {
+    "fr": "C/C++",
+    "en": "C/C++",
+    "he": "C/C++‎"
+   },
+   "level": {
+    "fr": "Notions",
+    "en": "Basics",
+    "he": "בסיסי"
+   },
+   "projects": [
+    "systeme-arrosage",
+    "robot-detecteur-obstacles",
+    "lampe-smartlight"
+   ],
+   "desc": {
+    "fr": "Développement bas niveau pour systèmes embarqués et microcontrôleurs (Arduino, ESP32). Compréhension de la gestion mémoire et des structures de données.",
+    "en": "Low-level development for embedded systems and microcontrollers (Arduino, ESP32). Understanding of memory management and data structures.",
+    "he": "פיתוח ברמה נמוכה למערכות משובצות ולמיקרו־בקרים (Arduino, ESP32). הבנה של ניהול זיכרון ומבני נתונים."
+   }
+  },
+  {
+   "id": "python",
+   "name": {
+    "fr": "Python",
+    "en": "Python",
+    "he": "Python"
+   },
+   "level": {
+    "fr": "Avancé",
+    "en": "Advanced",
+    "he": "מתקדם"
+   },
+   "projects": [
+    "stage-veolia"
+   ],
+   "desc": {
+    "fr": "Scripts avancés, traitement de données et automatisation de tâches. Utilisation de bibliothèques pour l'interfaçage avec des systèmes matériels.",
+    "en": "Advanced scripting, data processing and task automation. Use of libraries to interface with hardware.",
+    "he": "כתיבת סקריפטים מתקדמים, עיבוד נתונים ואוטומציה של משימות. שימוש בספריות לחיבור למערכות חומרה."
+   }
+  },
+  {
+   "id": "langages-automate",
+   "name": {
+    "fr": "Langages automate",
+    "en": "PLC languages",
+    "he": "שפות בקר"
+   },
+   "level": {
+    "fr": "Avancé",
+    "en": "Advanced",
+    "he": "מתקדם"
+   },
+   "projects": [
+    "station-epuration",
+    "systeme-arrosage",
+    "maintenance-unilogic"
+   ],
+   "desc": {
+    "fr": "Programmation d'automates programmables industriels (API) selon la norme CEI 61131-3. Maîtrise des diagrammes Ladder, du Grafcet (SFC) et des blocs fonctionnels.",
+    "en": "Programming of industrial PLCs to the IEC 61131-3 standard. Proficient with Ladder diagrams, Grafcet (SFC) and function blocks.",
+    "he": "תכנות בקרים מתוכנתים תעשייתיים לפי תקן IEC 61131-3. שליטה בדיאגרמות סולם, Grafcet (SFC) ובלוקים פונקציונליים."
+   }
+  },
+  {
+   "id": "electronique",
+   "name": {
+    "fr": "Électronique",
+    "en": "Electronics",
+    "he": "אלקטרוניקה"
+   },
+   "level": {
+    "fr": "Avancé",
+    "en": "Advanced",
+    "he": "מתקדם"
+   },
+   "projects": [
+    "stage-veolia",
+    "station-epuration",
+    "stage-enedis",
+    "emetteur-recepteur-sonore",
+    "robot-detecteur-obstacles",
+    "lampe-smartlight",
+    "maintenance-unilogic"
+   ],
+   "desc": {
+    "fr": "Conception de circuits, soudure, choix de composants et diagnostic de pannes sur cartes électroniques.",
+    "en": "Circuit design, soldering, component selection and fault-finding on electronic boards.",
+    "he": "תכנון מעגלים, הלחמה, בחירת רכיבים ואיתור תקלות בכרטיסים אלקטרוניים."
+   }
+  },
+  {
+   "id": "energie",
+   "name": {
+    "fr": "Énergie",
+    "en": "Energy",
+    "he": "אנרגיה"
+   },
+   "level": {
+    "fr": "Notions",
+    "en": "Basics",
+    "he": "בסיסי"
+   },
+   "projects": [
+    "station-epuration",
+    "robot-detecteur-obstacles"
+   ],
+   "desc": {
+    "fr": "Sensibilisation aux enjeux d'efficacité énergétique et conception de systèmes durables (par exemple la gestion de l'eau).",
+    "en": "Awareness of energy-efficiency issues and design of sustainable systems (water management, for example).",
+    "he": "מודעות לסוגיות של יעילות אנרגטית ותכנון מערכות בנות־קיימא (למשל ניהול מים)."
+   }
+  },
+  {
+   "id": "robotique",
+   "name": {
+    "fr": "Robotique",
+    "en": "Robotics",
+    "he": "רובוטיקה"
+   },
+   "level": {
+    "fr": "Avancé",
+    "en": "Advanced",
+    "he": "מתקדם"
+   },
+   "projects": [
+    "robot-detecteur-obstacles"
+   ],
+   "desc": {
+    "fr": "Asservissement de moteurs, cinématique simple et intégration de capteurs pour la navigation robotique.",
+    "en": "Motor control loops, simple kinematics and sensor integration for robot navigation.",
+    "he": "בקרת מנועים, קינמטיקה בסיסית ושילוב חיישנים לניווט רובוטי."
+   }
+  },
+  {
+   "id": "unilogic",
+   "name": {
+    "fr": "UniLogic",
+    "en": "UniLogic",
+    "he": "UniLogic"
+   },
+   "level": {
+    "fr": "Notions",
+    "en": "Basics",
+    "he": "בסיסי"
+   },
+   "projects": [
+    "maintenance-unilogic"
+   ],
+   "desc": {
+    "fr": "Programmation des automates Unitronics (série UniStream), qui intègrent automate et IHM.",
+    "en": "Programming Unitronics PLCs (UniStream series), which combine PLC and HMI.",
+    "he": "תכנות בקרי Unitronics (סדרת UniStream), המשלבים בקר וממשק מפעיל."
+   }
+  },
+  {
+   "id": "php-sql",
+   "name": {
+    "fr": "Base de données (PHP/SQL)",
+    "en": "Databases (PHP/SQL)",
+    "he": "מסדי נתונים (PHP/SQL)"
+   },
+   "level": {
+    "fr": "Notions",
+    "en": "Basics",
+    "he": "בסיסי"
+   },
+   "projects": [
+    "station-epuration"
+   ],
+   "desc": {
+    "fr": "Capacité à concevoir, interroger et manipuler des données avec SQL au sein d'applications web PHP.",
+    "en": "Able to design, query and manipulate data with SQL inside PHP web applications.",
+    "he": "יכולת לתכנן, לתשאל ולעבד נתונים ב־SQL בתוך יישומי אינטרנט ב־PHP."
+   }
+  },
+  {
+   "id": "office-365",
+   "name": {
+    "fr": "Office 365",
+    "en": "Office 365",
+    "he": "Office 365"
+   },
+   "level": {
+    "fr": "Professionnel",
+    "en": "Professional",
+    "he": "מקצועי"
+   },
+   "projects": [
+    "stage-veolia",
+    "systeme-arrosage",
+    "lampe-smartlight"
+   ],
+   "desc": {
+    "fr": "Maîtrise avancée des outils collaboratifs et bureautiques (Excel, Word, PowerPoint, Teams) pour la gestion de projets.",
+    "en": "Advanced command of collaborative and office tools (Excel, Word, PowerPoint, Teams) for project work.",
+    "he": "שליטה מתקדמת בכלי המשרד ושיתוף הפעולה (Excel, Word, PowerPoint, Teams) לניהול פרויקטים."
+   }
+  },
+  {
+   "id": "vijeo-designer",
+   "name": {
+    "fr": "Vijeo Designer",
+    "en": "Vijeo Designer",
+    "he": "Vijeo Designer"
+   },
+   "level": {
+    "fr": "Avancé",
+    "en": "Advanced",
+    "he": "מתקדם"
+   },
+   "projects": [
+    "station-epuration",
+    "systeme-arrosage"
+   ],
+   "desc": {
+    "fr": "Conception et programmation d'interfaces IHM dynamiques pour le pilotage et la supervision de systèmes automatisés.",
+    "en": "Design and programming of dynamic HMI screens to control and supervise automated systems.",
+    "he": "תכנון ותכנות ממשקי מפעיל דינמיים לשליטה ולפיקוח על מערכות אוטומטיות."
+   }
+  },
+  {
+   "id": "codesys-control-expert",
+   "name": {
+    "fr": "Codesys / Control Expert",
+    "en": "Codesys / Control Expert",
+    "he": "Codesys / Control Expert"
+   },
+   "level": {
+    "fr": "Avancé",
+    "en": "Advanced",
+    "he": "מתקדם"
+   },
+   "projects": [
+    "station-epuration",
+    "systeme-arrosage"
+   ],
+   "desc": {
+    "fr": "Programmation et configuration d'automates programmables industriels (API) sur les environnements standards.",
+    "en": "Programming and configuring industrial PLCs in the standard environments.",
+    "he": "תכנות והגדרה של בקרים תעשייתיים בסביבות הפיתוח המקובלות."
+   }
+  },
+  {
+   "id": "systeme-embarque",
+   "name": {
+    "fr": "Système embarqué",
+    "en": "Embedded systems",
+    "he": "מערכות משובצות"
+   },
+   "level": {
+    "fr": "Avancé",
+    "en": "Advanced",
+    "he": "מתקדם"
+   },
+   "projects": [
+    "stage-veolia"
+   ],
+   "desc": {
+    "fr": "Conception et intégration d'architectures électroniques autonomes multi-capteurs, gestion de l'énergie et étanchéité de systèmes embarqués.",
+    "en": "Design and integration of autonomous multi-sensor electronic architectures, power management and waterproofing of embedded systems.",
+    "he": "תכנון ושילוב של ארכיטקטורות אלקטרוניות אוטונומיות מרובות חיישנים, ניהול אנרגיה ואיטום של מערכות משובצות."
+   }
+  },
+  {
+   "id": "adaptabilite-logicielle",
+   "name": {
+    "fr": "Adaptabilité logicielle",
+    "en": "Software adaptability",
+    "he": "הסתגלות לתוכנות"
+   },
+   "level": {
+    "fr": "Professionnel",
+    "en": "Professional",
+    "he": "מקצועי"
+   },
+   "projects": [
+    "stage-enedis",
+    "lampe-smartlight",
+    "maintenance-unilogic"
+   ],
+   "desc": {
+    "fr": "Prise en main rapide et exploitation autonome de tout nouvel environnement logiciel ou outil technique.",
+    "en": "Quick to pick up any new software environment or technical tool and use it independently.",
+    "he": "למידה מהירה ועבודה עצמאית בכל סביבת תוכנה או כלי טכני חדש."
+   }
+  },
+  {
+   "id": "travail-en-equipe",
+   "name": {
+    "fr": "Travail en équipe",
+    "en": "Teamwork",
+    "he": "עבודת צוות"
+   },
+   "level": {
+    "fr": "Professionnel",
+    "en": "Professional",
+    "he": "מקצועי"
+   },
+   "projects": [
+    "station-epuration",
+    "stage-enedis",
+    "emetteur-recepteur-sonore",
+    "robot-detecteur-obstacles",
+    "maintenance-unilogic"
+   ],
+   "desc": {
+    "fr": "Capacité à collaborer efficacement, à communiquer clairement et à coordonner des actions au sein d'un groupe projet.",
+    "en": "Able to collaborate effectively, communicate clearly and coordinate work within a project group.",
+    "he": "יכולת לשתף פעולה ביעילות, לתקשר בבהירות ולתאם פעולות בתוך צוות פרויקט."
    }
   }
  ]
