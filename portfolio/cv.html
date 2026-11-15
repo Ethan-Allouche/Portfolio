@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CV – Ethan Allouche</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<style>
+:root { --ink: #111827; --muted: #4b5563; --line: #d1d5db; --paper: #fff; --desk: #eff6ff; --go: #1e3a8a; --blue: #2563eb; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--desk); color: var(--ink); font: 400 15px/1.45 ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Noto Sans Hebrew', sans-serif; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, ul, dl, dd { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; }
+.tools { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 10px clamp(12px, 4vw, 32px); background: color-mix(in srgb, var(--desk) 85%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(20, 26, 23, .1); }
+.tools .grow { flex: 1; }
+.tools a, .tools button { display: inline-flex; align-items: center; min-height: 40px; padding: 8px 16px; border: 1.5px solid #d1d5db; border-radius: 999px; background: transparent; color: var(--ink); font: 600 14px/1.2 inherit; font-family: inherit; text-decoration: none; cursor: pointer; }
+.tools .primary { background: var(--blue); border-color: var(--blue); color: #fff; }
+.tools .langs { display: inline-flex; padding: 3px; border-radius: 11px; background: #dbeafe; }
+.tools .langs button { min-height: 32px; min-width: 36px; padding: 0 8px; border: 0; border-radius: 8px; font-size: 13px; justify-content: center; }
+.tools .langs button[aria-pressed='true'] { background: var(--go); color: #fff; }
+.tip { padding: 8px clamp(12px, 4vw, 32px) 0; font-size: 13px; color: var(--muted); text-align: center; }
+:focus-visible { outline: 3px solid #1d4ed8; outline-offset: 2px; }
+
+.sheet { --k: 1; max-width: 210mm; margin: 18px auto 48px; padding: 9mm 10mm; background: var(--paper); box-shadow: 0 30px 60px -30px rgba(20, 26, 23, .45); font-size: calc(var(--k) * 9.7pt); line-height: 1.34; }
+.head { display: grid; grid-template-columns: 1fr auto; gap: .4em 2em; align-items: end; padding-bottom: .8em; border-bottom: .2em solid var(--go); }
+.head h1 { font-size: 2.5em; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
+[dir='rtl'] .head h1 { letter-spacing: 0; }
+.head .role { margin-top: .3em; font-size: 1.14em; font-weight: 500; line-height: 1.25; }
+.contact { display: grid; gap: .1em; font-size: .93em; text-align: end; }
+.contact a { text-decoration: none; }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 29%; gap: 0 1.4em; margin-top: .8em; }
+.main, .side { min-width: 0; }
+.side { padding-inline-start: 1.1em; border-inline-start: 1px solid var(--line); }
+.sheet section + section { margin-top: .8em; }
+.sheet h2 { margin-bottom: .4em; padding-bottom: .15em; border-bottom: 1px solid var(--line); font-size: 1.08em; font-weight: 800; color: var(--go); }
+.lead { font-size: 1em; }
+.goal { margin-top: .25em; font-weight: 600; }
+.item + .item { margin-top: .48em; }
+.item__top { display: flex; justify-content: space-between; align-items: baseline; gap: 1em; }
+.item h3 { font-size: 1.04em; font-weight: 700; line-height: 1.22; }
+.item .when { flex: none; font-size: .9em; font-weight: 500; color: var(--muted); white-space: nowrap; }
+.item .org { font-size: .93em; color: var(--muted); }
+.item ul { margin-top: .2em; padding-inline-start: 1.15em; list-style: disc; font-size: .93em; line-height: 1.33; }
+.item ul li::marker { color: #9aa49e; }
+.item p.txt { font-size: .93em; line-height: 1.33; }
+.side h3 { margin: .6em 0 .2em; font-size: .97em; font-weight: 700; }
+.side h2 + h3, .side h2 + .hobby h3 { margin-top: 0; }
+.side li, .side dd, .side dt, .side p { font-size: .92em; line-height: 1.35; }
+.side li + li { margin-top: .12em; }
+.side dl div { display: flex; justify-content: space-between; gap: .6em; }
+.side dt { font-weight: 600; }
+.side .hobby h3 { margin-bottom: .05em; }
+
+/* Mesure « comme sur papier » : même largeur utile qu'une page A4. */
+.sheet.fit { width: 190mm; max-width: none; margin: 0; padding: 0; }
+.sheet.fit .grid { grid-template-columns: minmax(0, 1fr) 29%; }
+.sheet.fit .head { grid-template-columns: 1fr auto; }
+
+/* Vignette affichée sur la page d'accueil du site. */
+.thumb body { background: #fff; overflow: hidden; }
+.thumb .tools, .thumb .tip { display: none; }
+.thumb .sheet { width: 794px; max-width: none; min-height: 1123px; margin: 0; box-shadow: none; }
+
+@media (max-width: 720px) {
+  .sheet:not(.fit) { margin: 0; padding: 22px 18px 40px; box-shadow: none; font-size: 14.5px; }
+  .sheet:not(.fit) .head { grid-template-columns: 1fr; }
+  .sheet:not(.fit) .contact { text-align: start; }
+  .sheet:not(.fit) .grid { grid-template-columns: 1fr; }
+  .sheet:not(.fit) .side { margin-top: .95em; padding: 0; border: 0; }
+}
+@page { size: A4; margin: 9mm 10mm; }
+@media print {
+  body { background: #fff; }
+  .tools, .tip { display: none !important; }
+  .sheet { width: auto; max-width: none; margin: 0; padding: 0; box-shadow: none; font-size: calc(var(--k) * 9.7pt) !important; }
+  .sheet .head { grid-template-columns: 1fr auto !important; }
+  .sheet .contact { text-align: end !important; }
+  .sheet .grid { grid-template-columns: minmax(0, 1fr) 29% !important; }
+  .sheet .side { margin: 0 !important; padding: 0 !important; padding-inline-start: 1.1em !important; border: 0 !important; border-inline-start: 1px solid var(--line) !important; }
+  .item { break-inside: avoid; }
+  a { text-decoration: none; }
+}
+</style>
+</head>
+<body>
+<div class="tools" id="tools"></div>
+<p class="tip" id="tip"></p>
+<article class="sheet" id="cv"></article>
+<script src="data/content.js" defer></script>
+<script type="module">
+import { LANGS, DIR, SHORT, NAMES, detectLang, rememberLang, pick, translator } from './assets/js/i18n.js';
+
+const params = new URLSearchParams(location.search);
+if (params.has('thumb')) document.documentElement.classList.add('thumb');
+const draft = params.has('draft');
+let D = window.PORTFOLIO || { profile: {} };
+if (draft) { try { const d = JSON.parse(localStorage.getItem('portfolio.draft') || 'null'); if (d && d.profile) D = d; } catch {} }
+let lang = detectLang();
+
+function h(tag, attrs, ...kids) {
+  const n = document.createElement(tag);
+  if (attrs) for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === 'class') n.className = v;
+    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v);
+  }
+  for (const kid of kids.flat(Infinity)) if (kid != null && kid !== false && kid !== '') n.append(kid);
+  return n;
+}
+const siteUrl = () => {
+  const u = /^https?:/.test(location.protocol) && !/^(localhost|127\.)/.test(location.hostname) ? new URL('.', location.href) : new URL('https://ethan-allouche.github.io/Portfolio/');
+  return { href: u.href, text: (u.host + u.pathname).replace(/\/$/, '') };
+};
+
+function render() {
+  const t = translator(lang), P = (v) => pick(v, lang), pr = D.profile || {};
+  document.documentElement.lang = lang;
+  document.documentElement.dir = DIR[lang];
+  document.title = 'CV – ' + (P(pr.name) || '');
+  const site = siteUrl();
+
+  document.getElementById('tools').replaceChildren(
+    h('a', { href: 'index.html?lang=' + lang }, t('cv.back')),
+    h('span', { class: 'grow' }),
+    h('span', { class: 'langs', role: 'group', 'aria-label': t('lang.label') }, LANGS.map((l) => h('button', { type: 'button', lang: l, title: NAMES[l], 'aria-label': NAMES[l], 'aria-pressed': String(l === lang), onclick: () => { lang = l; rememberLang(l); render(); } }, SHORT[l]))),
+    h('button', { class: 'primary', type: 'button', onclick: () => window.print() }, t('cv.save')));
+  document.getElementById('tip').textContent = t('cv.tip');
+
+  const inExp = new Set((D.experience || []).map((e) => e.projectId).filter(Boolean));
+  const others = (D.projects || []).filter((p) => !inExp.has(p.id));
+  const when = (date, dur) => [date, P(dur)].filter(Boolean).join(' · ');
+  const linkedin = pr.linkedin ? pr.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '') : '';
+
+  document.getElementById('cv').replaceChildren(
+    h('header', { class: 'head' },
+      h('div', null, h('h1', null, P(pr.name)), h('p', { class: 'role' }, P(pr.title))),
+      h('p', { class: 'contact' },
+        pr.email && h('a', { href: 'mailto:' + pr.email, dir: 'ltr' }, pr.email),
+        pr.phone && h('span', { dir: 'ltr' }, pr.phone),
+        linkedin && h('a', { href: pr.linkedin, dir: 'ltr' }, linkedin),
+        h('a', { href: site.href, dir: 'ltr' }, site.text),
+        [P(pr.location), P(pr.license)].filter(Boolean).length > 0 && h('span', null, [P(pr.location), P(pr.license)].filter(Boolean).join(', ')))),
+    h('div', { class: 'grid' },
+      h('div', { class: 'main' },
+        h('section', null, h('h2', null, t('sec.profile')), h('p', { class: 'lead' }, P(pr.pitch)), P(pr.status) && h('p', { class: 'goal' }, P(pr.status))),
+        (D.experience || []).length > 0 && h('section', null, h('h2', null, t('sec.experience')), D.experience.map((e) => h('div', { class: 'item' },
+          h('div', { class: 'item__top' }, h('h3', null, P(e.role)), h('span', { class: 'when' }, when(e.date, e.duration))),
+          h('p', { class: 'org' }, P(e.org)),
+          (e.tasks || []).length > 0 && h('ul', null, e.tasks.map((x) => h('li', null, P(x))))))),
+        others.length > 0 && h('section', null, h('h2', null, t('sec.projects')), others.map((p) => h('div', { class: 'item' },
+          h('div', { class: 'item__top' }, h('h3', null, P(p.title)), h('span', { class: 'when' }, when(p.year, p.duration))),
+          h('p', { class: 'txt' }, P(p.summary))))),
+        (D.education || []).length > 0 && h('section', null, h('h2', null, t('sec.education')), D.education.map((e) => h('div', { class: 'item' },
+          h('div', { class: 'item__top' }, h('h3', null, P(e.title)), h('span', { class: 'when' }, e.date || '')),
+          h('p', { class: 'org' }, [P(e.school), P(e.detail)].filter(Boolean).join(' – ')))))),
+      h('aside', { class: 'side' },
+        (D.skills || []).length > 0 && h('section', null, h('h2', null, t('sec.skills')), D.skills.map((g) => [h('h3', null, P(g.group)), h('ul', null, (g.items || []).map((x) => h('li', null, P(x))))])),
+        (D.languages || []).length > 0 && h('section', null, h('h2', null, t('sec.languages')), h('dl', null, D.languages.map((l) => h('div', null, h('dt', null, P(l.name)), h('dd', null, P(l.level)))))),
+        (D.interests || []).length > 0 && h('section', null, h('h2', null, t('sec.interests')), D.interests.map((i) => h('div', { class: 'hobby' }, h('h3', null, P(i.title)), h('p', null, P(i.text))))))));
+  fit();
+}
+
+/** Ajuste la taille du texte pour que le CV tienne sur une seule page A4. */
+function fit() {
+  const sheet = document.getElementById('cv');
+  const MM = 96 / 25.4, room = (297 - 18) * MM - 2;
+  sheet.classList.add('fit');
+  let k = 1.06;
+  do {
+    k -= 0.02;
+    sheet.style.setProperty('--k', k.toFixed(2));
+  } while (sheet.scrollHeight > room && k > 0.8);
+  sheet.classList.remove('fit');
+}
+render();
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+addEventListener('beforeprint', fit);
+if (new URLSearchParams(location.search).has('print')) addEventListener('load', () => setTimeout(() => window.print(), 400));
+</script>
+</body>
+</html>
