@@ -4,7 +4,6 @@
 const toggle = (key, on, off = on) => ({ t: 'act', label: (s) => (s[key] ? on : off), run: (s) => { s[key] = !s[key]; }, lit: (s) => !!s[key] });
 const bump = (key, label, more = {}) => ({ t: 'act', label: () => label, run: (s) => { s[key] = (s[key] || 0) + 1; }, ...more });
 
-const NEXT = { normal: 'fault', tripped: 'isolate', isolated: 'feed', fed: 'repair' };
 
 export const CONSOLES = {
   drone: {
@@ -35,14 +34,11 @@ export const CONSOLES = {
     ],
   },
   reseau: {
-    read: [['cut', 'r.cut'], ['time', 'r.outage', 's'], ['st', 'r.state']],
+    read: [['reg', 'r.regime'], ['zone', 'r.zone'], ['cut', 'r.cut'], ['st', 'r.state']],
     ctl: [
-      {
-        t: 'act', primary: true,
-        label: (s) => (NEXT[s.out.phase || 'normal'] ? 'a.' + NEXT[s.out.phase || 'normal'] : 'a.wait'),
-        off: (s) => !NEXT[s.out.phase || 'normal'],
-        run: (s) => { const k = NEXT[s.out.phase || 'normal']; if (k) s[k] = (s[k] || 0) + 1; },
-      },
+      { t: 'seg', key: 'cam', label: 'c.view', opts: [['all', 'c.camAll'], ['site', 'c.camSite'], ['bex', 'c.camBex']] },
+      { t: 'act', primary: true, label: (s) => 'a.' + (s.out.next || 'wait'), off: (s) => !s.out.next, run: (s) => { s.go = (s.go || 0) + 1; } },
+      bump('touch', 'a.touch', { off: (s) => s.out.st === '@tripped' || s.out.st === '@reclose' }),
     ],
   },
   sonore: {
@@ -53,8 +49,9 @@ export const CONSOLES = {
     ],
   },
   robot: {
-    read: [['dist', 'r.dist', 'cm'], ['pl', 'r.ml', '%'], ['pr', 'r.mr', '%']],
+    read: [['dist', 'r.dist', 'cm'], ['pl', 'r.ml'], ['pr', 'r.mr'], ['scn', 'r.scn']],
     ctl: [
+      { ...toggle('zoom', 'c.wide', 'c.follow') },
       { t: 'seg', key: 'mode', label: 'c.mode', opts: [['auto', 'c.auto'], ['manual', 'c.manual']] },
       { t: 'pad' },
     ],
