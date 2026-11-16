@@ -185,14 +185,16 @@ export class World {
   _station(i, q) {
     const inst = this.insts[i];
     const p = inst.group.position;
+    // une maquette peut demander un cadrage rapproché (inst.view), par exemple pour suivre un élément mobile
+    const v = (i === this.active && inst.view && inst.view()) || null;
     const yaw = (this.rtl ? -1 : 1) * (inst.yaw ?? -0.5);
-    const pitch = inst.pitch ?? 0.4;
-    const [w, d] = inst.foot;
-    const h = inst.height;
+    const pitch = v?.pitch ?? inst.pitch ?? 0.4;
+    const [w, d] = v ? v.foot : inst.foot;
+    const h = v ? v.height : inst.height;
     const c = Math.abs(Math.cos(yaw)), sn = Math.abs(Math.sin(yaw));
     const a = (c * w + sn * d) / 2 + 0.3;
     const b = ((sn * w + c * d) / 2) * Math.sin(pitch) + (h / 2) * Math.cos(pitch) + 0.3;
-    return this._pose(p.x, h * 0.36, p.z, yaw, pitch, this._fit(a, b, q), q);
+    return this._pose(p.x + (v ? v.x : 0), v ? v.y : h * 0.36, p.z + (v ? v.z : 0), yaw, pitch, this._fit(a, b, q), q);
   }
   _pose(x, y, z, yaw, pitch, dist, q) {
     return { x, y, z, yaw, pitch, dist, cx: (q.x0 + q.x1) / 2 - this.W / 2, cy: (q.y0 + q.y1) / 2 - this.H / 2 };

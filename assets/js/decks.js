@@ -8,14 +8,16 @@ const NEXT = { normal: 'fault', tripped: 'isolate', isolated: 'feed', fed: 'repa
 
 export const CONSOLES = {
   drone: {
-    read: [['pos', 'r.pos', 'm'], ['air', 'r.air', 'm'], ['sed', 'r.sed', 'cm'], ['bat', 'r.bat', 'h']],
+    read: [['pos', 'r.pos', 'm'], ['clock', 'r.clock'], ['air', 'r.air', 'm'], ['sed', 'r.sed', 'cm'], ['h2s', 'r.h2s', 'ppm'], ['bat', 'r.bat', 'h']],
     ctl: [
+      { t: 'seg', key: 'view', label: 'c.view', opts: [['all', 'c.viewAll'], ['craft', 'c.viewCraft']] },
+      { ...toggle('open', 'c.caseClose', 'c.caseOpen') },
       { t: 'act', label: (s) => (s.run ? 'c.pause' : 'c.resume'), run: (s) => { s.run = !s.run; } },
       bump('reset', 'c.restart'),
     ],
   },
   station: {
-    read: [['level', 'r.level', '%'], ['hz', 'r.hz', 'Hz'], ['st', 'r.state']],
+    read: [['level', 'r.level', '%'], ['hz', 'r.hz', 'Hz'], ['pmp', 'r.pump'], ['st', 'r.state']],
     ctl: [
       { t: 'seg', key: 'mode', label: 'c.mode', opts: [['auto', 'c.auto'], ['manual', 'c.manual']] },
       { ...toggle('pump', 'c.pump'), led: true, off: (s) => s.mode === 'auto' },
