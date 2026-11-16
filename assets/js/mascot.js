@@ -1,11 +1,13 @@
-// Le robot du site. Il vit par-dessus la page : il marche sur le bord des cartes, vole de l'une à l'autre,
-// se téléporte, s'endort, réagit à la souris, se laisse attraper et lancer, et enchaîne des émotes.
+// Le robot du site. Il habite la page, pas l'écran : posé sur l'en-tête, il marche sur le bord des cartes,
+// saute de l'une à l'autre, se téléporte, s'endort, se laisse attraper et lancer, et enchaîne des émotes.
+// Quand la page défile il reste où il est ; de temps en temps, s'il en a envie, il vient voir ce que tu regardes.
 // Une émote = un mouvement du corps + des yeux + un accessoire + des particules : les émotes nommées
 // ci-dessous sont complétées par des mélanges tirés au hasard, d'où des milliers de variantes.
 
 const R = Math.random;
 const pick = (a) => a[(R() * a.length) | 0];
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const rnd = (a, b) => a + R() * (b - a);
 
 const SKIN = {
   accueil: { color: '#3b82f6', act: 'wave' },
@@ -16,64 +18,78 @@ const SKIN = {
   interets: { color: '#db2777', act: 'guitar' },
 };
 
-// mouvement, durée (s), yeux, accessoire, particules [glyphes, style, cadence], réplique éventuelle
+// mouvement, durée (s), yeux, accessoire, particules [formes, style, cadence], réplique éventuelle, teinte
 const EMOTES = {
   wave: ['wave', 1.8, 'happy', '', null, 'hi'],
-  dance: ['dance', 3.2, 'happy', '', ['♪♫♬', 'rise', 0.25]],
-  disco: ['dance', 3.6, 'star', 'shades', ['✦✧★', 'burst', 0.18]],
-  spin: ['spin', 1.4, 'big', '', ['✦', 'burst', 0.2]],
+  dance: ['dance', 3.2, 'happy', '', ['note', 'rise', 0.28]],
+  disco: ['dance', 3.6, 'star', 'shades', ['star spark', 'burst', 0.2]],
+  spin: ['spin', 1.4, 'big', '', ['spark', 'burst', 0.22]],
   jump: ['jump', 1.1, 'happy', '', null],
-  flip: ['flip', 1.2, 'big', '', ['✧', 'burst', 0.25]],
+  flip: ['flip', 1.2, 'big', '', ['spark', 'burst', 0.25]],
   moonwalk: ['moonwalk', 2.6, 'cool', 'shades', null],
-  shock: ['shake', 1.2, 'big', '', ['!', 'pop', 0.5]],
-  confused: ['tilt', 2.2, 'uneven', '', ['?', 'rise', 0.6]],
-  love: ['sway', 2.6, 'heart', '', ['❤', 'rise', 0.22]],
-  sleep: ['snooze', 6, 'closed', '', ['z', 'drift', 0.7]],
+  shock: ['shake', 1.2, 'big', '', ['t:!', 'pop', 0.5]],
+  confused: ['tilt', 2.2, 'uneven', '', ['t:?', 'rise', 0.6]],
+  love: ['sway', 2.6, 'heart', '', ['heart', 'rise', 0.24]],
+  sleep: ['snooze', 6, 'closed', '', ['t:z', 'drift', 0.7]],
   scan: ['still', 2.8, 'scan', 'beam', null, 'scan'],
   juggle: ['bounce', 3.2, 'happy', 'balls', null],
   read: ['still', 3.6, 'down', 'book', null],
-  work: ['type', 3.4, 'down', 'laptop', ['01', 'rise', 0.3]],
-  guitar: ['sway', 3.6, 'closed', 'guitar', ['♪♫', 'rise', 0.3]],
-  sing: ['bounce', 2.6, 'closed', 'mic', ['♪♬', 'rise', 0.25]],
-  party: ['jump', 2.4, 'star', 'partyhat', ['●■▲', 'confetti', 0.06]],
-  angry: ['shake', 1.8, 'angry', '', ['💢', 'pop', 0.5]],
-  cry: ['shiver', 2.4, 'sad', '', ['💧', 'fall', 0.22]],
-  laugh: ['bounce', 1.8, 'happy', '', ['ha', 'rise', 0.3]],
-  dizzy: ['wobble', 2.4, 'dizzy', '', ['✶', 'orbit', 0.3]],
+  work: ['type', 3.4, 'down', 'laptop', ['t:0 t:1', 'rise', 0.3]],
+  guitar: ['sway', 3.6, 'closed', 'guitar', ['note', 'rise', 0.3]],
+  sing: ['bounce', 2.6, 'closed', 'mic', ['note', 'rise', 0.25]],
+  party: ['jump', 2.4, 'star', 'partyhat', ['conf', 'confetti', 0.06]],
+  angry: ['shake', 1.8, 'angry', '', ['bolt', 'pop', 0.5]],
+  cry: ['shiver', 2.4, 'sad', '', ['drop', 'fall', 0.24]],
+  laugh: ['bounce', 1.8, 'happy', '', ['t:ha', 'rise', 0.3]],
+  dizzy: ['wobble', 2.4, 'dizzy', '', ['star', 'orbit', 0.3]],
   cool: ['lean', 2.6, 'cool', 'shades', null],
   salute: ['salute', 1.6, 'normal', '', null],
-  pushup: ['pushup', 3, 'angry', '', ['💦', 'burst', 0.5]],
-  levitate: ['float', 3.2, 'closed', '', ['✦', 'orbit', 0.3]],
-  shiver: ['shiver', 2, 'big', '', ['❄', 'fall', 0.3]],
-  sneeze: ['sneeze', 1.2, 'closed', '', ['💨', 'burst', 0.6]],
-  idea: ['jump', 1.4, 'big', 'bulb', ['✦', 'burst', 0.3]],
+  pushup: ['pushup', 3, 'angry', '', ['drop', 'burst', 0.5]],
+  levitate: ['float', 3.2, 'closed', '', ['spark', 'orbit', 0.3]],
+  shiver: ['shiver', 2, 'big', '', ['snow', 'fall', 0.3]],
+  sneeze: ['sneeze', 1.2, 'closed', '', ['puff', 'burst', 0.6]],
+  idea: ['jump', 1.4, 'big', 'bulb', ['spark', 'burst', 0.3]],
   grow: ['grow', 2.2, 'big', '', null],
   tiny: ['shrink', 2.6, 'big', '', null],
-  rainbow: ['sway', 3, 'star', '', ['✦', 'rise', 0.2], '', 'rainbow'],
+  rainbow: ['sway', 3, 'star', '', ['spark', 'rise', 0.2], '', 'rainbow'],
   ghost: ['float', 2.6, 'big', '', null, '', 'ghost'],
-  glitch: ['glitch', 1.4, 'x', '', ['▚▞', 'burst', 0.15]],
-  charge: ['still', 2.6, 'closed', '', ['⚡', 'rise', 0.25]],
-  fix: ['type', 2.6, 'down', 'wrench', ['✦', 'burst', 0.4]],
-  selfie: ['lean', 2, 'wink', 'phone', ['✦', 'pop', 0.9]],
-  coffee: ['still', 3, 'closed', 'cup', ['~', 'rise', 0.5]],
-  rocket: ['jump', 1.6, 'big', 'flame', ['💨', 'fall', 0.12]],
+  glitch: ['glitch', 1.4, 'x', '', ['conf', 'burst', 0.15]],
+  charge: ['still', 2.6, 'closed', '', ['bolt', 'rise', 0.25]],
+  fix: ['type', 2.6, 'down', 'wrench', ['spark', 'burst', 0.4]],
+  selfie: ['lean', 2, 'wink', 'phone', ['spark', 'pop', 0.9]],
+  coffee: ['still', 3, 'closed', 'cup', ['puff', 'rise', 0.55]],
+  hover: ['float', 2.2, 'big', 'flame', null],
   stretch: ['stretch', 2.2, 'closed', '', null],
   nod: ['nod', 1.6, 'happy', '', null],
   no: ['no', 1.6, 'uneven', '', null],
   bow: ['bow', 1.8, 'closed', '', null],
-  clap: ['clap', 1.8, 'happy', '', ['✦', 'burst', 0.25]],
-  wink: ['tilt', 1.4, 'wink', '', ['✦', 'pop', 0.8]],
+  clap: ['clap', 1.8, 'happy', '', ['spark', 'burst', 0.25]],
+  wink: ['tilt', 1.4, 'wink', '', ['spark', 'pop', 0.8]],
   hiccup: ['hiccup', 1.8, 'big', '', null],
-  detective: ['lean', 3, 'uneven', 'glass', ['?', 'rise', 0.9]],
-  magic: ['wave', 2.4, 'star', 'wand', ['✦✧★', 'burst', 0.1]],
-  rain: ['shiver', 2.8, 'sad', 'umbrella', ['💧', 'rainfall', 0.08]],
-  trophy: ['jump', 2.2, 'star', 'cup2', ['✦', 'burst', 0.2]],
+  detective: ['lean', 3, 'uneven', 'glass', ['t:?', 'rise', 0.9]],
+  magic: ['wave', 2.4, 'star', 'wand', ['star spark', 'burst', 0.1]],
+  rain: ['shiver', 2.8, 'sad', 'umbrella', ['drop', 'rainfall', 0.08]],
+  trophy: ['jump', 2.2, 'star', 'cup2', ['star', 'burst', 0.2]],
 };
 const MOVES = [...new Set(Object.values(EMOTES).map((e) => e[0]))];
 const EYES = ['normal', 'happy', 'star', 'heart', 'big', 'closed', 'wink', 'cool', 'angry', 'sad', 'dizzy', 'uneven', 'x', 'down'];
 const PROPS = ['', '', 'shades', 'partyhat', 'bulb', 'cup', 'wand', 'phone', 'balls', 'book', 'mic', 'glass', 'wrench', 'umbrella', 'cup2', 'guitar'];
-const SPARKS = [null, ['♪♫', 'rise', 0.3], ['✦✧', 'burst', 0.2], ['❤', 'rise', 0.3], ['●■▲', 'confetti', 0.08], ['⚡', 'rise', 0.3], ['✶', 'orbit', 0.3], ['?', 'rise', 0.6], ['!', 'pop', 0.5]];
+const SPARKS = [null, ['note', 'rise', 0.3], ['spark star', 'burst', 0.2], ['heart', 'rise', 0.3], ['conf', 'confetti', 0.08], ['bolt', 'rise', 0.3], ['star', 'orbit', 0.3], ['t:?', 'rise', 0.6], ['t:!', 'pop', 0.5]];
 const REACTIONS = ['shock', 'laugh', 'love', 'spin', 'flip', 'wave', 'dizzy', 'party', 'wink', 'glitch', 'jump', 'dance', 'salute', 'clap', 'magic', 'hiccup', 'idea'];
+const LINES = ['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8'];
+
+// Les particules sont dessinées (jamais d'émoji : leur rendu change d'un téléphone à l'autre).
+const SHAPES = {
+  note: ['<path d="M6 2.500 13 1v9.200a2.300 2.300 0 1 1-1.500-2.150V4.300L7.500 5.200v6.500A2.300 2.300 0 1 1 6 9.550z"/>', ''],
+  star: ['<path d="M8 1l2 4.300 4.700.600-3.450 3.250.9 4.650L8 11.500 3.850 13.800l.9-4.650L1.300 5.900 6 5.300z"/>', '#fbbf24'],
+  spark: ['<path d="M8 0c.6 4.400 3.600 7.400 8 8-4.400.600-7.400 3.600-8 8-.6-4.400-3.600-7.400-8-8 4.400-.600 7.400-3.600 8-8z"/>', '#fbbf24'],
+  heart: ['<path d="M8 14.500 2.300 8.700a3.600 3.600 0 0 1 5.100-5.100l.6.600.6-.600a3.600 3.600 0 0 1 5.100 5.100z"/>', '#f43f5e'],
+  bolt: ['<path d="M9.500 0 2.500 9h4.300L5.500 16l8-9.500H9z"/>', '#f59e0b'],
+  drop: ['<path d="M8 1c3 4 4.500 6.300 4.500 8.700a4.500 4.500 0 0 1-9 0C3.500 7.300 5 5 8 1z"/>', '#38bdf8'],
+  snow: ['<path d="M8 1v14M2 4.500l12 7M14 4.500l-12 7" fill="none" stroke="currentColor" stroke-width="1.800" stroke-linecap="round"/>', '#7dd3fc'],
+  puff: ['<circle cx="8" cy="8" r="6"/>', '#cbd5e1'],
+  conf: ['<rect x="3" y="5" width="10" height="6" rx="1"/>', ''],
+};
 
 const SVG = `<svg viewBox="-20 -24 140 130" aria-hidden="true">
 <ellipse class="rb-shadow" cx="50" cy="91" rx="20" ry="4.5"/>
@@ -132,58 +148,77 @@ export function createMascot({ say, reduced }) {
   const fx = root.querySelector('.robot__fx');
   const bubble = root.querySelector('.robot__say');
   const pupils = root.querySelector('.rb-pupils');
+  const view = document.getElementById('view') || document.body;
+  const nav = document.querySelector('.nav');
 
   const S = {
-    x: 120, y: 200, dir: 1, mode: 'fall', vy: 0, vx: 0,
-    plat: null, u: 0.3, goal: 0.3, until: 0, next: 1.5, emote: '', spark: null, sparkT: 0,
-    fly: null, page: 'accueil', skin: SKIN.accueil, drag: null, idle: 0, lastMove: 0, mouse: { x: -999, y: -999, t: 0, speed: 0 },
-    scrollV: 0, lastScroll: scrollY, sayUntil: 0, size: 64,
+    x: 0, y: 0, dir: 1, mode: 'idle', vx: 0, vy: 0, plat: null, u: 0.3, goal: 0.3,
+    until: 0, next: 2, emote: '', spark: null, sparkT: 0, hop: null, drag: null,
+    page: 'accueil', skin: SKIN.accueil, size: 80, placed: false, seen: true,
+    quiet: 0, away: 0, visitAt: rnd(8, 26), scrollAt: 0, lastScroll: 0, sayUntil: 0, dodgeAt: 0,
+    mouse: { x: -999, y: -999, t: 0, speed: 0 },
   };
-  const size = () => (S.size = innerWidth < 700 ? 60 : 80);
-  size();
+  const measure = () => { S.size = parseFloat(getComputedStyle(root).getPropertyValue('--s')) * 0.68 || 80; };
+  const navH = () => (nav ? nav.offsetHeight : 52);
+  const docW = () => document.documentElement.clientWidth;
+  measure();
 
-  // ----- où peut-il se poser ? le bord supérieur des cartes visibles, sinon le bas de l'écran -----
+  // ----- où peut-il se poser ? le bord supérieur de l'en-tête et des cartes, en coordonnées de page -----
+  const WHERE = '.phead, .hero__photo, .card, .contact, .bench, .pdfbox, .heromedia';
   let plats = [];
   function scan() {
-    const top = 52 + S.size + 6;
-    plats = [...document.querySelectorAll('.phead, .card, .contact, .bench, .pdfbox, .hero__photo')].map((el) => ({ el, r: el.getBoundingClientRect() })).filter((p) => p.r.width > 90 && p.r.top > top && p.r.top < innerHeight - 8 && p.el.offsetParent);
+    const sx = scrollX, sy = scrollY, min = navH() + S.size * 0.92 + 1;
+    plats = [...view.querySelectorAll(WHERE)].map((el) => { const r = el.getBoundingClientRect(); return { el, l: r.left + sx, w: r.width, top: r.top + sy }; })
+      .filter((p) => p.w > 100 && p.top >= min && p.el.offsetParent)
+      .sort((a, b) => a.top - b.top || a.l - b.l);
+    return plats;
   }
-  const rectOf = (p) => (p ? p.el.getBoundingClientRect() : { left: 8, width: innerWidth - 16, top: innerHeight - 4 });
-  const usable = (p) => { if (!p) return true; if (!p.el.isConnected) return false; const r = p.el.getBoundingClientRect(); return r.top > 52 + S.size * 0.7 && r.top < innerHeight - 4 && r.width > 60; };
-  const spot = (p, u) => { const r = rectOf(p); return { x: clamp(r.left + r.width * u, S.size / 2, innerWidth - S.size / 2), y: r.top }; };
+  const live = (p) => { const r = p.el.getBoundingClientRect(); p.l = r.left + scrollX; p.w = r.width; p.top = r.top + scrollY; return p; };
+  const margin = (p) => (p.el.classList.contains('hero__photo') ? 0.32 : Math.min(0.45, (S.size * 0.45) / Math.max(p.w, 1)));
+  const spot = (p, u) => ({ x: clamp(p.l + p.w * u, S.size * 0.6, docW() - S.size * 0.6), y: p.top });
+  const inView = (y, pad = 0) => y - S.size > scrollY + navH() - pad && y < scrollY + innerHeight + pad;
+  const onScreen = () => inView(S.y, S.size * 0.5);
+  function sit(p, u) {
+    S.plat = p; S.u = clamp(u, margin(p), 1 - margin(p));
+    const q = spot(live(p), S.u); S.x = q.x; S.y = q.y;
+    if (!S.placed) { S.placed = true; root.classList.add('is-ready'); }
+  }
+  const nearest = (x, y) => plats.slice().sort((a, b) => Math.abs(a.top - y) + Math.abs(clamp(x, a.l, a.l + a.w) - x) * 0.5 - (Math.abs(b.top - y) + Math.abs(clamp(x, b.l, b.l + b.w) - x) * 0.5))[0] || null;
 
-  // ----- émotes -----
+  // ----- émotes, particules, répliques -----
   function setLook(move, eyes, prop, tint) {
     root.dataset.move = move || '';
     root.dataset.eyes = eyes || S.skin.eyes || 'normal';
     root.dataset.prop = prop || '';
     root.dataset.tint = tint || '';
   }
+  function rest(wait) { S.mode = 'idle'; S.emote = ''; S.spark = null; S.next = wait; setLook(''); }
   function play(name, custom) {
     const e = custom || EMOTES[name];
-    if (!e) return;
-    S.mode = 'emote';
-    S.emote = name;
-    S.until = e[1];
-    S.spark = e[4];
-    S.sparkT = 0;
+    if (!e || !S.plat) return;
+    S.mode = 'emote'; S.emote = name; S.until = e[1]; S.spark = e[4]; S.sparkT = 0.15;
     setLook(e[0], e[2], e[3], e[6]);
     if (e[5]) talk(e[5]);
   }
-  const remix = () => play('remix', [pick(MOVES), 1.6 + R() * 2, pick(EYES), pick(PROPS), pick(SPARKS), '', R() < 0.12 ? 'rainbow' : '']);
-  function particle(glyphs, style) {
-    const s = document.createElement('span');
-    s.className = 'robot__bit robot__bit--' + style;
-    s.textContent = glyphs.length > 2 && !/[\u{1F000}-\u{1FFFF}]/u.test(glyphs) ? pick([...glyphs]) : glyphs;
-    s.style.setProperty('--dx', (R() * 2 - 1).toFixed(2));
-    s.style.setProperty('--h', String((R() * 360) | 0));
-    s.style.left = S.x + (R() - 0.5) * S.size * (style === 'rainfall' ? 1.6 : 0.7) + 'px';
-    s.style.top = S.y - S.size * (style === 'fall' ? 0.62 : style === 'rainfall' ? 1.5 : 0.95) + 'px';
-    fx.append(s);
-    setTimeout(() => s.remove(), 1600);
+  const remix = () => play('remix', [pick(MOVES), rnd(1.6, 3.4), pick(EYES), pick(PROPS), pick(SPARKS), '', R() < 0.1 ? 'rainbow' : '']);
+  function particle(kinds, style) {
+    if (!S.seen || fx.childElementCount > 40) return;
+    const kind = pick(kinds.split(' '));
+    const el = document.createElement('span');
+    el.className = 'robot__bit robot__bit--' + style;
+    if (kind.startsWith('t:')) el.textContent = kind.slice(2);
+    else { const [d, color] = SHAPES[kind]; el.innerHTML = `<svg viewBox="0 0 16 16" aria-hidden="true">${d}</svg>`; el.style.color = color || `hsl(${(R() * 360) | 0} 85% 58%)`; }
+    el.style.setProperty('--dx', rnd(-1, 1).toFixed(2));
+    el.style.setProperty('--rot', ((R() * 360) | 0) + 'deg');
+    el.style.setProperty('--up', String((rnd(20, 90)) | 0));
+    el.style.left = S.x + rnd(-0.5, 0.5) * S.size * (style === 'rainfall' ? 1.5 : 0.7) + 'px';
+    el.style.top = S.y - S.size * (style === 'fall' ? 0.72 : style === 'rainfall' ? 1.55 : style === 'dust' ? 0.06 : 1.02) + 'px';
+    fx.append(el);
+    setTimeout(() => el.remove(), 1500);
   }
-  function burst(glyph, n = 8, style = 'burst') { for (let i = 0; i < n; i++) particle(glyph, style); }
+  const burst = (kinds, n = 8, style = 'burst') => { for (let i = 0; i < n; i++) particle(kinds, style); };
   function talk(key, ms = 2600) {
+    if (!S.seen) return;
     const text = say(key, S.page);
     if (!text) return;
     bubble.textContent = text;
@@ -192,35 +227,60 @@ export function createMascot({ say, reduced }) {
   }
 
   // ----- déplacements -----
-  function flyTo(p, u, teleport) {
-    const to = spot(p, u);
-    if (teleport) {
-      burst('✦', 10);
-      root.classList.add('is-tele');
-      setTimeout(() => { S.plat = p; S.u = u; const q = spot(p, u); S.x = q.x; S.y = q.y; root.classList.remove('is-tele'); burst('✦', 10); S.mode = 'idle'; S.next = 0.5; }, 260);
-      S.mode = 'tele';
-      return;
-    }
-    S.fly = { x0: S.x, y0: S.y, p, u, t: 0, d: clamp(Math.hypot(to.x - S.x, to.y - S.y) / 420, 0.7, 2.2) };
-    S.mode = 'fly';
+  function teleport(p, u) {
+    S.mode = 'tele'; S.emote = ''; S.spark = null; setLook('');
+    const leave = S.placed && S.seen;
+    if (leave) { burst('spark', 9); root.classList.add('is-out'); }
+    setTimeout(() => {
+      if (!p.el.isConnected) { scan(); p = nearest(S.x, S.y); if (!p) { root.classList.remove('is-out'); return rest(1); } }
+      sit(p, u);
+      S.seen = onScreen();
+      root.classList.remove('is-out');
+      root.classList.add('is-in');
+      burst('spark', 9);
+      setTimeout(() => root.classList.remove('is-in'), 300);
+      rest(rnd(0.6, 1.4));
+    }, leave ? 200 : 0);
+  }
+  function hopTo(p, u) {
+    live(p);
+    u = clamp(u, margin(p), 1 - margin(p));
+    const to = spot(p, u), dist = Math.hypot(to.x - S.x, to.y - S.y);
+    if (dist < 12) { sit(p, u); S.mode = 'emote'; S.emote = 'hello'; S.until = 0.55; S.spark = null; return setLook('jump', 'happy'); }
+    if (dist > Math.max(520, innerHeight * 0.75)) return teleport(p, u);
+    S.hop = { x0: S.x, y0: S.y, p, u, t: -0.16, d: clamp(dist / 560, 0.42, 0.85), h: clamp(46 + dist * 0.16, 56, 130), jet: dist > 300 };
+    S.mode = 'hop'; S.emote = ''; S.spark = null;
     S.dir = to.x >= S.x ? 1 : -1;
-    setLook('fly', 'big', 'flame');
+    setLook('crouch', 'big');
   }
   function think() {
     scan();
-    if (!usable(S.plat)) { const p = pick(plats) || null; return flyTo(p, 0.15 + R() * 0.7); }
-    const r = R();
+    if (!S.plat || !S.plat.el.isConnected) { const p = nearest(S.x, S.y); if (!p) return rest(2); sit(p, 0.3); }
+    const r = R(), m = margin(S.plat);
     if (r < 0.30) {
-      S.goal = clamp(S.u + (R() - 0.5) * 0.9, 0.04, 0.96);
-      S.mode = 'walk';
-      S.dir = S.goal > S.u ? 1 : -1;
-      setLook('walk');
-    } else if (r < 0.42) play(S.skin.act);
+      S.goal = clamp(S.u + rnd(-0.5, 0.5), m, 1 - m);
+      if (Math.abs(S.goal - S.u) * S.plat.w < 24) return rest(rnd(0.6, 1.6));
+      S.mode = 'walk'; S.dir = S.goal > S.u ? 1 : -1; setLook('walk');
+    } else if (r < 0.44) play(S.skin.act);
     else if (r < 0.66) play(pick(Object.keys(EMOTES)));
-    else if (r < 0.76) remix();
-    else if (r < 0.90 && (plats.length > 1 || S.plat)) { const others = plats.filter((p) => !S.plat || p.el !== S.plat.el); flyTo(R() < 0.15 ? null : pick(others) || null, 0.1 + R() * 0.8, R() < 0.3); }
-    else if (r < 0.95) talk(pick(['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'page']));
-    else { S.mode = 'idle'; S.next = 1 + R() * 2; setLook('look'); }
+    else if (r < 0.74) remix();
+    else if (r < 0.80) { talk(pick([...LINES, 'page'])); rest(rnd(1.5, 3)); }
+    else if (r < 0.87) {
+      // un saut vers une carte voisine : celles qui l'entourent, pas celles que tu regardes
+      const near = plats.filter((p) => p.el !== S.plat.el && Math.abs(p.top - S.y) < innerHeight * 0.6 && inView(p.top) === S.seen);
+      if (near.length) hopTo(pick(near), rnd(0.15, 0.85)); else rest(rnd(1, 2));
+    } else { S.mode = 'idle'; S.next = rnd(1.5, 3.5); setLook('look'); }
+  }
+  /** Hors de l'écran depuis un moment : parfois il vient voir, parfois il rentre en haut de la page, parfois il reste. */
+  function wander() {
+    S.away = 0; S.visitAt = rnd(7, 24);
+    scan();
+    if (!plats.length) return;
+    const r = R();
+    if (r < 0.5) {
+      const here = plats.filter((p) => inView(p.top, -10));
+      if (here.length) teleport(pick(here), rnd(0.15, 0.85));
+    } else if (r < 0.72 && S.plat !== plats[0]) teleport(plats[0], rnd(0.12, 0.5));
   }
 
   // ----- boucle -----
@@ -228,87 +288,108 @@ export function createMascot({ say, reduced }) {
   function frame(now) {
     const dt = Math.min(0.05, (now - last) / 1000);
     last = now;
-    S.idle += dt;
-    S.scrollV = S.scrollV * 0.9 + Math.abs(scrollY - S.lastScroll);
-    S.lastScroll = scrollY;
+    requestAnimationFrame(frame);
+    if (!S.placed) return;
+    if (scrollY !== S.lastScroll) { S.lastScroll = scrollY; S.scrollAt = now; }
+    S.quiet += dt;
 
     if (S.mode === 'drag') {
-      S.vx = (S.drag.x - S.x) / Math.max(dt, 0.008) * 0.25 + S.vx * 0.75;
-      S.vy = (S.drag.y + S.size * 0.55 - S.y) / Math.max(dt, 0.008) * 0.25 + S.vy * 0.75;
-      S.x = S.drag.x;
-      S.y = S.drag.y + S.size * 0.55;
+      const tx = S.drag.x + scrollX, ty = S.drag.y + scrollY + S.size * 0.62;
+      S.vx = ((tx - S.x) / Math.max(dt, 0.008)) * 0.25 + S.vx * 0.75;
+      S.vy = ((ty - S.y) / Math.max(dt, 0.008)) * 0.25 + S.vy * 0.75;
+      S.x = tx; S.y = ty;
     } else if (S.mode === 'fall') {
-      S.vy += 2200 * dt;
-      S.x = clamp(S.x + S.vx * dt, S.size / 2, innerWidth - S.size / 2);
-      if (S.x <= S.size / 2 || S.x >= innerWidth - S.size / 2) S.vx *= -0.6;
+      S.vy += 2300 * dt;
+      const half = S.size * 0.6, w = docW();
+      S.x += S.vx * dt;
+      if (S.x < half || S.x > w - half) { S.x = clamp(S.x, half, w - half); S.vx *= -0.55; }
       const prev = S.y;
       S.y += S.vy * dt;
-      scan();
-      let land = null, landY = innerHeight - 4;
-      for (const p of plats) if (S.x > p.r.left && S.x < p.r.right && p.r.top >= prev - 2 && p.r.top < landY) { land = p; landY = p.r.top; }
+      const vr = view.getBoundingClientRect();
+      let land = null, landY = vr.bottom + scrollY - 6;
+      if (S.vy > 0) for (const p of plats) if (S.x > p.l + 8 && S.x < p.l + p.w - 8 && p.top >= prev - 2 && p.top < landY) { land = p; landY = p.top; }
       if (S.y >= landY && S.vy > 0) {
         S.y = landY;
-        if (S.vy > 520) { S.vy *= -0.32; S.vx *= 0.5; burst('✦', 4); }
-        else { S.plat = land; const r = rectOf(land); S.u = clamp((S.x - r.left) / r.width, 0.02, 0.98); S.vx = S.vy = 0; play(pick(['dizzy', 'shock', 'laugh', 'jump'])); }
+        if (S.vy > 560) { S.vy *= -0.3; S.vx *= 0.5; burst('puff', 3, 'dust'); }
+        else {
+          S.vx = S.vy = 0;
+          if (!land) { scan(); land = nearest(S.x, S.y); }
+          if (land) { sit(land, (S.x - land.l) / land.w); play(pick(['dizzy', 'shock', 'laugh', 'jump'])); } else rest(1);
+        }
       }
-    } else if (S.mode === 'fly') {
-      const f = S.fly;
+    } else if (S.mode === 'hop') {
+      const f = S.hop;
       f.t += dt / f.d;
-      const to = spot(f.p, f.u), k = f.t * f.t * (3 - 2 * f.t);
-      S.x = f.x0 + (to.x - f.x0) * k;
-      S.y = f.y0 + (to.y - f.y0) * k - Math.sin(Math.PI * k) * Math.min(160, 60 + Math.abs(to.x - f.x0) * 0.2);
-      if ((S.sparkT -= dt) < 0) { S.sparkT = 0.07; particle('💨', 'fall'); }
-      if (f.t >= 1) { S.plat = f.p; S.u = f.u; S.mode = 'idle'; S.next = 0.4; setLook(''); }
+      if (!f.p.el.isConnected) { S.plat = null; rest(0.2); }
+      else if (f.t >= 0) {
+        if (root.dataset.move === 'crouch') setLook('hop', 'happy', f.jet ? 'flame' : '');
+        const to = spot(live(f.p), f.u), k = Math.min(1, f.t), e = k * k * (3 - 2 * k);
+        S.x = f.x0 + (to.x - f.x0) * e;
+        S.y = f.y0 + (to.y - f.y0) * e - Math.sin(Math.PI * k) * f.h;
+        if (k >= 1) { sit(f.p, f.u); S.mode = 'emote'; S.emote = 'land'; S.until = 0.22; setLook('land'); burst('puff', 3, 'dust'); }
+      }
     } else if (S.mode !== 'tele') {
-      // posé sur une carte : il suit la page quand elle défile
-      if (!usable(S.plat)) { scan(); const p = plats.sort((a, b) => Math.abs(a.r.top - S.y) - Math.abs(b.r.top - S.y))[0] || null; flyTo(p, 0.15 + R() * 0.7, S.scrollV > 60); }
-      else {
+      if (!S.plat || !S.plat.el.isConnected) {
+        // la page vient d'être redessinée : il se repose sur ce qui se trouve au même endroit
+        scan();
+        const p = nearest(S.x, S.y);
+        if (p) sit(p, (S.x - p.l) / Math.max(p.w, 1)); else S.plat = null;
+      }
+      if (S.plat) {
+        const p = live(S.plat);
         if (S.mode === 'walk') {
-          const w = rectOf(S.plat).width, step = (70 / Math.max(w, 1)) * dt;
+          const step = (64 / Math.max(p.w, 1)) * dt;
           S.u += Math.sign(S.goal - S.u) * step;
-          if (Math.abs(S.goal - S.u) <= step) { S.mode = 'idle'; S.next = 0.3 + R(); setLook(''); }
+          if (Math.abs(S.goal - S.u) <= step) rest(rnd(0.5, 1.6));
         } else if (S.mode === 'emote') {
           if (S.spark && (S.sparkT -= dt) < 0) { S.sparkT = S.spark[2]; particle(S.spark[0], S.spark[1]); }
-          if (S.emote === 'moonwalk') S.u = clamp(S.u - S.dir * (60 / rectOf(S.plat).width) * dt, 0.04, 0.96);
-          if ((S.until -= dt) <= 0) { S.mode = 'idle'; S.next = 0.4 + R() * 1.2; setLook(''); }
+          if (S.emote === 'moonwalk') S.u = clamp(S.u - S.dir * (50 / p.w) * dt, margin(p), 1 - margin(p));
+          if ((S.until -= dt) <= 0) rest(S.emote === 'land' ? rnd(0.3, 0.9) : rnd(0.8, 2.4));
         } else if ((S.next -= dt) <= 0) {
-          if (S.idle > 45) play('sleep');
+          if (!S.seen) S.next = 1.5; // personne ne regarde : il attend sagement
+          else if (S.quiet > 50) play('sleep');
           else think();
         }
-        const q = spot(S.plat, S.u);
-        S.x = q.x;
-        S.y = q.y;
+        if (S.mode !== 'hop' && S.mode !== 'tele') { const q = spot(p, S.u); S.x = q.x; S.y = q.y; }
       }
     }
 
-    // regard : les pupilles suivent la souris quand elle est proche
-    const mx = S.mouse.x - S.x, my = S.mouse.y - (S.y - S.size * 0.7), d = Math.hypot(mx, my);
-    const near = d < 320 && now - S.mouse.t < 4000;
-    pupils.style.transform = near ? `translate(${(clamp(mx / 60, -1, 1) * 2.4 * S.dir).toFixed(2)}px, ${(clamp(my / 60, -1, 1) * 1.8).toFixed(2)}px)` : '';
-    // esquive : une souris qui fonce sur lui le fait disparaître ailleurs
-    if (d < 46 && S.mouse.speed > 1.6 && (S.mode === 'walk' || S.mode === 'idle') && now - S.lastMove > 2500) { S.lastMove = now; scan(); flyTo(pick(plats) || null, R(), true); }
+    S.seen = onScreen();
+    if (S.seen) S.away = 0;
+    else if ((S.mode === 'idle' || S.mode === 'walk' || S.mode === 'emote') && now - S.scrollAt > 700) { S.away += dt; if (S.away > S.visitAt) wander(); }
 
+    if (S.seen) {
+      // regard : les pupilles suivent la souris quand elle est proche
+      const mx = S.mouse.x + scrollX - S.x, my = S.mouse.y + scrollY - (S.y - S.size * 0.8), d = Math.hypot(mx, my);
+      const near = d < 320 && now - S.mouse.t < 4000;
+      pupils.style.transform = near ? `translate(${(clamp(mx / 60, -1, 1) * 2.4 * S.dir).toFixed(2)}px, ${(clamp(my / 60, -1, 1) * 1.8).toFixed(2)}px)` : '';
+      // esquive : une souris qui fonce sur lui le fait réapparaître un peu plus loin
+      if (d < 44 && S.mouse.speed > 1.8 && (S.mode === 'walk' || S.mode === 'idle') && now - S.dodgeAt > 4000 && now - S.mouse.t < 120) {
+        S.dodgeAt = now; scan();
+        const here = plats.filter((p) => inView(p.top, -10));
+        if (here.length) teleport(pick(here), rnd(0.1, 0.9));
+      }
+    }
     root.style.setProperty('--x', S.x.toFixed(1) + 'px');
     root.style.setProperty('--y', S.y.toFixed(1) + 'px');
     root.style.setProperty('--dir', S.dir);
     root.dataset.mode = S.mode;
     if (S.sayUntil && now > S.sayUntil) { bubble.classList.remove('is-on'); S.sayUntil = 0; }
-    bubble.classList.toggle('is-left', S.x > innerWidth - 190);
-    requestAnimationFrame(frame);
+    bubble.classList.toggle('is-left', S.x > docW() - 210);
   }
 
   // ----- interactions -----
   let down = null;
   btn.addEventListener('pointerdown', (e) => {
-    down = { x: e.clientX, y: e.clientY, t: performance.now(), moved: false };
+    if (reduced) return;
+    down = { x: e.clientX, y: e.clientY, moved: false };
     try { btn.setPointerCapture(e.pointerId); } catch {}
   });
   btn.addEventListener('pointermove', (e) => {
     if (!down) return;
     if (!down.moved && Math.hypot(e.clientX - down.x, e.clientY - down.y) > 8) {
       down.moved = true;
-      S.mode = 'drag';
-      S.plat = null;
+      S.mode = 'drag'; S.plat = null; S.hop = null; S.emote = ''; S.spark = null;
       setLook('dangle', 'big');
       talk('grab', 1500);
     }
@@ -318,58 +399,81 @@ export function createMascot({ say, reduced }) {
     if (!down) return;
     const wasDrag = down.moved;
     down = null;
-    if (wasDrag) { S.mode = 'fall'; S.vx = clamp(S.vx, -1400, 1400); S.vy = clamp(S.vy, -1600, 1200); setLook('fallen', 'dizzy'); }
+    if (wasDrag) { scan(); S.mode = 'fall'; S.vx = clamp(S.vx, -1300, 1300); S.vy = clamp(S.vy, -1500, 1200); setLook('fallen', 'dizzy'); }
   };
   btn.addEventListener('pointerup', release);
   btn.addEventListener('pointercancel', release);
   let clicks = 0, clickT = 0;
-  btn.addEventListener('click', (e) => {
-    if (S.mode === 'drag' || S.mode === 'fall') return;
-    S.idle = 0;
+  btn.addEventListener('click', () => {
+    if (S.mode === 'drag' || S.mode === 'fall' || S.mode === 'hop' || S.mode === 'tele') return;
+    S.quiet = 0;
     const now = performance.now();
     clicks = now - clickT < 450 ? clicks + 1 : 1;
     clickT = now;
-    if (S.emote === 'sleep' && S.mode === 'emote') { play('shock'); talk('wake'); return; }
+    if (reduced) { talk(pick(['hi', ...LINES, 'page'])); return; }
+    if (S.emote === 'sleep') { play('shock'); talk('wake'); return; }
     if (clicks === 2) return play('flip');
     if (clicks >= 4) { clicks = 0; play('party'); talk('combo'); return; }
-    if (R() < 0.25) { remix(); talk(pick(['m1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8'])); }
-    else { play(pick(REACTIONS)); if (R() < 0.6) talk(pick(['hi', 'm1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'page'])); }
+    if (R() < 0.25) { remix(); talk(pick(LINES)); }
+    else { play(pick(REACTIONS)); if (R() < 0.6) talk(pick(['hi', ...LINES, 'page'])); }
   });
-  btn.addEventListener('contextmenu', (e) => { e.preventDefault(); play('sleep'); });
+  btn.addEventListener('contextmenu', (e) => { e.preventDefault(); if (!reduced) play('sleep'); });
   addEventListener('pointermove', (e) => {
     const now = performance.now(), dtm = Math.max(1, now - S.mouse.t);
     S.mouse.speed = Math.hypot(e.clientX - S.mouse.x, e.clientY - S.mouse.y) / dtm;
     S.mouse.x = e.clientX; S.mouse.y = e.clientY; S.mouse.t = now;
-    if (S.idle > 45 && S.emote === 'sleep') { S.idle = 0; play('shock'); talk('wake'); }
-    S.idle = Math.min(S.idle, 30);
+    if (S.emote === 'sleep' && S.quiet > 50 && S.seen) { play('shock'); talk('wake'); }
+    S.quiet = Math.min(S.quiet, 30);
   }, { passive: true });
-  addEventListener('keydown', () => { S.idle = 0; });
-  addEventListener('resize', () => { size(); });
-  addEventListener('scroll', () => { if (S.scrollV > 900 && S.mode !== 'emote' && S.mode !== 'fly') play('dizzy'); }, { passive: true });
+  addEventListener('keydown', () => { S.quiet = Math.min(S.quiet, 30); });
+  addEventListener('resize', measure);
 
   setLook('');
-  if (reduced) {
-    // Mouvements réduits : il reste sagement en bas de l'écran et ne réagit qu'au clic.
-    root.classList.add('is-calm');
-    S.x = innerWidth - 60; S.y = innerHeight - 6;
-    root.style.setProperty('--x', S.x + 'px'); root.style.setProperty('--y', S.y + 'px'); root.style.setProperty('--dir', -1);
-  } else requestAnimationFrame((t) => { last = t; frame(t); });
+  if (reduced) root.classList.add('is-calm');
+  else requestAnimationFrame((t0) => { last = t0; frame(t0); });
 
+  function paint() {
+    root.style.setProperty('--x', S.x.toFixed(1) + 'px');
+    root.style.setProperty('--y', S.y.toFixed(1) + 'px');
+    root.style.setProperty('--dir', S.dir);
+  }
   return {
-    /** Changement d'onglet : nouvelle tenue, et il rejoint la nouvelle page en volant. */
-    setPage(page) {
+    /** Changement de page : nouvelle tenue. S'il était à l'écran il saute sur le nouvel en-tête depuis là où il se trouvait ; sinon il y est déjà. */
+    setPage(page, viewportY) {
       S.page = page;
       S.skin = SKIN[page] || SKIN.accueil;
       root.style.setProperty('--rb', S.skin.color);
       root.dataset.hat = S.skin.hat || '';
       root.dataset.tie = S.skin.tie ? '1' : '';
       btn.setAttribute('aria-label', say('name', page));
-      if (reduced) return;
+      bubble.classList.remove('is-on');
+      measure();
+      scan();
+      const home = plats[0];
+      if (!home) { S.plat = null; return; }
+      if (S.mode === 'drag' || S.mode === 'fall') return;
+      S.hop = null; S.away = 0;
+      const first = !S.placed;
+      if (first || reduced || !S.seen) {
+        sit(home, first ? 0.5 : rnd(0.15, 0.6));
+        S.dir = 1; rest(first ? 2.5 : 1.2); paint();
+        return;
+      }
+      // même endroit de l'écran qu'avant le changement, puis un saut jusqu'à l'en-tête
+      S.y = clamp(viewportY ?? S.y, navH() + S.size, innerHeight) + scrollY;
       S.plat = null;
-      requestAnimationFrame(() => { scan(); const p = plats[0] || null; if (S.mode !== 'drag') flyTo(p, 0.12 + R() * 0.3, R() < 0.35); setTimeout(() => { if (S.mode === 'idle') { play(S.skin.act); talk('page'); } }, 1900); });
+      hopTo(home, (S.x - home.l) / Math.max(home.w, 1));
+      if (R() < 0.4) setTimeout(() => { if (S.mode === 'idle' && S.seen) { play(S.skin.act); if (R() < 0.6) talk('page'); } }, 1500);
     },
-    cheer() { if (!reduced && S.mode !== 'drag') { play(pick(['party', 'trophy', 'clap', 'jump'])); } },
-    setNight(on) { root.classList.toggle('is-night', !!on); if (on && !reduced) { play('shiver'); talk('dark'); } },
-    relabel() { btn.setAttribute('aria-label', say('name', S.page)); bubble.classList.remove('is-on'); },
+    /** Où il se trouve à l'écran, à relever juste avant de redessiner la page. */
+    viewportY: () => S.y - scrollY,
+    cheer() { if (!reduced && S.seen && S.mode !== 'drag' && S.mode !== 'fall') play(pick(['party', 'trophy', 'clap', 'jump'])); },
+    setNight(on) { root.classList.toggle('is-night', !!on); if (on && !reduced && S.seen) { play('shiver'); talk('dark'); } },
+    /** La page a été redessinée sans changer d'onglet (langue, par exemple). */
+    relabel() {
+      btn.setAttribute('aria-label', say('name', S.page));
+      bubble.classList.remove('is-on');
+      if (reduced) { scan(); if (plats[0]) { sit(plats[0], 0.5); paint(); } }
+    },
   };
 }

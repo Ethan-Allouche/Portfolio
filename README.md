@@ -17,6 +17,7 @@ Ouvre `https://ethan-allouche.github.io/Portfolio/admin/`.
 - **Publier** envoie le contenu sur GitHub avec un jeton d'accès (à créer une fois, les étapes sont dans l'admin), ou te donne le fichier `data/content.js` à déposer à la main.
 - Les photos ajoutées depuis l'admin sont allégées automatiquement.
 - **Projets** : la première photo ou vidéo s'affiche en grand en haut de la page du projet, les suivantes illustrent le texte, puis viennent la maquette 3D et l'aperçu du rapport PDF. La case « Mettre en avant » place le projet sur l'accueil.
+- **Vidéos** : elles tournent toutes seules, en boucle, sans le son et sans lecteur, sur les cartes des projets comme dans les pages. Pour enchaîner plusieurs vidéos, dépose à côté de `images/mon-projet-1.mp4` des fichiers `images/mon-projet-1-2.mp4`, `-1-3.mp4`… : ils sont lus à la suite, dans l'ordre. Pour un logo ou un schéma, coche « Montrer l'image en entier ».
 - **Compétences** : chaque compétence a un niveau, une description et les projets qui la prouvent (cases à cocher). Sur le site, un clic sur la compétence mène à ces projets.
 - **Expérience** : logo de l'entreprise et projet lié (un clic sur l'expérience ouvre ce projet). La case « Ne pas afficher dans le CV » garde une ligne sur le site sans l'imprimer dans le CV. Même case pour les formations.
 - **Formation** et **Centres d'intérêt** : image et page détaillée facultatives.
@@ -34,7 +35,7 @@ L'adresse de l'admin n'est pas secrète, mais personne ne peut rien publier sans
 | `images/`, `projects/` | Photos, vidéos et rapports PDF des projets. |
 | `assets/js/app.js` | Affichage des pages et navigation. |
 | `assets/js/i18n.js` | Détection de la langue et textes de l'interface. |
-| `assets/js/mascot.js` | Le robot qui se promène sur les pages : déplacements, émotes, répliques (les textes sont dans `i18n.js`, clés `rb.*`). |
+| `assets/js/mascot.js` | Le robot : il vit sur l'en-tête de la page, ne suit pas le défilement, et vient parfois voir ce que tu regardes. Émotes, sauts, téléportation ; ses répliques sont dans `i18n.js` (clés `rb.*`). |
 | `assets/js/decks.js` | Afficheurs et commandes de chaque maquette 3D. |
 | `assets/js/world/` | La scène 3D : moteur (`world.js`), outils (`kit.js`) et une maquette par fichier dans `models/`. |
 | `assets/vendor/` | three.js, hébergé avec le site (aucun chargement depuis un autre serveur). |

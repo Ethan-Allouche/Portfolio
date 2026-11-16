@@ -100,28 +100,83 @@ function parseRoute() {
 const href = (page, id) => '#/' + (page === 'accueil' ? '' : page) + (id ? '/' + encodeURIComponent(id) : '');
 
 // ---------- éléments partagés ----------
-const tagList = (p) => (p.tags && p.tags.length ? h('ul', { class: 'tags' }, p.tags.map((x) => h('li', { dir: 'auto' }, P(x)))) : null);
 const whenOf = (p) => [p.year || p.date, P(p.duration) && `(${P(p.duration)})`].filter(Boolean).join(' ');
-const firstPhoto = (p) => {
-  const m = (p.media || []).find((x) => x && x.src && !isVideo(x.src)) || (p.media || []).find((x) => x && x.poster);
-  return m ? (isVideo(m.src) ? m.poster : m.src) : '';
-};
+
+// Vidéos : lecture automatique, en boucle, sans le son et sans lecteur, comme sur l'ancien site.
+// Une suite « nom-2.mp4 », « nom-3.mp4 »… posée à côté de « nom.mp4 » est lue à la suite, toujours dans l'ordre.
+const seen = new IntersectionObserver((entries) => {
+  for (const e of entries) {
+    const v = e.target;
+    v._on = e.isIntersecting;
+    if (v._on) v.play().catch(() => {});
+    else v.pause();
+  }
+}, { rootMargin: '120px' });
+const playlists = new Map();
+function playlistOf(src) {
+  if (playlists.has(src)) return playlists.get(src);
+  const job = (async () => {
+    const key = 'portfolio.clips:' + src;
+    try { const hit = sessionStorage.getItem(key); if (hit) return JSON.parse(hit); } catch {}
+    const list = [src];
+    const m = src.match(/^(.*)\.(mp4|webm)$/i);
+    for (let n = 2; m && n <= 20; n++) {
+      const next = `${m[1]}-${n}.${m[2]}`;
+      try { const r = await fetch(next, { method: 'HEAD' }); if (!r.ok || !/video|octet/.test(r.headers.get('content-type') || 'video')) break; } catch { break; }
+      list.push(next);
+    }
+    try { sessionStorage.setItem(key, JSON.stringify(list)); } catch {}
+    return list;
+  })();
+  playlists.set(src, job);
+  return job;
+}
+function autoVideo(src, poster, label) {
+  const v = h('video', { src, poster: poster || null, muted: true, playsinline: true, 'webkit-playsinline': true, loop: true, preload: 'metadata', disablepictureinpicture: true, disableremoteplayback: true, tabindex: '-1', 'aria-label': label || null });
+  v.muted = true;
+  v.defaultMuted = true;
+  v.controls = false;
+  let clips = [src], at = 0;
+  // personne ne met la vidéo en pause : si le navigateur l'arrête alors qu'elle est à l'écran, elle repart
+  v.addEventListener('pause', () => { if (v._on && v.isConnected && !document.hidden && !v.ended) v.play().catch(() => {}); });
+  v.addEventListener('ended', () => { if (clips.length > 1) { at = (at + 1) % clips.length; v.src = clips[at]; } v.play().catch(() => {}); });
+  playlistOf(src).then((list) => { if (list.length > 1) { clips = list; v.loop = false; } });
+  seen.observe(v);
+  return v;
+}
+document.addEventListener('visibilitychange', () => { if (!document.hidden) document.querySelectorAll('video').forEach((v) => { if (v._on) v.play().catch(() => {}); }); });
+/** Le premier média d'un projet, tel qu'il s'affiche sur les cartes : la vidéo si c'en est une, sinon la photo. */
+function cover(p) {
+  const m = (p.media || []).find((x) => x && x.src);
+  if (!m) return null;
+  return isVideo(m.src) ? autoVideo(m.src, m.poster) : h('img', { class: m.whole ? 'is-whole' : null, src: m.src, alt: '', loading: 'lazy', decoding: 'async' });
+}
+// Une étiquette qui porte le nom d'une compétence mène à cette compétence.
+const skillsOf = (p) => (D.skillList || []).filter((k) => (k.projects || []).includes(p.id));
+function chips(p, all) {
+  const sk = skillsOf(p);
+  const names = new Set(sk.map((k) => (k.name.fr || '').toLowerCase()));
+  const extra = all ? (p.tags || []).filter((x) => !names.has((x.fr || '').toLowerCase())) : [];
+  if (!sk.length && !extra.length) return null;
+  return h('ul', { class: 'tags' },
+    sk.map((k) => h('li', null, h('a', { href: href('competences', k.id), dir: 'auto' }, P(k.name)))),
+    extra.map((x) => h('li', { class: 'tags__plain', dir: 'auto' }, P(x))));
+}
 function pageHead(page, iconName, title, sub) {
   return h('header', { class: 'phead' },
     h('span', { class: 'phead__icon', html: icon(iconName) }),
     h('div', { class: 'phead__main' }, h('h1', { class: 'phead__title' }, title), sub && h('p', { class: 'phead__sub' }, sub)));
 }
-function projectCard(p) {
-  const photo = firstPhoto(p);
-  return h('a', { class: 'card pcard', href: href('projets', p.id) },
+function projectCard(p, big) {
+  return h('article', { class: 'card pcard' + (big === true ? ' pcard--big' : '') },
     h('div', { class: 'pcard__img' },
-      photo && h('img', { src: photo, alt: '', loading: 'lazy', decoding: 'async' }),
+      cover(p),
       h('span', { class: 'datepill', dir: 'auto' }, whenOf(p)),
       !no3d && h('span', { class: 'pcard__3d' }, ic('cube'), t('proj.badge3d'))),
     h('div', { class: 'pcard__body' },
-      h('h3', { class: 'pcard__title' }, P(p.title)),
+      h('h3', { class: 'pcard__title' }, h('a', { class: 'pcard__link', href: href('projets', p.id) }, P(p.title))),
       h('p', { class: 'pcard__sum' }, P(p.summary)),
-      tagList(p)));
+      chips(p)));
 }
 
 // ---------- pages ----------
@@ -156,7 +211,7 @@ const PAGES = {
         h('div', { class: 'sec__head' },
           h('div', null, h('h2', { class: 'sec__title' }, t('home.featured')), h('p', { class: 'sec__sub' }, t('home.recent'))),
           h('a', { class: 'more', href: href('projets') }, t('home.all'), ic('next', 'flip'))),
-        h('div', { class: 'grid' }, (featured.length ? featured : projects.slice(0, 2)).map(projectCard))),
+        h('div', { class: 'grid' }, (featured.length ? featured : projects.slice(0, 2)).map((p) => projectCard(p, true)))),
       N > 0 && !no3d && h('section', { class: 'sec' },
         h('div', { class: 'sec__head' }, h('div', null, h('h2', { class: 'sec__title' }, t('home.bench')), h('p', { class: 'sec__sub' }, t('home.benchSub')))),
         h('div', { class: 'bench', 'data-world': '-1' }, h('p', { class: 'bench__hint' }, t('hint.pick')))),
@@ -183,7 +238,7 @@ const PAGES = {
           backPill('competences', 'skills.back'),
           P(sk.desc) && h('div', { class: 'infobox' }, h('h2', null, t('skills.more')), h('p', null, P(sk.desc)))),
         h('h2', { class: 'h2' }, t('skills.related', { n: rel.length })),
-        rel.length ? h('div', { class: 'grid' }, rel.map(projectCard)) : h('p', { class: 'card lead' }, t('skills.none')),
+        rel.length ? h('div', { class: 'grid' }, rel.map((p) => projectCard(p))) : h('p', { class: 'card lead' }, t('skills.none')),
       ];
     }
     return [
@@ -192,8 +247,10 @@ const PAGES = {
         h('h2', { class: 'panel__title' }, ic('cube'), h('span', null, t('page.skillsAll'))),
         h('p', { class: 'hintline' }, t('skills.hint')),
         h('div', { class: 'skillgrid' }, list.map((x) => h('a', { class: 'skillrow', href: href('competences', x.id) },
-          h('span', { dir: 'auto' }, P(x.name)),
-          h('span', { class: 'skillrow__meta' }, P(x.level) && h('span', { class: 'level' }, P(x.level)), h('span', { class: 'count', title: t('skills.related', { n: related(x).length }) }, String(related(x).length))))))),
+          h('span', { class: 'skillrow__top' },
+            h('span', { dir: 'auto' }, P(x.name)),
+            h('span', { class: 'skillrow__meta' }, P(x.level) && h('span', { class: 'level' }, P(x.level)), h('span', { class: 'count', title: t('skills.related', { n: related(x).length }) }, String(related(x).length)))),
+          x.val > 0 && h('span', { class: 'bar', 'aria-hidden': 'true' }, h('i', { style: `inline-size:${Math.min(100, x.val)}%` })))))),
       (D.skills || []).length > 0 && h('section', { class: 'card panel', style: 'margin-block-start:22px' },
         h('h2', { class: 'panel__title' }, ic('cube'), h('span', null, t('skills.domains'))),
         h('div', { class: 'families' }, D.skills.map((g) => h('div', { class: 'family' }, h('h3', null, P(g.group)), h('ul', null, (g.items || []).map((x) => h('li', null, P(x)))))))),
@@ -305,10 +362,9 @@ function paragraphs(text) {
 }
 function mediaFig(m, cls) {
   const cap = P(m.caption);
-  return h('figure', { class: cls },
-    isVideo(m.src)
-      ? h('video', { src: m.src, poster: m.poster || null, controls: true, preload: m.poster ? 'none' : 'metadata', playsinline: true })
-      : [h('img', { src: m.src, alt: cap, loading: cls === 'heromedia' ? null : 'lazy', decoding: 'async' }), h('button', { class: 'zoom', type: 'button', 'aria-label': t('sheet.zoom'), onclick: () => openLightbox(m.src, cap) })],
+  return h('figure', { class: cls + (m.whole ? ' is-whole' : '') },
+    isVideo(m.src) ? autoVideo(m.src, m.poster, cap) : h('img', { src: m.src, alt: cap, loading: cls === 'heromedia' ? null : 'lazy', decoding: 'async' }),
+    h('button', { class: 'zoom', type: 'button', 'aria-label': t('sheet.zoom'), onclick: () => openLightbox(m.src, cap, m.poster) }),
     cap && h('figcaption', null, cap));
 }
 function projectPage(k) {
@@ -337,14 +393,14 @@ function projectPage(k) {
       h('div', { class: 'phead__main' },
         h('p', { class: 'phead__row' }, h('span', { class: 'datepill', dir: 'auto' }, whenOf(p)), P(p.org) && h('span', { class: 'phead__org' }, P(p.org))),
         h('h1', { class: 'phead__title', style: 'margin-block-start:8px' }, P(p.title)),
-        tagList(p)),
+        chips(p)),
       h('div', { class: 'phead__nav' }, backPill('projets', 'proj.back'), stepper())),
     media[0] && mediaFig(media[0], 'heromedia'),
     P(p.summary) && h('p', { class: 'card lead', style: 'margin-block-start:22px' }, P(p.summary)),
     h('div', { class: 'story' }, blocks,
       rest.length > 0 && h('section', { class: 'card panel' },
         h('h2', { class: 'panel__title' }, ic('cube'), h('span', null, t('sheet.media'))),
-        h('div', { class: 'gallery' }, rest.map((m) => mediaFig(m, isVideo(m.src) ? 'shot shot--video' : 'shot'))))),
+        h('div', { class: 'gallery' }, rest.map((m) => mediaFig(m, 'shot'))))),
     !no3d && [
       h('div', { class: 'stage__head' }, h('h2', null, t('stage.title')), h('p', null, t('stage.sub'))),
       h('section', { class: 'card stage', 'aria-label': t('stage.title') },
@@ -365,14 +421,17 @@ function projectPage(k) {
   ];
 }
 
-function openLightbox(src, caption) {
+function openLightbox(src, caption, poster) {
+  const big = /\.pdf$/i.test(src) ? h('iframe', { src, title: 'PDF' }) : isVideo(src) ? autoVideo(src, poster, caption) : h('img', { src, alt: caption || '' });
   el.lightbox.replaceChildren(
     h('button', { class: 'round', type: 'button', 'aria-label': t('sheet.close'), html: icon('close'), onclick: () => el.lightbox.close() }),
-    /\.pdf$/i.test(src) ? h('iframe', { src, title: 'PDF' }) : h('img', { src, alt: caption || '' }),
+    big,
     caption ? h('p', null, caption) : h('span'));
   el.lightbox.showModal();
+  if (big.tagName === 'VIDEO') { big._on = true; big.play().catch(() => {}); }
 }
-el.lightbox.addEventListener('click', (e) => { if (!['IMG', 'P', 'IFRAME'].includes(e.target.tagName)) el.lightbox.close(); });
+el.lightbox.addEventListener('click', (e) => { if (!['IMG', 'P', 'IFRAME', 'VIDEO'].includes(e.target.tagName)) el.lightbox.close(); });
+el.lightbox.addEventListener('close', () => el.lightbox.replaceChildren());
 
 async function copyMail(e) {
   const b = e.currentTarget;
@@ -407,6 +466,7 @@ function renderNav() {
     h('span', { style: 'display:inline-flex;gap:18px' }, h('a', { href: 'cv.html?lang=' + lang }, t('nav.cv')), D.profile.linkedin && h('a', { href: D.profile.linkedin, target: '_blank', rel: 'noopener' }, 'LinkedIn')));
 }
 function render(resetScroll) {
+  const robotY = robot.viewportY();
   el.bay.append(el.canvas); // la scène 3D survit au changement de page
   mounted = false;
   liveConsole = null;
@@ -420,7 +480,7 @@ function render(resetScroll) {
   mountWorld();
   if (resetScroll) scrollTo(0, 0);
   const where = route.page + '/' + (route.k >= 0 ? route.k : route.sub || '');
-  if (where !== robotPage) { robotPage = where; robot.setPage(route.page); } else robot.relabel();
+  if (where !== robotPage) { robotPage = where; robot.setPage(route.page, robotY); } else robot.relabel();
   if (route.anchor) requestAnimationFrame(() => document.getElementById(route.anchor)?.scrollIntoView({ block: 'center' }));
 }
 

@@ -422,7 +422,8 @@ window.PORTFOLIO = {
       "fr": "",
       "en": "",
       "he": ""
-     }
+     },
+     "whole": true
     },
     {
      "src": "images/stage-enedis-2.jpg",
@@ -1409,7 +1410,8 @@ window.PORTFOLIO = {
     "fr": "Développement bas niveau pour systèmes embarqués et microcontrôleurs (Arduino, ESP32). Compréhension de la gestion mémoire et des structures de données.",
     "en": "Low-level development for embedded systems and microcontrollers (Arduino, ESP32). Understanding of memory management and data structures.",
     "he": "פיתוח ברמה נמוכה למערכות משובצות ולמיקרו־בקרים (Arduino, ESP32). הבנה של ניהול זיכרון ומבני נתונים."
-   }
+   },
+   "val": 50
   },
   {
    "id": "python",
@@ -1430,7 +1432,8 @@ window.PORTFOLIO = {
     "fr": "Scripts avancés, traitement de données et automatisation de tâches. Utilisation de bibliothèques pour l'interfaçage avec des systèmes matériels.",
     "en": "Advanced scripting, data processing and task automation. Use of libraries to interface with hardware.",
     "he": "כתיבת סקריפטים מתקדמים, עיבוד נתונים ואוטומציה של משימות. שימוש בספריות לחיבור למערכות חומרה."
-   }
+   },
+   "val": 60
   },
   {
    "id": "langages-automate",
@@ -1453,7 +1456,8 @@ window.PORTFOLIO = {
     "fr": "Programmation d'automates programmables industriels (API) selon la norme CEI 61131-3. Maîtrise des diagrammes Ladder, du Grafcet (SFC) et des blocs fonctionnels.",
     "en": "Programming of industrial PLCs to the IEC 61131-3 standard. Proficient with Ladder diagrams, Grafcet (SFC) and function blocks.",
     "he": "תכנות בקרים מתוכנתים תעשייתיים לפי תקן IEC 61131-3. שליטה בדיאגרמות סולם, Grafcet (SFC) ובלוקים פונקציונליים."
-   }
+   },
+   "val": 80
   },
   {
    "id": "electronique",
@@ -1480,7 +1484,8 @@ window.PORTFOLIO = {
     "fr": "Conception de circuits, soudure, choix de composants et diagnostic de pannes sur cartes électroniques.",
     "en": "Circuit design, soldering, component selection and fault-finding on electronic boards.",
     "he": "תכנון מעגלים, הלחמה, בחירת רכיבים ואיתור תקלות בכרטיסים אלקטרוניים."
-   }
+   },
+   "val": 70
   },
   {
    "id": "energie",
@@ -1502,7 +1507,8 @@ window.PORTFOLIO = {
     "fr": "Sensibilisation aux enjeux d'efficacité énergétique et conception de systèmes durables (par exemple la gestion de l'eau).",
     "en": "Awareness of energy-efficiency issues and design of sustainable systems (water management, for example).",
     "he": "מודעות לסוגיות של יעילות אנרגטית ותכנון מערכות בנות־קיימא (למשל ניהול מים)."
-   }
+   },
+   "val": 40
   },
   {
    "id": "robotique",
@@ -1523,7 +1529,8 @@ window.PORTFOLIO = {
     "fr": "Asservissement de moteurs, cinématique simple et intégration de capteurs pour la navigation robotique.",
     "en": "Motor control loops, simple kinematics and sensor integration for robot navigation.",
     "he": "בקרת מנועים, קינמטיקה בסיסית ושילוב חיישנים לניווט רובוטי."
-   }
+   },
+   "val": 70
   },
   {
    "id": "unilogic",
@@ -1544,7 +1551,8 @@ window.PORTFOLIO = {
     "fr": "Programmation des automates Unitronics (série UniStream), qui intègrent automate et IHM.",
     "en": "Programming Unitronics PLCs (UniStream series), which combine PLC and HMI.",
     "he": "תכנות בקרי Unitronics (סדרת UniStream), המשלבים בקר וממשק מפעיל."
-   }
+   },
+   "val": 40
   },
   {
    "id": "php-sql",
@@ -1565,7 +1573,8 @@ window.PORTFOLIO = {
     "fr": "Capacité à concevoir, interroger et manipuler des données avec SQL au sein d'applications web PHP.",
     "en": "Able to design, query and manipulate data with SQL inside PHP web applications.",
     "he": "יכולת לתכנן, לתשאל ולעבד נתונים ב־SQL בתוך יישומי אינטרנט ב־PHP."
-   }
+   },
+   "val": 40
   },
   {
    "id": "office-365",
@@ -1588,7 +1597,8 @@ window.PORTFOLIO = {
     "fr": "Maîtrise avancée des outils collaboratifs et bureautiques (Excel, Word, PowerPoint, Teams) pour la gestion de projets.",
     "en": "Advanced command of collaborative and office tools (Excel, Word, PowerPoint, Teams) for project work.",
     "he": "שליטה מתקדמת בכלי המשרד ושיתוף הפעולה (Excel, Word, PowerPoint, Teams) לניהול פרויקטים."
-   }
+   },
+   "val": 90
   },
   {
    "id": "vijeo-designer",
@@ -1610,7 +1620,8 @@ window.PORTFOLIO = {
     "fr": "Conception et programmation d'interfaces IHM dynamiques pour le pilotage et la supervision de systèmes automatisés.",
     "en": "Design and programming of dynamic HMI screens to control and supervise automated systems.",
     "he": "תכנון ותכנות ממשקי מפעיל דינמיים לשליטה ולפיקוח על מערכות אוטומטיות."
-   }
+   },
+   "val": 70
   },
   {
    "id": "codesys-control-expert",
@@ -1632,7 +1643,8 @@ window.PORTFOLIO = {
     "fr": "Programmation et configuration d'automates programmables industriels (API) sur les environnements standards.",
     "en": "Programming and configuring industrial PLCs in the standard environments.",
     "he": "תכנות והגדרה של בקרים תעשייתיים בסביבות הפיתוח המקובלות."
-   }
+   },
+   "val": 80
   },
   {
    "id": "systeme-embarque",
@@ -1653,7 +1665,8 @@ window.PORTFOLIO = {
     "fr": "Conception et intégration d'architectures électroniques autonomes multi-capteurs, gestion de l'énergie et étanchéité de systèmes embarqués.",
     "en": "Design and integration of autonomous multi-sensor electronic architectures, power management and waterproofing of embedded systems.",
     "he": "תכנון ושילוב של ארכיטקטורות אלקטרוניות אוטונומיות מרובות חיישנים, ניהול אנרגיה ואיטום של מערכות משובצות."
-   }
+   },
+   "val": 75
   },
   {
    "id": "adaptabilite-logicielle",
@@ -1676,7 +1689,8 @@ window.PORTFOLIO = {
     "fr": "Prise en main rapide et exploitation autonome de tout nouvel environnement logiciel ou outil technique.",
     "en": "Quick to pick up any new software environment or technical tool and use it independently.",
     "he": "למידה מהירה ועבודה עצמאית בכל סביבת תוכנה או כלי טכני חדש."
-   }
+   },
+   "val": 90
   },
   {
    "id": "travail-en-equipe",
@@ -1701,7 +1715,8 @@ window.PORTFOLIO = {
     "fr": "Capacité à collaborer efficacement, à communiquer clairement et à coordonner des actions au sein d'un groupe projet.",
     "en": "Able to collaborate effectively, communicate clearly and coordinate work within a project group.",
     "he": "יכולת לשתף פעולה ביעילות, לתקשר בבהירות ולתאם פעולות בתוך צוות פרויקט."
-   }
+   },
+   "val": 90
   }
  ]
 };
