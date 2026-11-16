@@ -150,10 +150,11 @@ export function createMascot({ say, reduced }) {
   const pupils = root.querySelector('.rb-pupils');
   const view = document.getElementById('view') || document.body;
   const nav = document.querySelector('.nav');
+  const foot = document.getElementById('foot');
 
   const S = {
     x: 0, y: 0, dir: 1, mode: 'idle', vx: 0, vy: 0, plat: null, u: 0.3, goal: 0.3,
-    until: 0, next: 2, emote: '', spark: null, sparkT: 0, hop: null, drag: null,
+    until: 0, next: 2, trip: 7, emote: '', spark: null, sparkT: 0, hop: null, drag: null,
     page: 'accueil', skin: SKIN.accueil, size: 80, placed: false, seen: true,
     quiet: 0, scrollAt: 0, lastScroll: 0, sayUntil: 0, dodgeAt: 0,
     mouse: { x: -999, y: -999, t: 0, speed: 0 },
@@ -179,7 +180,8 @@ export function createMascot({ say, reduced }) {
   let plats = [];
   function scan() {
     const sx = scrollX, sy = scrollY, min = navH() + S.size * 0.92 + 1;
-    plats = [...view.querySelectorAll(WHERE)].map((el) => { const r = el.getBoundingClientRect(); return { el, l: r.left + sx, w: r.width, top: r.top + sy }; })
+    // le sol de la page compte aussi : le bord du pied de page, tout en bas
+    plats = [...view.querySelectorAll(WHERE), ...(foot ? [foot] : [])].map((el) => { const r = el.getBoundingClientRect(); return { el, l: r.left + sx, w: r.width, top: r.top + sy }; })
       .filter((p) => p.w > 100 && p.top >= min && p.el.offsetParent)
       .sort((a, b) => a.top - b.top || a.l - b.l);
     return plats;
@@ -258,8 +260,8 @@ export function createMascot({ say, reduced }) {
     u = clamp(u, margin(p), 1 - margin(p));
     const to = spot(p, u), dist = Math.hypot(to.x - S.x, to.y - S.y);
     if (dist < 12) { sit(p, u); S.mode = 'emote'; S.emote = 'hello'; S.until = 0.55; S.spark = null; return setLook('jump', 'happy'); }
-    if (dist > Math.max(520, innerHeight * 0.75)) return teleport(p, u);
-    S.hop = { x0: S.x, y0: S.y, p, u, t: -0.16, d: clamp(dist / 560, 0.42, 0.85), h: clamp(46 + dist * 0.16, 56, 130), jet: dist > 300 };
+    if (dist > Math.max(760, innerHeight)) return teleport(p, u);
+    S.hop = { x0: S.x, y0: S.y, p, u, t: -0.16, d: clamp(dist / 560, 0.42, 1.15), h: clamp(46 + dist * 0.16, 56, 150), jet: dist > 300 };
     S.mode = 'hop'; S.emote = ''; S.spark = null;
     S.dir = to.x >= S.x ? 1 : -1;
     setLook('crouch', 'big');
@@ -267,7 +269,14 @@ export function createMascot({ say, reduced }) {
   function think() {
     scan();
     if (!S.plat || !S.plat.el.isConnected) { const p = nearest(S.x, S.y); if (!p) return rest(2); sit(p, 0.3); }
-    const r = R(), m = margin(S.plat);
+    const m = margin(S.plat);
+    // l'envie de bouger : toutes les 6 à 13 secondes il change de bloc, vers le bas comme vers le haut
+    if (S.trip <= 0) {
+      S.trip = rnd(6, 13);
+      const near = plats.filter((p) => p.el !== S.plat.el && Math.abs(p.top - S.y) < innerHeight * 1.2);
+      if (near.length) return hopTo(pick(near), rnd(0.15, 0.85));
+    }
+    const r = R();
     if (r < 0.30) {
       S.goal = clamp(S.u + rnd(-0.5, 0.5), m, 1 - m);
       if (Math.abs(S.goal - S.u) * S.plat.w < 24) return rest(rnd(0.6, 1.6));
@@ -301,6 +310,7 @@ export function createMascot({ say, reduced }) {
     if (!S.placed) return;
     if (scrollY !== S.lastScroll) { S.lastScroll = scrollY; S.scrollAt = now; }
     S.quiet += dt;
+    if (S.seen && S.mode !== 'drag') S.trip -= dt;
 
     if (S.mode === 'drag') {
       const tx = S.drag.x + scrollX, ty = S.drag.y + scrollY + S.size * 0.62;
@@ -315,14 +325,15 @@ export function createMascot({ say, reduced }) {
       const prev = S.y;
       S.y += S.vy * dt;
       const vr = view.getBoundingClientRect();
-      let land = null, landY = vr.bottom + scrollY - 6;
+      let land = null, landY = vr.bottom + scrollY;
       if (S.vy > 0) for (const p of plats) if (S.x > p.l + 8 && S.x < p.l + p.w - 8 && p.top >= prev - 2 && p.top < landY) { land = p; landY = p.top; }
       if (S.y >= landY && S.vy > 0) {
         S.y = landY;
         if (S.vy > 560) { S.vy *= -0.3; S.vx *= 0.5; burst('puff', 3, 'dust'); }
         else {
           S.vx = S.vy = 0;
-          if (!land) { scan(); land = nearest(S.x, S.y); }
+          if (!land) { scan(); land = plats.find((p) => p.el === foot) || nearest(S.x, S.y); } // tombé tout en bas : il y reste
+          S.trip = rnd(8, 15); // il reste un moment là où il est tombé
           if (land) { sit(land, (S.x - land.l) / land.w); play(pick(['dizzy', 'shock', 'laugh', 'jump'])); } else rest(1);
         }
       }
