@@ -35,7 +35,8 @@ L'adresse de l'admin n'est pas secrète, mais personne ne peut rien publier sans
 | `images/`, `projects/` | Photos, vidéos et rapports PDF des projets. |
 | `assets/js/app.js` | Affichage des pages et navigation. |
 | `assets/js/i18n.js` | Détection de la langue et textes de l'interface. |
-| `assets/js/mascot.js` | Le robot : il vit sur l'en-tête de la page, ne suit pas le défilement, et vient parfois voir ce que tu regardes. Émotes, sauts, téléportation ; ses répliques sont dans `i18n.js` (clés `rb.*`). |
+| `assets/js/mascot.js` | Le robot : où il va et ce qu'il fait. Il vit sur les blocs de la page, saute de l'un à l'autre même quand personne ne le regarde, et ne suit pas le défilement. Aucun texte quand on clique dessus. |
+| `assets/js/mascot3d.js` | Le corps du robot en 3D (visage, bras, roues, accessoires, poses de chaque émote). Sans WebGL, ou si le visiteur a demandé moins d'animations, le dessin 2D de `mascot.js` prend le relais. |
 | `assets/js/decks.js` | Afficheurs et commandes de chaque maquette 3D. |
 | `assets/js/world/` | La scène 3D : moteur (`world.js`), outils (`kit.js`) et une maquette par fichier dans `models/`. |
 | `assets/vendor/` | three.js, hébergé avec le site (aucun chargement depuis un autre serveur). |

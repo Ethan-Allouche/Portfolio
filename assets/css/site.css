@@ -402,6 +402,16 @@ video::-webkit-media-controls, video::-webkit-media-controls-start-playback-butt
 .robot__flip { display: block; transform: scaleX(var(--dir)); }
 .robot svg { display: block; inline-size: 100%; block-size: 100%; overflow: visible; }
 .robot__fx { position: absolute; inset-block-start: 0; left: 0; }
+/* le corps en 3D : un petit rendu transparent posé aux pieds du robot ; le dessin 2D ne sert plus que de secours */
+.robot__gl { display: none; position: absolute; left: 0; top: 0; inline-size: var(--gw, 170px); block-size: var(--gh, 160px); pointer-events: none; transform: translate(calc(var(--x) - var(--gw, 170px) / 2), calc(var(--y) - var(--gh, 160px) * var(--feet, .8))); transform-origin: 50% calc(var(--feet, .8) * 100%); will-change: transform; }
+.robot.is-3d .robot__gl { display: block; }
+.robot.is-3d .robot__flip { visibility: hidden; }
+.robot.is-loading { visibility: hidden; }
+.robot.is-3d.is-out .robot__gl { animation: rb3-out .2s ease-in forwards; }
+.robot.is-3d.is-in .robot__gl { animation: rb3-in .32s cubic-bezier(.2, 1.5, .4, 1); }
+.robot[data-tint='ghost'] .robot__gl { opacity: .45; }
+@keyframes rb3-out { to { scale: .05 1.7; opacity: 0; filter: brightness(2.5); } }
+@keyframes rb3-in { from { scale: .05 1.7; opacity: 0; filter: brightness(2.5); } }
 .robot__say { position: absolute; inset-block-start: 0; left: 0; inline-size: max-content; max-inline-size: 190px; padding: 6px 12px; border-radius: 12px 12px 12px 3px; background: #fff; color: var(--g8); font-size: .82rem; font-weight: 700; line-height: 1.3; box-shadow: var(--lift); transform: translate(calc(var(--x) + 14px), calc(var(--y) - var(--s) - 100%)) scale(.6); transform-origin: 0 100%; opacity: 0; transition: opacity .18s, scale .18s; }
 .robot__say.is-on { opacity: 1; transform: translate(calc(var(--x) + 14px), calc(var(--y) - var(--s) - 100%)); }
 .robot__say.is-left { border-radius: 12px 12px 3px 12px; transform: translate(calc(var(--x) - 14px - 100%), calc(var(--y) - var(--s) - 100%)); }

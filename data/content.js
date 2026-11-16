@@ -19,9 +19,9 @@ window.PORTFOLIO = {
    "he": "אני מתכנן, מחווט ומתכנת מערכות אוטומטיות, מהחיישן ועד ממשק הפיקוח. למדתי במסלול GEII ב־IUT טולון, ועשיתי שתי התמחויות, ב־Veolia וב־Enedis."
   },
   "status": {
-   "fr": "Recherche une alternance en cycle ingénieur",
-   "en": "Looking for a work-study engineering position",
-   "he": "מחפש משרה משולבת בלימודי הנדסה"
+   "fr": "",
+   "en": "",
+   "he": ""
   },
   "location": {
    "fr": "Toulon, France",

@@ -142,7 +142,7 @@ const SVG = `<svg viewBox="-20 -24 140 130" aria-hidden="true">
 export function createMascot({ say, reduced }) {
   const root = document.createElement('div');
   root.className = 'robot';
-  root.innerHTML = `<div class="robot__fx"></div><div class="robot__say" role="status"></div><button class="robot__btn" type="button"><span class="robot__flip">${SVG}</span></button>`;
+  root.innerHTML = `<div class="robot__fx"></div><canvas class="robot__gl" aria-hidden="true"></canvas><div class="robot__say" role="status"></div><button class="robot__btn" type="button"><span class="robot__flip">${SVG}</span></button>`;
   document.body.append(root);
   const btn = root.querySelector('.robot__btn');
   const fx = root.querySelector('.robot__fx');
@@ -155,10 +155,21 @@ export function createMascot({ say, reduced }) {
     x: 0, y: 0, dir: 1, mode: 'idle', vx: 0, vy: 0, plat: null, u: 0.3, goal: 0.3,
     until: 0, next: 2, emote: '', spark: null, sparkT: 0, hop: null, drag: null,
     page: 'accueil', skin: SKIN.accueil, size: 80, placed: false, seen: true,
-    quiet: 0, away: 0, visitAt: rnd(8, 26), scrollAt: 0, lastScroll: 0, sayUntil: 0, dodgeAt: 0,
+    quiet: 0, scrollAt: 0, lastScroll: 0, sayUntil: 0, dodgeAt: 0,
     mouse: { x: -999, y: -999, t: 0, speed: 0 },
   };
-  const measure = () => { S.size = parseFloat(getComputedStyle(root).getPropertyValue('--s')) * 0.68 || 80; };
+  const gl = root.querySelector('.robot__gl');
+  let body = null, frame3d = null; // le corps en 3D, chargé à part ; sans lui, le dessin en 2D reste affiché
+  const measure = () => {
+    S.size = parseFloat(getComputedStyle(root).getPropertyValue('--s')) * 0.68 || 80;
+    if (!body) return;
+    S.unit = (S.size * 0.95) / frame3d.height;
+    const w = Math.round(frame3d.w * S.unit), h = Math.round(frame3d.h * S.unit);
+    root.style.setProperty('--gw', w + 'px');
+    root.style.setProperty('--gh', h + 'px');
+    root.style.setProperty('--feet', body.feetAt.toFixed(4));
+    body.resize(w, h, Math.min(devicePixelRatio || 1, 2));
+  };
   const navH = () => (nav ? nav.offsetHeight : 52);
   const docW = () => document.documentElement.clientWidth;
   measure();
@@ -218,7 +229,7 @@ export function createMascot({ say, reduced }) {
   }
   const burst = (kinds, n = 8, style = 'burst') => { for (let i = 0; i < n; i++) particle(kinds, style); };
   function talk(key, ms = 2600) {
-    if (!S.seen) return;
+    if (!S.seen || S.mute) return; // aucun texte quand on le touche : seulement ce qu'il dit de lui-même
     const text = say(key, S.page);
     if (!text) return;
     bubble.textContent = text;
@@ -264,23 +275,21 @@ export function createMascot({ say, reduced }) {
     } else if (r < 0.44) play(S.skin.act);
     else if (r < 0.66) play(pick(Object.keys(EMOTES)));
     else if (r < 0.74) remix();
-    else if (r < 0.80) { talk(pick([...LINES, 'page'])); rest(rnd(1.5, 3)); }
-    else if (r < 0.87) {
-      // un saut vers une carte voisine : celles qui l'entourent, pas celles que tu regardes
-      const near = plats.filter((p) => p.el !== S.plat.el && Math.abs(p.top - S.y) < innerHeight * 0.6 && inView(p.top) === S.seen);
+    else if (r < 0.78) { talk(pick([...LINES, 'page'])); rest(rnd(1.5, 3)); }
+    else if (r < 0.90) {
+      // un saut vers un bloc voisin, qu'on le regarde ou non : il fait sa vie
+      const near = plats.filter((p) => p.el !== S.plat.el && Math.abs(p.top - S.y) < innerHeight * 0.8);
       if (near.length) hopTo(pick(near), rnd(0.15, 0.85)); else rest(rnd(1, 2));
     } else { S.mode = 'idle'; S.next = rnd(1.5, 3.5); setLook('look'); }
   }
-  /** Hors de l'écran depuis un moment : parfois il vient voir, parfois il rentre en haut de la page, parfois il reste. */
-  function wander() {
-    S.away = 0; S.visitAt = rnd(7, 24);
+  /** Personne ne le regarde : il continue sa vie de bloc en bloc, au hasard, sans chercher à suivre le défilement. */
+  function roam() {
+    S.next = rnd(5, 12);
     scan();
-    if (!plats.length) return;
-    const r = R();
-    if (r < 0.5) {
-      const here = plats.filter((p) => inView(p.top, -10));
-      if (here.length) teleport(pick(here), rnd(0.15, 0.85));
-    } else if (r < 0.72 && S.plat !== plats[0]) teleport(plats[0], rnd(0.12, 0.5));
+    const near = plats.filter((p) => (!S.plat || p.el !== S.plat.el) && Math.abs(p.top - S.y) < innerHeight * 1.6);
+    if (!near.length) return;
+    const p = pick(near), u = rnd(0.15, 0.85);
+    if (inView(p.top, -10)) teleport(p, u); else { sit(p, u); S.dir = R() < 0.5 ? 1 : -1; }
   }
 
   // ----- boucle -----
@@ -346,7 +355,7 @@ export function createMascot({ say, reduced }) {
           if (S.emote === 'moonwalk') S.u = clamp(S.u - S.dir * (50 / p.w) * dt, margin(p), 1 - margin(p));
           if ((S.until -= dt) <= 0) rest(S.emote === 'land' ? rnd(0.3, 0.9) : rnd(0.8, 2.4));
         } else if ((S.next -= dt) <= 0) {
-          if (!S.seen) S.next = 1.5; // personne ne regarde : il attend sagement
+          if (!S.seen) { if (performance.now() - S.scrollAt > 700) roam(); else S.next = 1; }
           else if (S.quiet > 50) play('sleep');
           else think();
         }
@@ -355,14 +364,13 @@ export function createMascot({ say, reduced }) {
     }
 
     S.seen = onScreen();
-    if (S.seen) S.away = 0;
-    else if ((S.mode === 'idle' || S.mode === 'walk' || S.mode === 'emote') && now - S.scrollAt > 700) { S.away += dt; if (S.away > S.visitAt) wander(); }
 
     if (S.seen) {
       // regard : les pupilles suivent la souris quand elle est proche
       const mx = S.mouse.x + scrollX - S.x, my = S.mouse.y + scrollY - (S.y - S.size * 0.8), d = Math.hypot(mx, my);
       const near = d < 320 && now - S.mouse.t < 4000;
-      pupils.style.transform = near ? `translate(${(clamp(mx / 60, -1, 1) * 2.4 * S.dir).toFixed(2)}px, ${(clamp(my / 60, -1, 1) * 1.8).toFixed(2)}px)` : '';
+      S.lx = near ? clamp(mx / 160, -1, 1) : 0; S.ly = near ? clamp(my / 160, -1, 1) : 0;
+      if (!body) pupils.style.transform = near ? `translate(${(clamp(mx / 60, -1, 1) * 2.4 * S.dir).toFixed(2)}px, ${(clamp(my / 60, -1, 1) * 1.8).toFixed(2)}px)` : '';
       // esquive : une souris qui fonce sur lui le fait réapparaître un peu plus loin
       if (d < 44 && S.mouse.speed > 1.8 && (S.mode === 'walk' || S.mode === 'idle') && now - S.dodgeAt > 4000 && now - S.mouse.t < 120) {
         S.dodgeAt = now; scan();
@@ -370,6 +378,15 @@ export function createMascot({ say, reduced }) {
         if (here.length) teleport(pick(here), rnd(0.1, 0.9));
       }
     }
+    if (body && S.seen) {
+      const dx = (S.x - S.px) / Math.max(dt, 0.004), free = S.mode === 'drag' || S.mode === 'fall';
+      body.render({
+        move: root.dataset.move, eyes: root.dataset.eyes, prop: root.dataset.prop, tint: root.dataset.tint, hat: S.skin.hat, tie: S.skin.tie,
+        dir: S.dir, vx: free ? S.vx : dx, vy: free ? S.vy : 0, speed: S.mode === 'walk' || S.emote === 'moonwalk' ? Math.abs(dx) : 0, unit: S.unit,
+        air: S.mode === 'hop' && S.hop && S.hop.t > 0 ? Math.sin(Math.PI * Math.min(1, S.hop.t)) : 0, mx: S.lx || 0, my: S.ly || 0, night: root.classList.contains('is-night'),
+      }, dt, now / 1000);
+    }
+    S.px = S.x;
     root.style.setProperty('--x', S.x.toFixed(1) + 'px');
     root.style.setProperty('--y', S.y.toFixed(1) + 'px');
     root.style.setProperty('--dir', S.dir);
@@ -391,7 +408,6 @@ export function createMascot({ say, reduced }) {
       down.moved = true;
       S.mode = 'drag'; S.plat = null; S.hop = null; S.emote = ''; S.spark = null;
       setLook('dangle', 'big');
-      talk('grab', 1500);
     }
     if (down.moved) { S.drag = { x: e.clientX, y: e.clientY }; e.preventDefault(); }
   });
@@ -407,22 +423,27 @@ export function createMascot({ say, reduced }) {
   btn.addEventListener('click', () => {
     if (S.mode === 'drag' || S.mode === 'fall' || S.mode === 'hop' || S.mode === 'tele') return;
     S.quiet = 0;
+    bubble.classList.remove('is-on');
+    if (reduced) return;
+    S.mute = true;
+    react();
+    S.mute = false;
+  });
+  function react() {
     const now = performance.now();
     clicks = now - clickT < 450 ? clicks + 1 : 1;
     clickT = now;
-    if (reduced) { talk(pick(['hi', ...LINES, 'page'])); return; }
-    if (S.emote === 'sleep') { play('shock'); talk('wake'); return; }
+    if (S.emote === 'sleep') return play('shock');
     if (clicks === 2) return play('flip');
-    if (clicks >= 4) { clicks = 0; play('party'); talk('combo'); return; }
-    if (R() < 0.25) { remix(); talk(pick(LINES)); }
-    else { play(pick(REACTIONS)); if (R() < 0.6) talk(pick(['hi', ...LINES, 'page'])); }
-  });
+    if (clicks >= 4) { clicks = 0; return play('party'); }
+    if (R() < 0.25) remix(); else play(pick(REACTIONS));
+  }
   btn.addEventListener('contextmenu', (e) => { e.preventDefault(); if (!reduced) play('sleep'); });
   addEventListener('pointermove', (e) => {
     const now = performance.now(), dtm = Math.max(1, now - S.mouse.t);
     S.mouse.speed = Math.hypot(e.clientX - S.mouse.x, e.clientY - S.mouse.y) / dtm;
     S.mouse.x = e.clientX; S.mouse.y = e.clientY; S.mouse.t = now;
-    if (S.emote === 'sleep' && S.quiet > 50 && S.seen) { play('shock'); talk('wake'); }
+    if (S.emote === 'sleep' && S.quiet > 50 && S.seen) play('shock');
     S.quiet = Math.min(S.quiet, 30);
   }, { passive: true });
   addEventListener('keydown', () => { S.quiet = Math.min(S.quiet, 30); });
@@ -430,19 +451,28 @@ export function createMascot({ say, reduced }) {
 
   setLook('');
   if (reduced) root.classList.add('is-calm');
-  else requestAnimationFrame((t0) => { last = t0; frame(t0); });
+  else {
+    root.classList.add('is-loading');
+    import('./mascot3d.js').then((m) => {
+      body = m.createBody(gl);
+      if (body) { frame3d = m.UNITS; root.classList.add('is-3d'); body.setColor(S.skin.color); measure(); }
+    }).catch(() => {}).finally(() => { root.classList.remove('is-loading'); requestAnimationFrame((t0) => { last = t0; frame(t0); }); });
+  }
 
   function paint() {
     root.style.setProperty('--x', S.x.toFixed(1) + 'px');
     root.style.setProperty('--y', S.y.toFixed(1) + 'px');
     root.style.setProperty('--dir', S.dir);
   }
-  return {
+  return (root.robot = {
+    /** Joue une émote par son nom (pratique pour les essais : document.querySelector('.robot').robot.emote('flip')). */
+    emote: (name) => play(name),
     /** Changement de page : nouvelle tenue. S'il était à l'écran il saute sur le nouvel en-tête depuis là où il se trouvait ; sinon il y est déjà. */
     setPage(page, viewportY) {
       S.page = page;
       S.skin = SKIN[page] || SKIN.accueil;
       root.style.setProperty('--rb', S.skin.color);
+      if (body) body.setColor(S.skin.color);
       root.dataset.hat = S.skin.hat || '';
       root.dataset.tie = S.skin.tie ? '1' : '';
       btn.setAttribute('aria-label', say('name', page));
@@ -452,7 +482,7 @@ export function createMascot({ say, reduced }) {
       const home = plats[0];
       if (!home) { S.plat = null; return; }
       if (S.mode === 'drag' || S.mode === 'fall') return;
-      S.hop = null; S.away = 0;
+      S.hop = null;
       const first = !S.placed;
       if (first || reduced || !S.seen) {
         sit(home, first ? 0.5 : rnd(0.15, 0.6));
@@ -475,5 +505,5 @@ export function createMascot({ say, reduced }) {
       bubble.classList.remove('is-on');
       if (reduced) { scan(); if (plats[0]) { sit(plats[0], 0.5); paint(); } }
     },
-  };
+  });
 }
